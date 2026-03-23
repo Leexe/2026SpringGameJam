@@ -1,0 +1,227 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd922ae02c94c87a66e46a10a7319b9, type: 3}
+  m_Name: Fish State
+  m_EditorClassIdentifier: Unity.Behavior.Authoring::Unity.Behavior.BehaviorBlackboardAuthoringAsset
+  AssetID:
+    m_Value0: 14322844073184535473
+    m_Value1: 604930170526806715
+  m_Variables:
+  - rid: 710492408721965362
+  - rid: 710492408721965364
+  - rid: 710492409008750637
+  - rid: 710492411872412192
+  - rid: 710492411872412656
+  - rid: 710492411889975706
+  - rid: 710492411889976142
+  - rid: 710492411909112765
+  - rid: 710492412080816272
+  m_VersionTimestamp: 639068866098207670
+  m_CommandBuffer:
+    m_Commands: []
+  m_RuntimeBlackboardAsset: {fileID: 236242680721541312}
+  references:
+    version: 2
+    RefIds:
+    - rid: 710492408721965362
+      type: {class: 'TypedVariableModel`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 17196543386041817963
+          m_Value1: 15058814261883436868
+        Name: EnemyCursor
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 710492408721965364
+      type: {class: 'TypedVariableModel`1[[FishStatus, Assembly-CSharp]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 11618281802749707228
+          m_Value1: 14935869235604621370
+        Name: Status
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: 0
+    - rid: 710492409008750637
+      type: {class: 'TypedVariableModel`1[[Biteable, Assembly-CSharp]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 17937464062246758794
+          m_Value1: 12094029070370933044
+        Name: NoticedBiteable
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 710492411872412192
+      type: {class: 'TypedVariableModel`1[[FishStatusChange, Assembly-CSharp]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 17470876993843732084
+          m_Value1: 2110332831492923132
+        Name: Fish Status Change
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 710492411872412656
+      type: {class: 'TypedVariableModel`1[[BiteSuccess, Assembly-CSharp]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 3011854549469317736
+          m_Value1: 537404420697913948
+        Name: Bite Success
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 710492411889975706
+      type: {class: 'TypedVariableModel`1[[CursorLostCombat, Assembly-CSharp]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 2963256801577464575
+          m_Value1: 5408828848092155730
+        Name: Cursor Lost Combat
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 710492411889976142
+      type: {class: 'TypedVariableModel`1[[FishLostCombat, Assembly-CSharp]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 10556567439870749879
+          m_Value1: 4821490014662994045
+        Name: Fish Lost Combat
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 710492411909112765
+      type: {class: 'TypedVariableModel`1[[FishNoticedBiteable, Assembly-CSharp]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 3445279916204358370
+          m_Value1: 12463222423169633164
+        Name: Fish Noticed Biteable
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 710492412080816272
+      type: {class: 'TypedVariableModel`1[[PatternsController, Assembly-CSharp]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 16349779725351731626
+          m_Value1: 1559125358688296836
+        Name: Patterns Controller (temp)
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+--- !u!114 &236242680721541312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c02bb70996b49eba31d0c206e28da24, type: 3}
+  m_Name: Fish State
+  m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.RuntimeBlackboardAsset
+  VersionTimestamp: 639068866098207670
+  AssetID:
+    m_Value0: 14322844073184535473
+    m_Value1: 604930170526806715
+  m_Blackboard:
+    m_Variables:
+    - rid: 710492408721965363
+    - rid: 710492408721965365
+    - rid: 710492409008750638
+    - rid: 710492411872412193
+    - rid: 710492411872412657
+    - rid: 710492411889975707
+    - rid: 710492411889976143
+    - rid: 710492411909112766
+    - rid: 710492412080816273
+  m_SharedBlackboardVariableGuids: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 710492408721965363
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 17196543386041817963
+          m_Value1: 15058814261883436868
+        Name: EnemyCursor
+        m_Value: {fileID: 0}
+    - rid: 710492408721965365
+      type: {class: 'BlackboardVariable`1[[FishStatus, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 11618281802749707228
+          m_Value1: 14935869235604621370
+        Name: Status
+        m_Value: 0
+    - rid: 710492409008750638
+      type: {class: 'BlackboardVariable`1[[Biteable, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 17937464062246758794
+          m_Value1: 12094029070370933044
+        Name: NoticedBiteable
+        m_Value: {fileID: 0}
+    - rid: 710492411872412193
+      type: {class: 'BlackboardVariable`1[[FishStatusChange, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 17470876993843732084
+          m_Value1: 2110332831492923132
+        Name: Fish Status Change
+        m_Value: {fileID: 0}
+    - rid: 710492411872412657
+      type: {class: 'BlackboardVariable`1[[BiteSuccess, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 3011854549469317736
+          m_Value1: 537404420697913948
+        Name: Bite Success
+        m_Value: {fileID: 0}
+    - rid: 710492411889975707
+      type: {class: 'BlackboardVariable`1[[CursorLostCombat, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 2963256801577464575
+          m_Value1: 5408828848092155730
+        Name: Cursor Lost Combat
+        m_Value: {fileID: 0}
+    - rid: 710492411889976143
+      type: {class: 'BlackboardVariable`1[[FishLostCombat, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 10556567439870749879
+          m_Value1: 4821490014662994045
+        Name: Fish Lost Combat
+        m_Value: {fileID: 0}
+    - rid: 710492411909112766
+      type: {class: 'BlackboardVariable`1[[FishNoticedBiteable, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 3445279916204358370
+          m_Value1: 12463222423169633164
+        Name: Fish Noticed Biteable
+        m_Value: {fileID: 0}
+    - rid: 710492412080816273
+      type: {class: 'BlackboardVariable`1[[PatternsController, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 16349779725351731626
+          m_Value1: 1559125358688296836
+        Name: Patterns Controller (temp)
+        m_Value: {fileID: 0}
