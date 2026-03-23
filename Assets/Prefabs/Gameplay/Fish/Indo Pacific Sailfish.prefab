@@ -1,0 +1,139 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &343105945301224956
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 95785440043706396, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 95785440043706396, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.028
+      objectReference: {fileID: 0}
+    - target: {fileID: 401371197613209835, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_Size.x
+      value: 7.2657604
+      objectReference: {fileID: 0}
+    - target: {fileID: 401371197613209835, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_Size.y
+      value: 0.80824286
+      objectReference: {fileID: 0}
+    - target: {fileID: 401371197613209835, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_Offset.x
+      value: 4.804652
+      objectReference: {fileID: 0}
+    - target: {fileID: 401371197613209835, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.018668026
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301358849073796882, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301358849073796882, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301358849073796882, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301358849073796882, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301358849073796882, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301358849073796882, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301358849073796882, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301358849073796882, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301358849073796882, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301358849073796882, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345471513592454783, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: _acceleration
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345471513592454783, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: _defaultIdleSwimSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3294191730427458563, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6dc58f7d565834a71bb9cbc67a4d754e, type: 3}
+    - target: {fileID: 3827851623711261835, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2c3fee9ca6a2a4f779eb620b00f01f05, type: 2}
+    - target: {fileID: 4865769746971102317, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: managedReferences[710492408978604469].m_Value
+      value: 
+      objectReference: {fileID: -2476821776330694923, guid: 3eba98cf47753451db6ebaf3ef46dbeb, type: 2}
+    - target: {fileID: 4865769746971102317, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: managedReferences[710492409562660876].m_Value
+      value: 
+      objectReference: {fileID: 7979490341121020804, guid: 00ed5cc9c8dda46c6a368270751d1c39, type: 2}
+    - target: {fileID: 5721870446945289213, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.594
+      objectReference: {fileID: 0}
+    - target: {fileID: 5721870446945289213, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.017
+      objectReference: {fileID: 0}
+    - target: {fileID: 5935922950199856230, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_Name
+      value: Indo Pacific Sailfish
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979106498330347432, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: _swimRate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979106498330347432, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: _swimAnimation
+      value: 
+      objectReference: {fileID: 7400000, guid: 11220015ead3f402d858b9950b9deb49, type: 2}
+    - target: {fileID: 5979106498330347432, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: _referenceSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979106498330347432, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: _maxAnimationSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979106498330347432, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: _minAnimationSpeed
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296755199899853260, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: _maxHealth
+      value: 200
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
