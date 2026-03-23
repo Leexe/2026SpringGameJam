@@ -29,13 +29,15 @@ public class StabilityMeterUI : MonoBehaviour
 	private void Start()
 	{
 		_backgroundHeight = _backgroundImage.rect.height;
+		UpdateInstabilityUI(0.3f);
+		UpdateProgressUI(0);
 	}
 
 	[Button]
 	private void UpdateInstabilityUI(float normalizedProgress)
 	{
 		_instabilityTween.Stop();
-		_instabilityTween = Tween.UIFillAmount(_progressBar, normalizedProgress, _tweenDuration);
+		_instabilityTween = Tween.UIFillAmount(_instabilityBar, normalizedProgress, _tweenDuration);
 	}
 
 	[Button]
