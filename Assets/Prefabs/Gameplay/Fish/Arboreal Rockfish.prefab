@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &343105945301224956
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 95785440043706396, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 95785440043706396, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 401371197613209835, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_Size.x
+      value: 3.9728284
+      objectReference: {fileID: 0}
+    - target: {fileID: 401371197613209835, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_Size.y
+      value: 0.89345145
+      objectReference: {fileID: 0}
+    - target: {fileID: 401371197613209835, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.3779664
+      objectReference: {fileID: 0}
+    - target: {fileID: 401371197613209835, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.015979707
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301358849073796882, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301358849073796882, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301358849073796882, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301358849073796882, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301358849073796882, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301358849073796882, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301358849073796882, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301358849073796882, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301358849073796882, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301358849073796882, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345471513592454783, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: _defaultIdleSwimSpeed
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3294191730427458563, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_Size.x
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3294191730427458563, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 51eda85e0a3a4451186a48587dd4229a, type: 3}
+    - target: {fileID: 4865769746971102317, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: managedReferences[710492408978604469].m_Value
+      value: 
+      objectReference: {fileID: -2476821776330694923, guid: 5fd9b6c841b324b1b89fe97ab0da9327, type: 2}
+    - target: {fileID: 5721870446945289213, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.609
+      objectReference: {fileID: 0}
+    - target: {fileID: 5721870446945289213, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5935922950199856230, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: m_Name
+      value: Arboreal Rockfish
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296755199899853260, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: _maxHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296755199899853260, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+      propertyPath: _defaultInvincibilityTime
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 3072305493658261339, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 79d6f8aec190c4b3396329e45ebfbfb6, type: 3}
