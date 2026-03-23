@@ -81,11 +81,6 @@ public class PlayerFishingController : MonoBehaviour
 	private void Awake()
 	{
 		State = FishingGameState.Idle;
-
-		if (_cursorController)
-		{
-			_cursorController.ReturnToHook(_hookController);
-		}
 	}
 
 	private void OnEnable()
@@ -131,9 +126,13 @@ public class PlayerFishingController : MonoBehaviour
 
 	private void Start()
 	{
-		if (_cursorController && _startCombatImmediately)
+		if (_cursorController)
 		{
 			_cursorController.ReturnToHook(_hookController);
+		}
+
+		if (_cursorController && _startCombatImmediately)
+		{
 			TransitionState(FishingGameState.Casted); // force state to avoid warnings
 			_hookController.transform.position = _startCombatFish.BiteController.BitePoint.position;
 			OnHookBite(_startCombatFish);

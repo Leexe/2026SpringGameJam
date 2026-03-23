@@ -67,7 +67,7 @@ public class FishingGameplayHarness : MonoBehaviour
 		_player.Hook.Movement.OnLineLimitReached += HandleLineLimitReached;
 	}
 
-	private void Start()
+	private void Awake()
 	{
 		HandleRodLoadoutChanged();
 		HandleFishInventoryChanged();
