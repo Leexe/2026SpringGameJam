@@ -25,7 +25,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Special Ability",
+                    "name": "Ability1",
                     "type": "Button",
                     "id": "96d66c51-4289-4c64-a9de-ff641557ddf1",
                     "expectedControlType": "",
@@ -34,45 +34,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Anchor",
+                    "name": "Attack",
                     "type": "Button",
                     "id": "57656796-6c50-4bea-bad3-565083fbcdfb",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Inventory",
-                    "type": "Button",
-                    "id": "38253dcc-1344-4cf0-8ef7-a2c048c1ae64",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Equipment",
-                    "type": "Button",
-                    "id": "ce3a495a-1ccf-4a4c-9e49-7a51da0c1121",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Encyclopedia",
-                    "type": "Button",
-                    "id": "a5c41813-2869-48ea-bdad-a897298134e5",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Map",
-                    "type": "Button",
-                    "id": "fe11f660-1683-426f-a992-37f99978cca0",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -206,7 +170,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Special Ability",
+                    "action": "Ability1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -217,29 +181,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Anchor",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "477359ba-aaeb-4656-b53a-2c85d105cd24",
-                    "path": "<Keyboard>/i",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Inventory",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f7c8797d-ff99-465c-9d46-24067cfd2bc4",
-                    "path": "<Keyboard>/m",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Map",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -251,28 +193,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "ContinueStory",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bc8f288a-cb00-4a20-8d35-270576dd942e",
-                    "path": "<Keyboard>/o",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Equipment",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "cffd1265-2bf6-4cc9-b0d7-05d794efe4d7",
-                    "path": "<Keyboard>/u",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Encyclopedia",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
