@@ -1192,7 +1192,7 @@ GameObject:
   - component: {fileID: 928876076}
   - component: {fileID: 928876075}
   m_Layer: 0
-  m_Name: AudioVisualizerTest
+  m_Name: AudioTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

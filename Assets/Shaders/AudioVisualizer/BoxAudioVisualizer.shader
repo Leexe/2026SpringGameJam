@@ -4,6 +4,7 @@ Shader "Custom/BoxAudioVisualizer"
     {
         _MainTex ("MainTex", 2D) = "white" {}
         _Bars ("Bar Count", Integer) = 64
+        _Opacity ("Bar Count", Float) = 0.6
     }
     SubShader
     {
@@ -13,7 +14,7 @@ Shader "Custom/BoxAudioVisualizer"
             "Queue"="Transparent"
         }
         LOD 100
-        
+
         ZWrite Off
         Blend SrcAlpha OneMinusSrcAlpha
 
@@ -27,6 +28,7 @@ Shader "Custom/BoxAudioVisualizer"
 
             CBUFFER_START(UnityPerMaterial)
             float _Bars;
+            float _Opacity;
             float _Frequency[256];
             CBUFFER_END
 
@@ -61,7 +63,7 @@ Shader "Custom/BoxAudioVisualizer"
                 float h = _Frequency[i.uv.x * _Bars];
                 float bar = Bars(i.uv, h);
                 float3 col = bar * float3(sin(i.uv.x + 0.02), cos(i.uv.y + 2), .3);
-                return float4(col, bar);
+                return float4(col, bar * _Opacity);
             }
             ENDHLSL
         }
