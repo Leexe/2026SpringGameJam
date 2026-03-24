@@ -752,16 +752,15 @@ public class AudioManager : PersistentMonoSingleton<AudioManager>
 	/// <param name="frequencyPeaks">An array of frequency peaks</param>
 	/// <param name="audioBusType">The audio bus type (Master, Music, Ambience, Game)</param>
 	/// <param name="scaleFactor">The scale factor that every frequency peak will be multiplied by</param>
-	/// <param name="minPeak">The minimum peak</param>
-	/// <param name="higherFrequencyBoost">The frequency boost to the higher frequencies, a small value (~0.05)</param>
+	/// <param name="higherFrequencyBoost">The frequency boost to the higher frequencies, a small value</param>
 	/// <param name="spectrumCutoff">The cutoff frequency for the spectrum data, cuts off the high frequencies</param>
+	/// <param name="spectrumLowCutoff">The cutoff frequency for the spectrum data, cuts off the low frequencies</param>
 	public bool GetFrequencyPeaks(
 		int numBuckets,
 		ref float[] frequencyPeaks,
 		ref int[] bucketSizes,
 		AudioBusType audioBusType = AudioBusType.Master,
 		float scaleFactor = 5f,
-		float minPeak = 0f,
 		float higherFrequencyBoost = 0.05f,
 		float spectrumCutoff = 0.75f
 	)
@@ -800,7 +799,7 @@ public class AudioManager : PersistentMonoSingleton<AudioManager>
 			float frequencyBoost = 1.0f + (startIndex * higherFrequencyBoost);
 			float compressedPeak = Mathf.Sqrt(peakValue);
 
-			frequencyPeaks[i] = (compressedPeak * frequencyBoost * scaleFactor) + minPeak;
+			frequencyPeaks[i] = compressedPeak * frequencyBoost * scaleFactor;
 		}
 
 		return true;

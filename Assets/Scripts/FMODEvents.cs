@@ -9,9 +9,17 @@ public class FMODEvents : MonoSingleton<FMODEvents>
 {
 	#region Music
 
-	// [field: SerializeField]
-	// [field: FoldoutGroup("Music", true)]
-	// public EventReference FightingGame_Bgm { get; private set; }
+	[field: SerializeField]
+	[field: FoldoutGroup("Music", true)]
+	public EventReference TnShi_Bgm { get; private set; }
+
+	[field: SerializeField]
+	[field: FoldoutGroup("Music", true)]
+	public EventReference Shop_Bgm { get; private set; }
+
+	[field: SerializeField]
+	[field: FoldoutGroup("Music", true)]
+	public EventReference HAND2HAND_Bgm { get; private set; }
 
 	#endregion
 
