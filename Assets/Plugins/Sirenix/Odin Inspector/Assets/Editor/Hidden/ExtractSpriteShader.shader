@@ -19,12 +19,12 @@ Shader "Hidden/Sirenix/Editor/ExtractSprite"
             #pragma fragment frag
             #include "UnityCG.cginc"
 
-            struct appdata {
+            struct MeshData {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
             };
 
-            struct v2f {
+            struct Interpolators {
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
             };
@@ -32,14 +32,14 @@ Shader "Hidden/Sirenix/Editor/ExtractSprite"
             sampler2D _MainTex;
             float4 _Rect;
 
-            v2f vert(appdata v) {
-                v2f o;
+            Interpolators vert(MeshData v) {
+                Interpolators o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
                 return o;
             }
 
-            fixed4 frag(v2f i) : SV_Target {
+            fixed4 frag(Interpolators i) : SV_Target {
                 float2 uv = i.uv;
                 uv *= _Rect.zw;
                 uv += _Rect.xy;
