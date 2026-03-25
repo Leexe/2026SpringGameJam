@@ -1,3 +1,4 @@
+using System;
 using PrimeTween;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -6,6 +7,9 @@ using UnityEngine.UI;
 public class StabilityMeterUI : MonoBehaviour
 {
 	[Header("References")]
+	[SerializeField]
+	private PlayerController _player;
+
 	[SerializeField]
 	private Image _progressBar;
 
@@ -23,14 +27,32 @@ public class StabilityMeterUI : MonoBehaviour
 	private float _tweenDuration = 0.1f;
 
 	private float _backgroundHeight;
-	private Sequence _progressTween;
+	private Tween _progressTween;
 	private Tween _instabilityTween;
 
 	private void Start()
 	{
 		_backgroundHeight = _backgroundImage.rect.height;
-		UpdateInstabilityUI(0.3f);
-		UpdateProgressUI(0);
+		UpdateInstabilityUI(0f);
+		UpdateProgressUI(1f);
+	}
+
+	private void OnEnable()
+	{
+		if (_player != null)
+		{
+			_player.OnInstabilityProgressChanged += UpdateInstabilityUI;
+			_player.OnRepairProgressChanged += UpdateProgressUI;
+		}
+	}
+
+	private void OnDisable()
+	{
+		if (_player != null)
+		{
+			_player.OnInstabilityProgressChanged -= UpdateInstabilityUI;
+			_player.OnRepairProgressChanged -= UpdateProgressUI;
+		}
 	}
 
 	[Button]
@@ -44,9 +66,6 @@ public class StabilityMeterUI : MonoBehaviour
 	private void UpdateProgressUI(float normalizedProgress)
 	{
 		_progressTween.Stop();
-		_progressTween = Sequence
-			.Create()
-			.Group(Tween.UIFillAmount(_progressBar, normalizedProgress, _tweenDuration))
-			.Group(Tween.UIAnchoredPositionY(_marker, _backgroundHeight * normalizedProgress, _tweenDuration));
+		_progressTween = Tween.UIFillAmount(_progressBar, normalizedProgress, _tweenDuration);
 	}
 }

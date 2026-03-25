@@ -1,27 +1,44 @@
 using System;
+using Sirenix.OdinInspector;
+using Unity.AppUI.UI;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
 	[Header("References")]
-	[SerializeField]
-	private Rigidbody2D _rb;
+	[field:SerializeField]
+	public Rigidbody2D Rb { get; private set; }
 
-	[Header("Parameters")]
+	[Header("Parameters - Movement")]
 	[SerializeField]
 	private float _baseMoveSpeed = 7f;
 	[SerializeField]
 	private float _repairSpeedMult = 0.5f;
 
-	/** Public Fields **/
+	[Header("Parameters - Repair")]
+	[SerializeField, Tooltip("Time it takes to repair from _startingRepairValue to 1")]
+	private float _repairTimeNeeded = 12f;
+	[SerializeField, Tooltip("Starting repair value")]
+	private float _startingRepairValue = 0.3f;
+	[SerializeField, Tooltip("Time it takes for Instability to go from 0 to 1")]
+	private float _timeUntilDeath = 30f;
+	[SerializeField, Tooltip("Time it takes for Instability to go from 1 to 0, when you win")]
+	private float _instabilityFadeTime = 3f;
+
+	/** Fields **/
 
 	public event Action OnDie;
-
-	/** Private Fields **/
+	public event Action<float> OnRepairProgressChanged;
+	public event Action<float> OnInstabilityProgressChanged;
 
 	private bool _isRepairInputHeld;
 	private Vector2 _movementInput;
-	private bool _isDying;
+
+	public bool IsAlive { get; private set; }
+
+	// if instability > repair, lose. repair gets a head start (it doesn't start at 0)
+	public float RepairProgress { get; private set; }
+	public float InstabilityProgress { get; private set; }
 
 	/** Unity Messages **/
 
@@ -32,7 +49,10 @@ public class PlayerController : MonoBehaviour
 		InputManager.Instance.OnAnchorReleased.AddListener(HandleAnchorReleased);
 
 		_isRepairInputHeld = false;
-		_isDying = false;
+		IsAlive = true;
+
+		RepairProgress = 1f;
+		InstabilityProgress = 0f;
 	}
 
 	private void OnDisable()
@@ -47,12 +67,16 @@ public class PlayerController : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		HandleMovementPhysics();
+		if (IsAlive)
+		{
+			HandleMovementPhysics();
+			HandleRepairs(Time.fixedDeltaTime);
+		}
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		Die();
+		Die(true);
 	}
 
 	/** Event Handlers **/
@@ -72,23 +96,64 @@ public class PlayerController : MonoBehaviour
 		_isRepairInputHeld = false;
 	}
 
+	/** Public Methods **/
+
+	[Button]
+	public void ResetRepairProgress()
+	{
+		RepairProgress = _startingRepairValue;
+		InstabilityProgress = 0f;
+
+		OnRepairProgressChanged?.Invoke(RepairProgress);
+		OnInstabilityProgressChanged?.Invoke(InstabilityProgress);
+	}
+
 	/** Private Methods **/
 
 	private void HandleMovementPhysics()
 	{
 		float speed = _baseMoveSpeed * (_isRepairInputHeld ? _repairSpeedMult : 1f);
-		_rb.linearVelocity = speed * Vector2.ClampMagnitude(_movementInput, 1f);
+		Rb.linearVelocity = speed * Vector2.ClampMagnitude(_movementInput, 1f);
 	}
 
-	private void Die()
+	private void HandleRepairs(float dt)
 	{
-		if (_isDying)
+		float oldProg = RepairProgress;
+		float oldInstProg = InstabilityProgress;
+
+		if (_isRepairInputHeld)
+		{
+			float repairRate = (1f - _startingRepairValue) / _repairTimeNeeded;
+			RepairProgress = Mathf.Clamp01(RepairProgress + (repairRate * dt));
+		}
+
+		float instabilityRate =  1f / (RepairProgress >= 1f ? -_instabilityFadeTime : _timeUntilDeath);
+		InstabilityProgress += instabilityRate * dt;
+
+		if (RepairProgress < InstabilityProgress)
+		{
+			Die(false);
+		}
+
+		if (oldProg != RepairProgress)
+		{
+			OnRepairProgressChanged?.Invoke(RepairProgress);
+		}
+		if (oldInstProg != InstabilityProgress)
+		{
+			OnInstabilityProgressChanged?.Invoke(InstabilityProgress);
+		}
+	}
+
+	private void Die(bool isFromHit)
+	{
+		if (!IsAlive)
 		{
 			return;
 		}
+		IsAlive = false;
 
 		OnDie?.Invoke();
-		Debug.Log("fuck you");
 		// TBD
 	}
 }
