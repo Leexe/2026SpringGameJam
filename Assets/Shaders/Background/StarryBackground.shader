@@ -2,15 +2,17 @@ Shader "Unlit/StarryBackground"
 {
     Properties
     {
+        _PixelResolution ("Pixel Resolution", Range(1.0, 2048.0)) = 128.0
         _Octaves ("Octaves", Integer) = 10
-        _Size ("Size", Float) = 1
+        _FogScale ("Fog Scale", Float) = 1
         _FogSpeed ("Fog Speed", Float) = 0.5
+        _Color1 ("Color 1", Color) = (1,1,1,1)
+        _Color2 ("Color 2", Color) = (0,0,0,1)
+        _FogColorRamp ("Fog Color Ramp", 2D) = "white" {}
         _StarGrid ("Star Grid", Range(1, 1000)) = 700.0
         _StarSize ("Star Scale", Range(0.0, 1.0)) = 0.3
         _StarProbability ("Star Probability", Range(0.0, 1.0)) = 0.02
         _StarSpeed ("Star Speed", Float) = 3
-        _Color1 ("Color 1", Color) = (1,1,1,1)
-        _Color2 ("Color 2", Color) = (0,0,0,1)
     }
     SubShader
     {
@@ -42,13 +44,14 @@ Shader "Unlit/StarryBackground"
                 float4 vertex : SV_POSITION;
             };
 
+            float _PixelResolution;
             int _Octaves;
             float _StarGrid;
             float _StarSize;
             float _StarProbability;
             float4 _Color1;
             float4 _Color2;
-            float _Size;
+            float _FogScale;
             float _FogSpeed;
             float _StarSpeed;
 
@@ -62,13 +65,16 @@ Shader "Unlit/StarryBackground"
 
             fixed4 frag(Interpolators i) : SV_Target
             {
+                // Pixelation
+                float2 pixelUV = floor(i.uv * _PixelResolution) / _PixelResolution;
+
                 // FBM Fog
-                float offset = fbm(float3(_Size * i.uv, _Time.y * _FogSpeed), _Octaves);
-                float f = fbm(float3(i.uv + offset, _Time.y * _FogSpeed), _Octaves);
+                float offset = fbm(float3(_FogScale * pixelUV, _Time.y * _FogSpeed), _Octaves);
+                float f = fbm(float3(pixelUV + offset, _Time.y * _FogSpeed), _Octaves);
                 float3 fbmColor = lerp(_Color1.rgb, _Color2.rgb, f);
 
                 // Stars
-                float2 starGrid = floor(i.uv * _StarGrid);
+                float2 starGrid = floor(pixelUV * _StarGrid);
 
                 // Rescale Simplex Noise to be in range [0, 1]
                 float randomStar = SimplexNoise(starGrid * 0.314 + 0.5) * 0.5 + 0.5;
@@ -78,12 +84,12 @@ Shader "Unlit/StarryBackground"
                 float offsetY = SimplexNoise(starGrid * 0.314 + float2(0.0, 42.7)) * 0.4;
 
                 // Get the local position of the star within the cell
-                float2 starLocal = frac(i.uv * _StarGrid) - 0.5 - float2(offsetX, offsetY);
-                
+                float2 starLocal = frac(pixelUV * _StarGrid) - 0.5 - float2(offsetX, offsetY);
+
                 // Draw a small dot for star
                 float starShape = smoothstep(_StarSize, 0.0, length(starLocal));
                 float star = starShape * step(1.0 - _StarProbability, randomStar);
-                
+
                 // Make stars twinkle
                 float twinkle = sin(_Time.y * _StarSpeed + randomStar * 1000.0) * 0.5 + 0.5;
                 float3 stars = star * twinkle;
