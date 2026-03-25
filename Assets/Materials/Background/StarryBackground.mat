@@ -38,16 +38,19 @@ Material:
     m_Ints:
     - _Octaves: 6
     m_Floats:
-    - _FogScale: 1
+    - _FogPixelResolution: 300
+    - _FogScale: -2.46
     - _FogSpeed: 0.004
-    - _PixelResolution: 800
+    - _PixelResolution: 600
     - _Size: 1
     - _Speed: 0.04
     - _StarDensity: 0.5
     - _StarGrid: 700
+    - _StarOpacity: 1
+    - _StarPixelResolution: 600
     - _StarProbability: 0.06
     - _StarScale: 700
-    - _StarSize: 0.2
+    - _StarSize: 0.3
     - _StarSpeed: 1
     m_Colors:
     - _Color1: {r: 0, g: 0, b: 0, a: 1}
