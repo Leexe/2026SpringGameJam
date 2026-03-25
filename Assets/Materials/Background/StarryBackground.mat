@@ -39,7 +39,7 @@ Material:
     - _Octaves: 6
     m_Floats:
     - _FogPixelResolution: 300
-    - _FogScale: -2.46
+    - _FogScale: 1
     - _FogSpeed: 0.004
     - _PixelResolution: 600
     - _Size: 1
