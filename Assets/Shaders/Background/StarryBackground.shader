@@ -44,6 +44,7 @@ Shader "Unlit/StarryBackground"
                 float4 vertex : SV_POSITION;
             };
 
+            UNITY_DECLARE_TEX2D(_FogColorRamp);
             float _PixelResolution;
             int _Octaves;
             float _StarGrid;
@@ -70,27 +71,25 @@ Shader "Unlit/StarryBackground"
 
                 // FBM Fog
                 float offset = fbm(float3(_FogScale * pixelUV, _Time.y * _FogSpeed), _Octaves);
-                float f = fbm(float3(pixelUV + offset, _Time.y * _FogSpeed), _Octaves);
-                float3 fbmColor = lerp(_Color1.rgb, _Color2.rgb, f);
+                float fogNoise = fbm(float3(pixelUV + offset, _Time.y * _FogSpeed), _Octaves);
+                // float3 fbmColor = lerp(_Color1.rgb, _Color2.rgb, f);
+                // Sample Color From Color Ramp
+                float3 fbmColor = UNITY_SAMPLE_TEX2D(_FogColorRamp, float2(fogNoise, 0.5)).rgb;
 
                 // Stars
+                // 1) Create Grid
                 float2 starGrid = floor(pixelUV * _StarGrid);
-
-                // Rescale Simplex Noise to be in range [0, 1]
+                // 2) Rescale Simplex Noise to be in range [0, 1]
                 float randomStar = SimplexNoise(starGrid * 0.314 + 0.5) * 0.5 + 0.5;
-
-                // Offset the center of the star within each cell
+                // 3) Offset the center of the star within each cell
                 float offsetX = SimplexNoise(starGrid * 0.314 + float2(13.5, 0.0)) * 0.4;
                 float offsetY = SimplexNoise(starGrid * 0.314 + float2(0.0, 42.7)) * 0.4;
-
-                // Get the local position of the star within the cell
+                // 4) Get the local position of the star within the cell
                 float2 starLocal = frac(pixelUV * _StarGrid) - 0.5 - float2(offsetX, offsetY);
-
-                // Draw a small dot for star
+                // 5) Draw a small dot for star
                 float starShape = smoothstep(_StarSize, 0.0, length(starLocal));
                 float star = starShape * step(1.0 - _StarProbability, randomStar);
-
-                // Make stars twinkle
+                // 6) Make stars twinkle
                 float twinkle = sin(_Time.y * _StarSpeed + randomStar * 1000.0) * 0.5 + 0.5;
                 float3 stars = star * twinkle;
 
