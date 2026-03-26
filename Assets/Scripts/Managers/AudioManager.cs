@@ -47,6 +47,9 @@ public class AudioManager : PersistentMonoSingleton<AudioManager>
 	private EventReference _currentMusicReference;
 	private int _channelsInitialized;
 
+	// Events
+	public static event Action<string> OnTimelineMarkerHit;
+
 	// Music Instances
 	private EventInstance _musicTrack;
 	private readonly Dictionary<GUID, EventInstance> _musicTrackInstances = new();
@@ -210,6 +213,9 @@ public class AudioManager : PersistentMonoSingleton<AudioManager>
 	public void SwitchMusic(EventReference music, bool playOnSwitch = true)
 	{
 		SwitchTrack(music, ref _currentMusicReference, ref _musicTrack, _musicTrackInstances);
+
+		_musicTrack.setCallback(MarkerCallback, EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
+
 		if (playOnSwitch)
 		{
 			ResumeMusic();
@@ -250,6 +256,9 @@ public class AudioManager : PersistentMonoSingleton<AudioManager>
 	public void SwitchAmbience(EventReference ambience, bool playOnSwitch = true)
 	{
 		SwitchTrack(ambience, ref _ambientReference, ref _ambientTrack, _ambientTrackInstances);
+
+		_ambientTrack.setCallback(MarkerCallback, EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
+
 		if (playOnSwitch)
 		{
 			ResumeAmbience();
@@ -490,6 +499,25 @@ public class AudioManager : PersistentMonoSingleton<AudioManager>
 	public void SetInstancePitch(EventInstance instance, float pitch)
 	{
 		instance.setPitch(pitch);
+	}
+
+	#endregion
+
+	#region Callbacks
+
+	// FMOD is written in c++ so this attribute is needed for webgl builds where
+	// the translation from c# to c++ can't be performed during runtime
+	[AOT.MonoPInvokeCallback(typeof(FMOD.Studio.EVENT_CALLBACK))]
+	private static RESULT MarkerCallback(EVENT_CALLBACK_TYPE type, IntPtr instancePtr, IntPtr parameterPtr)
+	{
+		if (type == EVENT_CALLBACK_TYPE.TIMELINE_MARKER)
+		{
+			var parameter = (TIMELINE_MARKER_PROPERTIES)
+				Marshal.PtrToStructure(parameterPtr, typeof(TIMELINE_MARKER_PROPERTIES));
+			string markerName = parameter.name;
+			OnTimelineMarkerHit?.Invoke(markerName);
+		}
+		return RESULT.OK;
 	}
 
 	#endregion
