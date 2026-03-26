@@ -839,8 +839,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Debug
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e31766050f68c4f18b3a06676b752cec, type: 2}
+  m_sharedMaterial: {fileID: 2402931473894039438, guid: e31766050f68c4f18b3a06676b752cec, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1034,7 +1034,7 @@ MonoBehaviour:
   _namePanel: {fileID: 616905194644350493}
   _nameText: {fileID: 6324184216006114400}
   _backgroundImage: {fileID: 4717657879626835893}
-  _canvasFadeInDuration: 0.5
+  _canvasFadeInDuration: 0.25
   _canvasFadeOutDuration: 1
   _defaultFadeOutDuration: 1
   _defaultShakeOffset: 20
@@ -1192,8 +1192,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Start a Story in the "Dialogue" Game Object
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e31766050f68c4f18b3a06676b752cec, type: 2}
+  m_sharedMaterial: {fileID: 2402931473894039438, guid: e31766050f68c4f18b3a06676b752cec, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1224,8 +1224,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
