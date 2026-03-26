@@ -33,8 +33,6 @@ public class StabilityMeterUI : MonoBehaviour
 	private void Start()
 	{
 		_backgroundHeight = _backgroundImage.rect.height;
-		UpdateInstabilityUI(0f);
-		UpdateProgressUI(1f);
 	}
 
 	private void OnEnable()
@@ -55,17 +53,22 @@ public class StabilityMeterUI : MonoBehaviour
 		}
 	}
 
+	private void LateUpdate()
+	{
+		_marker.anchoredPosition = new(_marker.anchoredPosition.x, _backgroundHeight * _progressBar.fillAmount);
+	}
+
 	[Button]
 	private void UpdateInstabilityUI(float normalizedProgress)
 	{
 		_instabilityTween.Stop();
-		_instabilityTween = Tween.UIFillAmount(_instabilityBar, normalizedProgress, _tweenDuration);
+		_instabilityTween = Tween.UIFillAmount(_instabilityBar, 1f - normalizedProgress, _tweenDuration);
 	}
 
 	[Button]
 	private void UpdateProgressUI(float normalizedProgress)
 	{
 		_progressTween.Stop();
-		_progressTween = Tween.UIFillAmount(_progressBar, normalizedProgress, _tweenDuration);
+		_progressTween = Tween.UIFillAmount(_progressBar, 1f - normalizedProgress, _tweenDuration);
 	}
 }
