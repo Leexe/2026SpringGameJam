@@ -1847,21 +1847,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7068544694545489261, guid: ae91ebf63bdc749ef8a30cd968a432e7, type: 3}
-      propertyPath: m_VerticalAlignment
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 7068544694545489261, guid: ae91ebf63bdc749ef8a30cd968a432e7, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7228143630980288931, guid: ae91ebf63bdc749ef8a30cd968a432e7, type: 3}
       propertyPath: m_Name
       value: DialogueController
-      objectReference: {fileID: 0}
-    - target: {fileID: 8279626773835838548, guid: ae91ebf63bdc749ef8a30cd968a432e7, type: 3}
-      propertyPath: _canvasFadeInDuration
-      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1985,8 +1973,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Systems: \nCritical"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e31766050f68c4f18b3a06676b752cec, type: 2}
+  m_sharedMaterial: {fileID: 2402931473894039438, guid: e31766050f68c4f18b3a06676b752cec, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2010,7 +1998,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.35
+  m_fontSize: 30.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
