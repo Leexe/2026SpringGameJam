@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 3cbf8b72075cd9a429bd78f8abbdccbd
+guid: 0b660ffe9f451764b9d0fee75780800e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6988368005943811491
-    second: CoreInstabilityMeterSpritesheet_0
+      213: 3593814878498149405
+    second: CoreInstabilityMeterSpritesheet 1_0
   - first:
-      213: -966497001223877959
-    second: CoreInstabilityMeterSpritesheet_1
+      213: -4064935273461283652
+    second: CoreInstabilityMeterSpritesheet 1_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CoreInstabilityMeterSpritesheet_0
+      name: CoreInstabilityMeterSpritesheet 1_0
       rect:
         serializedVersion: 2
-        x: 35
-        y: 0
-        width: 58
-        height: 512
+        x: 33
+        y: 16
+        width: 62
+        height: 483
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3ad5cf9ecababf060800000000000000
-      internalID: 6988368005943811491
+      spriteID: d145565579bcfd130800000000000000
+      internalID: 3593814878498149405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CoreInstabilityMeterSpritesheet_1
+      name: CoreInstabilityMeterSpritesheet 1_1
       rect:
         serializedVersion: 2
-        x: 163
-        y: 0
-        width: 58
-        height: 512
+        x: 161
+        y: 16
+        width: 62
+        height: 483
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9ba029d19105692f0800000000000000
-      internalID: -966497001223877959
+      spriteID: cb4826ed7e27697c0800000000000000
+      internalID: -4064935273461283652
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CoreInstabilityMeterSpritesheet_0: 6988368005943811491
-      CoreInstabilityMeterSpritesheet_1: -966497001223877959
+      CoreInstabilityMeterSpritesheet 1_0: 3593814878498149405
+      CoreInstabilityMeterSpritesheet 1_1: -4064935273461283652
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
