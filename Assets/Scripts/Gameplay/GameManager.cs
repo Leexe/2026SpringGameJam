@@ -1,9 +1,10 @@
 using PrimeTween;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoSingleton<GameManager>
 {
 	[SerializeField]
 	private PlayerController _player;
@@ -14,16 +15,25 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	private TMP_Text _debugTimeDisplay;
 
+	/** Events **/
+
+	public UnityEvent OnGamePause;
+	public UnityEvent OnGameResume;
+
 	/** Fields **/
 
 	// a negative value means game has not started yet
 	public float GameTime { get; private set; } = -1f;
+	private bool _canPause = true;
+	private bool _isPaused = false;
 
 	/** Unity Messages **/
 
 	private void OnEnable()
 	{
 		_player.OnDie += HandlePlayerDie;
+
+		InputManager.Instance.OnEscapePerformed.AddListener(TogglePause);
 	}
 
 	private void OnDisable()
@@ -32,10 +42,16 @@ public class GameManager : MonoBehaviour
 		{
 			_player.OnDie -= HandlePlayerDie;
 		}
+
+		if (InputManager.Instance != null)
+		{
+			InputManager.Instance.OnEscapePerformed.RemoveListener(TogglePause);
+		}
 	}
 
-	private void Awake()
+	protected override void Awake()
 	{
+		base.Awake();
 		_fader.alpha = 1f;
 	}
 
@@ -90,5 +106,34 @@ public class GameManager : MonoBehaviour
 			.ChainDelay(0.5f)
 			.Chain(Tween.Alpha(_fader, endValue: 1f, duration: 0.6f))
 			.ChainCallback(() => SceneManager.LoadScene(SceneManager.GetActiveScene().name));
+	}
+
+	private void TogglePause()
+	{
+		if (_isPaused)
+		{
+			ResumeGame();
+		}
+		else
+		{
+			PauseGame();
+		}
+	}
+
+	private void PauseGame()
+	{
+		if (_canPause)
+		{
+			OnGamePause?.Invoke();
+			Time.timeScale = 0f;
+			_isPaused = true;
+		}
+	}
+
+	private void ResumeGame()
+	{
+		OnGameResume?.Invoke();
+		Time.timeScale = 1f;
+		_isPaused = false;
 	}
 }
