@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 241b2255877a31640b4e8db12090a9df
+guid: e6db8a65934766446a373f3d40191233
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6620612070577657729
-    second: CoreInstabilityProgressIndicatorSprite_0
-  - first:
-      213: -7953397316771413176
-    second: CoreInstabilityProgressIndicatorSprite_1
+      213: 1572307901483043391
+    second: ClockWindowSprite_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CoreInstabilityProgressIndicatorSprite_0
+      name: ClockWindowSprite_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 8
-        width: 81
-        height: 15
+        x: 0
+        y: 0
+        width: 384
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,30 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 187d176c99321eb50800000000000000
-      internalID: 6620612070577657729
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CoreInstabilityProgressIndicatorSprite_1
-      rect:
-        serializedVersion: 2
-        x: 99
-        y: 6
-        width: 19
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8438b40874bdf9190800000000000000
-      internalID: -7953397316771413176
+      spriteID: f3acf69b4b5f1d510800000000000000
+      internalID: 1572307901483043391
       vertices: []
       indices: 
       edges: []
@@ -160,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CoreInstabilityProgressIndicatorSprite_0: 6620612070577657729
-      CoreInstabilityProgressIndicatorSprite_1: -7953397316771413176
+      ClockWindowSprite_0: 1572307901483043391
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
