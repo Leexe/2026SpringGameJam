@@ -33,8 +33,6 @@ public class StabilityMeterUI : MonoBehaviour
 	private void Start()
 	{
 		_backgroundHeight = _backgroundImage.rect.height;
-		UpdateInstabilityUI(0f);
-		UpdateProgressUI(1f);
 	}
 
 	private void OnEnable()
@@ -53,6 +51,11 @@ public class StabilityMeterUI : MonoBehaviour
 			_player.OnInstabilityProgressChanged -= UpdateInstabilityUI;
 			_player.OnRepairProgressChanged -= UpdateProgressUI;
 		}
+	}
+
+	private void LateUpdate()
+	{
+		_marker.anchoredPosition = new(_marker.anchoredPosition.x, _backgroundHeight * _instabilityBar.fillAmount);
 	}
 
 	[Button]
