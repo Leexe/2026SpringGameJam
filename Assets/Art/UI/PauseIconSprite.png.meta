@@ -5,9 +5,6 @@ TextureImporter:
   - first:
       213: 478037037697947369
     second: PauseIconSprite_0
-  - first:
-      213: -7950780938413217604
-    second: PauseIconSprite_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,10 +103,10 @@ TextureImporter:
       name: PauseIconSprite_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 24
-        width: 19
-        height: 80
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -120,28 +117,6 @@ TextureImporter:
       bones: []
       spriteID: 9e6577d272452a600800000000000000
       internalID: 478037037697947369
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PauseIconSprite_1
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 24
-        width: 19
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cb8eeee8cd629a190800000000000000
-      internalID: -7950780938413217604
       vertices: []
       indices: 
       edges: []
@@ -161,7 +136,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       PauseIconSprite_0: 478037037697947369
-      PauseIconSprite_1: -7950780938413217604
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
