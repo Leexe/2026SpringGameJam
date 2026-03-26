@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (IsAlive)
 		{
-			bool thrust = !_isRepairInputHeld;
+			bool thrust = _movementInput.y > 0f;
 
 			AnimationClip animToPlay = thrust ? _idleThrustAnim : _idleNoThrustAnim;
 			if (_movementInput.x < 0f)
