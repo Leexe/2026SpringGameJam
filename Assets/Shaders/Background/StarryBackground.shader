@@ -76,11 +76,11 @@ Shader "Unlit/StarryBackground"
                 float2 starPixelUV = floor(i.uv * _StarPixelResolution) / _StarPixelResolution;
 
                 // Dithering Fog
-                #if define(USE_8X8_DITHER)
+#ifdef USE_8X8_DITHER
                 float dither = bayerMatrix8x8[(int(fogPixelUV.x * _FogPixelResolution) % 8) + (int(fogPixelUV.y * _FogPixelResolution) % 8) * 8];
-                #else
+#else
                 float dither = bayerMatrix4x4[(int(fogPixelUV.x * _FogPixelResolution) % 4) + (int(fogPixelUV.y * _FogPixelResolution) % 4) * 4];
-                #endif
+#endif
                 float fogNoise = (dither - 0.5) * _FogDitherSpread;
 
                 // FBM Fog
