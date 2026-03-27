@@ -1,39 +1,25 @@
 using UnityEngine;
 
-#region Enums
-
 public enum BulletBehavior
 {
-	Linear,
-	SineWave,
-	Tracking,
+	Linear = 0,
+	SineWave = 1,
+	Tracking = 2,
 }
-
-#endregion
-
-#region Structs
 
 [System.Serializable]
 public struct Bullet
 {
-	#region Fields
-
 	public bool IsActive;
+	public BulletSO SO;
 
-	// Target visual and physical definition
-	public BulletData Data;
-
-	// Core physics
+	// Core Physics
 	public Vector2 Position;
 	public Vector2 Velocity;
 	public float TimeAlive;
 
-	// Behavior specific parameters
+	// Behavior Specific Parameters
 	public BulletBehavior Behavior;
 	public float Amplitude;
 	public float Frequency;
-
-	#endregion
 }
-
-#endregion

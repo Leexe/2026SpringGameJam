@@ -17,7 +17,10 @@ public class GameManager : MonoSingleton<GameManager>
 
 	/** Events **/
 
+	[HideInInspector]
 	public UnityEvent OnGamePause;
+
+	[HideInInspector]
 	public UnityEvent OnGameResume;
 
 	/** Fields **/

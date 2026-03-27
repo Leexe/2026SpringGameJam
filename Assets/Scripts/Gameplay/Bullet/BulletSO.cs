@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewBulletData", menuName = "Danmaku/Bullet Data")]
-public class BulletData : ScriptableObject
+[CreateAssetMenu(fileName = "BulletSO", menuName = "Gameplay/Bullet")]
+public class BulletSO : ScriptableObject
 {
 	[Header("Rendering")]
 	[SerializeField]

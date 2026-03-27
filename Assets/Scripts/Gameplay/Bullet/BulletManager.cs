@@ -3,33 +3,34 @@ using UnityEngine;
 
 public class BulletManager : MonoBehaviour
 {
-	#region Properties
-
-	public static BulletManager Instance { get; private set; }
-
-	#endregion
-
 	#region Fields
 
 	[Header("Memory Settings")]
-	[Tooltip("Pre-allocate this many bullets. Zero runtime allocations. (Keep under 100k for WebGL)")]
+	[Tooltip("Number of Pre-Allocated bullets.")]
 	[SerializeField]
 	private int _maxBullets = 5000;
 
-	[Header("Gameplay (Testing)")]
+	[Header("Gameplay")]
 	[SerializeField]
 	private Transform _playerTransform;
 
 	[SerializeField]
-	private float _playerHurtboxRadius = 0.2f;
+	private float _playerHurtboxRadius = 0.25f;
 
-	// Core DOD Data
+	private float _playerRadiusSqr;
+
+	// Bullets Pool
 	private Bullet[] _bullets;
 	private Stack<int> _freeIndices;
 
 	// Batched Rendering Data
-	private readonly Dictionary<BulletData, List<Matrix4x4>> _renderBatches = new();
-	private readonly Matrix4x4[] _drawBuffer = new Matrix4x4[1023]; // Unity's limit per draw call
+	private readonly Dictionary<BulletSO, List<Matrix4x4>> _renderBatches = new();
+
+	// DrawMeshInstanced can only draw 1023 matrices per draw call, so we have to chunk them
+	private readonly Matrix4x4[] _drawBuffer = new Matrix4x4[1023];
+
+	public static BulletManager Instance { get; private set; }
+
 	#endregion
 
 	#region Lifecycle
@@ -46,21 +47,20 @@ public class BulletManager : MonoBehaviour
 		}
 
 		InitializePool();
+		_playerRadiusSqr = _playerHurtboxRadius * _playerHurtboxRadius;
 	}
 
 	private void Update()
 	{
-		// 1. Prepare render batches memory
-		foreach (KeyValuePair<BulletData, List<Matrix4x4>> kvp in _renderBatches)
+		// 1. Fluch Memory
+		foreach (KeyValuePair<BulletSO, List<Matrix4x4>> kvp in _renderBatches)
 		{
 			kvp.Value.Clear();
 		}
 
 		Vector2 playerPos = _playerTransform ? _playerTransform.position : Vector2.zero;
-		float playerRadiusSqr = _playerHurtboxRadius * _playerHurtboxRadius;
 
-		// 2. The Core Update Loop
-		// This is blindingly fast because it's a tight loop over a contiguous struct array
+		// 2. Core Update Loop: Loop through all the bullets
 		for (int i = 0; i < _bullets.Length; i++)
 		{
 			if (!_bullets[i].IsActive)
@@ -70,7 +70,7 @@ public class BulletManager : MonoBehaviour
 
 			_bullets[i].TimeAlive += Time.deltaTime;
 
-			// ---- BEHAVIOR SYSTEM ----
+			// Behaviors System
 			switch (_bullets[i].Behavior)
 			{
 				case BulletBehavior.Linear:
@@ -98,10 +98,10 @@ public class BulletManager : MonoBehaviour
 					break;
 			}
 
-			// ---- COLLISION SYSTEM ----
+			// Collisions System
 			if (_playerTransform != null)
 			{
-				float hitRadiusSqr = playerRadiusSqr + (_bullets[i].Data.HitboxRadius * _bullets[i].Data.HitboxRadius);
+				float hitRadiusSqr = _playerRadiusSqr + (_bullets[i].SO.HitboxRadius * _bullets[i].SO.HitboxRadius);
 				if ((_bullets[i].Position - playerPos).sqrMagnitude < hitRadiusSqr)
 				{
 					Debug.Log("Player Hit by Bullet!");
@@ -122,18 +122,18 @@ public class BulletManager : MonoBehaviour
 			var matrix = Matrix4x4.TRS(
 				_bullets[i].Position,
 				Quaternion.identity,
-				Vector3.one * _bullets[i].Data.VisualScale
+				Vector3.one * _bullets[i].SO.VisualScale
 			);
-			_renderBatches[_bullets[i].Data].Add(matrix);
+			_renderBatches[_bullets[i].SO].Add(matrix);
 		}
 
 		// 3. Batched DrawMeshInstanced execution
-		foreach (KeyValuePair<BulletData, List<Matrix4x4>> kvp in _renderBatches)
+		foreach (KeyValuePair<BulletSO, List<Matrix4x4>> kvp in _renderBatches)
 		{
-			BulletData data = kvp.Key;
+			BulletSO so = kvp.Key;
 			List<Matrix4x4> matrices = kvp.Value;
 
-			if (!data || !data.Mesh || !data.Material || matrices.Count == 0)
+			if (!so || !so.Mesh || !so.Material || matrices.Count == 0)
 			{
 				continue;
 			}
@@ -146,7 +146,7 @@ public class BulletManager : MonoBehaviour
 				matrices.CopyTo(i, _drawBuffer, 0, length);
 
 				// The massive GPU speedup happens right here
-				Graphics.DrawMeshInstanced(data.Mesh, 0, data.Material, _drawBuffer, length);
+				Graphics.DrawMeshInstanced(so.Mesh, 0, so.Material, _drawBuffer, length);
 			}
 		}
 	}
@@ -158,7 +158,7 @@ public class BulletManager : MonoBehaviour
 	/// <summary>
 	/// Reads a PatternData config and spawns the exact amount of bullets across the spread angle.
 	/// </summary>
-	public void FirePattern(PatternData pattern, Vector2 origin, Vector2 aimDirection)
+	public void FirePattern(PatternSO pattern, Vector2 origin, Vector2 aimDirection)
 	{
 		if (pattern.BulletType == null)
 		{
@@ -196,7 +196,7 @@ public class BulletManager : MonoBehaviour
 
 			// Assign struct properties instantly
 			_bullets[index].IsActive = true;
-			_bullets[index].Data = pattern.BulletType;
+			_bullets[index].SO = pattern.BulletType;
 			_bullets[index].Position = origin;
 			_bullets[index].Velocity = velocity;
 			_bullets[index].Behavior = pattern.Behavior;

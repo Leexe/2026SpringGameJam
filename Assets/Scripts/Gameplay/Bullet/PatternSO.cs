@@ -1,13 +1,12 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewPatternData", menuName = "Danmaku/Pattern Data")]
-public class PatternData : ScriptableObject
+[CreateAssetMenu(fileName = "PatternSO", menuName = "Gameplay/Pattern")]
+public class PatternSO : ScriptableObject
 {
-	#region Fields
-
 	[Header("Bullet Type")]
 	[SerializeField]
-	private BulletData _bulletType;
+	private BulletSO _bulletType;
 
 	[SerializeField]
 	private BulletBehavior _behavior;
@@ -21,6 +20,16 @@ public class PatternData : ScriptableObject
 	[SerializeField]
 	private float _spreadAngle = 360f;
 
+	[Tooltip("Toggle to aim towards the player's direction")]
+	[SerializeField]
+	private bool _towardsPlayer = true;
+
+	[Tooltip("Direction to aim bullets (0 = Right, 90 = Up)")]
+	[ShowIf("_towardsPlayer")]
+	[Range(0, 360)]
+	[SerializeField]
+	private float _direction = 270f;
+
 	[SerializeField]
 	private float _baseSpeed = 5f;
 
@@ -31,17 +40,11 @@ public class PatternData : ScriptableObject
 	[SerializeField]
 	private float _sineFrequency = 5f;
 
-	#endregion
-
-	#region Properties
-
-	public BulletData BulletType => _bulletType;
+	public BulletSO BulletType => _bulletType;
 	public BulletBehavior Behavior => _behavior;
 	public int BulletCount => _bulletCount;
 	public float SpreadAngle => _spreadAngle;
 	public float BaseSpeed => _baseSpeed;
 	public float SineAmplitude => _sineAmplitude;
 	public float SineFrequency => _sineFrequency;
-
-	#endregion
 }
