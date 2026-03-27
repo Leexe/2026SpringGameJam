@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class BulletManager : MonoBehaviour
+public class BulletManager : MonoSingleton<BulletManager>
 {
 	#region Fields
 
@@ -36,22 +36,13 @@ public class BulletManager : MonoBehaviour
 	// DrawMeshInstanced can only draw 1023 matrices per draw call, so we have to chunk them
 	private readonly Matrix4x4[] _drawBuffer = new Matrix4x4[1023];
 
-	public static BulletManager Instance { get; private set; }
-
 	#endregion
 
 	#region Lifecycle
 
-	private void Awake()
+	protected override void Awake()
 	{
-		if (Instance == null)
-		{
-			Instance = this;
-		}
-		else
-		{
-			Destroy(gameObject);
-		}
+		base.Awake();
 
 		InitializePool();
 	}
@@ -170,7 +161,7 @@ public class BulletManager : MonoBehaviour
 	[Button]
 	public void FirePattern(PatternSO pattern, Vector2 origin)
 	{
-		if (pattern.BulletSO == null)
+		if (!pattern.BulletSO)
 		{
 			Debug.LogWarning("Pattern has no BulletData assigned!");
 			return;
