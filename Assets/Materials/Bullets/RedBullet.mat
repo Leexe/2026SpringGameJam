@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: RedBullet
-  m_Shader: {fileID: 4800000, guid: a46255dc8a61f4daf81ed802b8859176, type: 3}
+  m_Shader: {fileID: 4800000, guid: e774d0bded4dc418487cdb9c74b3a6f5, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -29,10 +29,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AnimationSpeed: 2
+    - _AnimationSpeed: 10
     - _Columns: 2
     - _Rows: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 4, g: 4, b: 4, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

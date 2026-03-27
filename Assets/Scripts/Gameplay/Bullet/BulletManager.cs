@@ -181,7 +181,7 @@ public class BulletManager : MonoBehaviour
 		if (pattern.TowardsPlayer && _playerTransform)
 		{
 			Vector2 dirToPlayer = (Vector2)_playerTransform.position - origin;
-			startAngle += Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * Mathf.Rad2Deg;
+			startAngle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * Mathf.Rad2Deg;
 		}
 
 		// Calculate slice per bullet

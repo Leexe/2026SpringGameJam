@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: SimpleShotGun
   m_EditorClassIdentifier: Assembly-CSharp::PatternSO
   _bulletSO: {fileID: 11400000, guid: 70bd3629fd756481b99f09d22e949889, type: 2}
-  _behavior: 1
-  _bulletCount: 100
-  _spreadAngle: 360
-  _towardsPlayer: 0
+  _behavior: 0
+  _bulletCount: 3
+  _spreadAngle: 60
+  _towardsPlayer: 1
   _direction: 270
-  _baseSpeed: 2
+  _baseSpeed: 2.5
   _rotateTowardsDirection: 0
   _sineAmplitude: 5
   _sineFrequency: 5
