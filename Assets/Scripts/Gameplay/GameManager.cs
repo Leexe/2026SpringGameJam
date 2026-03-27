@@ -10,6 +10,9 @@ public class GameManager : MonoSingleton<GameManager>
 	private PlayerController _player;
 
 	[SerializeField]
+	private BulletManager _bulletManager;
+
+	[SerializeField]
 	private CanvasGroup _fader;
 
 	[SerializeField]
@@ -17,7 +20,10 @@ public class GameManager : MonoSingleton<GameManager>
 
 	/** Events **/
 
+	[HideInInspector]
 	public UnityEvent OnGamePause;
+
+	[HideInInspector]
 	public UnityEvent OnGameResume;
 
 	/** Fields **/
@@ -31,6 +37,7 @@ public class GameManager : MonoSingleton<GameManager>
 
 	private void OnEnable()
 	{
+		_bulletManager.OnPlayerCollision += _player.DieFromHit;
 		_player.OnDie += HandlePlayerDie;
 
 		InputManager.Instance.OnEscapePerformed.AddListener(TogglePause);
@@ -41,6 +48,11 @@ public class GameManager : MonoSingleton<GameManager>
 		if (_player != null)
 		{
 			_player.OnDie -= HandlePlayerDie;
+		}
+
+		if (_bulletManager != null)
+		{
+			_bulletManager.OnPlayerCollision -= _player.DieFromHit;
 		}
 
 		if (InputManager.Instance != null)
