@@ -8,6 +8,7 @@ Shader "Unlit/StarryBackground"
         _FogScale ("Fog Scale", Float) = 1
         _FogSpeed ("Fog Speed", Float) = 0.5
         _FogColorRamp ("Fog Color Ramp", 2D) = "white" {}
+        [Toggle(USE_8X8_DITHER)] _Use8x8Dither ("Use 8x8 Dither", Float) = 0
         _FogDitherSpread ("Fog Dither Spread", Range(0, 1)) = 0.05
         _StarGrid ("Star Grid", Range(1, 1000)) = 700.0
         _StarSize ("Star Scale", Range(0.0, 1.0)) = 0.3
@@ -28,6 +29,7 @@ Shader "Unlit/StarryBackground"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma shader_feature USE_8X8_DITHER
 
             #include "UnityCG.cginc"
             #include "Assets/Shaders/Utility/Fbm.hlsl"
@@ -74,7 +76,11 @@ Shader "Unlit/StarryBackground"
                 float2 starPixelUV = floor(i.uv * _StarPixelResolution) / _StarPixelResolution;
 
                 // Dithering Fog
+                #if define(USE_8X8_DITHER)
+                float dither = bayerMatrix8x8[(int(fogPixelUV.x * _FogPixelResolution) % 8) + (int(fogPixelUV.y * _FogPixelResolution) % 8) * 8];
+                #else
                 float dither = bayerMatrix4x4[(int(fogPixelUV.x * _FogPixelResolution) % 4) + (int(fogPixelUV.y * _FogPixelResolution) % 4) * 4];
+                #endif
                 float fogNoise = (dither - 0.5) * _FogDitherSpread;
 
                 // FBM Fog
