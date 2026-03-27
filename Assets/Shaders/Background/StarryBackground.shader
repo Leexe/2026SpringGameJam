@@ -25,7 +25,7 @@ Shader "Unlit/StarryBackground"
         _StarSize ("Star Scale", Range(0.0, 1.0)) = 0.3
         _StarOpacity ("Star Opacity", Range(0.0, 1.0)) = 1
         _StarProbability ("Star Probability", Range(0.0, 1.0)) = 0.02
-        _StarFlicker ("Star Speed", Float) = 3
+        _StarFlicker ("Star Flicker", Float) = 3
     }
     SubShader
     {
