@@ -6,18 +6,22 @@ public class PatternSO : ScriptableObject
 {
 	[Header("Bullet Type")]
 	[SerializeField]
+	[Required]
 	private BulletSO _bulletSO;
 
 	[SerializeField]
+	[Required]
 	private BulletBehavior _behavior;
 
 	[Header("Spread Settings")]
 	[Tooltip("Total number of bullets to fire")]
 	[SerializeField]
+	[Min(1)]
 	private int _bulletCount = 1;
 
 	[Tooltip("The total arc in degrees (e.g. 360 for a full circle)")]
 	[SerializeField]
+	[Range(0, 360)]
 	private float _spreadAngle = 360f;
 
 	[Tooltip("Toggle to aim towards the player's direction")]
@@ -25,7 +29,7 @@ public class PatternSO : ScriptableObject
 	private bool _towardsPlayer = true;
 
 	[Tooltip("Direction to aim bullets (0 = Right, 90 = Up)")]
-	[ShowIf("_towardsPlayer")]
+	[HideIf("_towardsPlayer")]
 	[Range(0, 360)]
 	[SerializeField]
 	private float _direction = 270f;
@@ -52,10 +56,12 @@ public class PatternSO : ScriptableObject
 
 	public BulletSO BulletSO => _bulletSO;
 	public BulletBehavior Behavior => _behavior;
-	public bool RotateTowardsDirection => _rotateTowardsDirection;
 	public int BulletCount => _bulletCount;
 	public float SpreadAngle => _spreadAngle;
+	public bool TowardsPlayer => _towardsPlayer;
+	public float Direction => _direction;
 	public float BaseSpeed => _baseSpeed;
+	public bool RotateTowardsDirection => _rotateTowardsDirection;
 	public float SineAmplitude => _sineAmplitude;
 	public float SineFrequency => _sineFrequency;
 	public float TrackingStrength => _trackingStrength;

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fd6476767660444eba8f75516e78836, type: 3}
+  m_Name: SimpleShotGun
+  m_EditorClassIdentifier: Assembly-CSharp::PatternSO
+  _bulletSO: {fileID: 11400000, guid: 70bd3629fd756481b99f09d22e949889, type: 2}
+  _behavior: 1
+  _bulletCount: 100
+  _spreadAngle: 360
+  _towardsPlayer: 0
+  _direction: 270
+  _baseSpeed: 2
+  _rotateTowardsDirection: 0
+  _sineAmplitude: 5
+  _sineFrequency: 5
+  _trackingStrength: 3

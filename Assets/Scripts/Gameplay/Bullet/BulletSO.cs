@@ -24,7 +24,6 @@ public class BulletSO : ScriptableObject
 	public Mesh Mesh => _mesh;
 	public Material Material => _material;
 	public float HitboxRadius => _hitboxRadius;
-	public float HitboxRadiusSqr;
 	public int Damage => _damage;
 	public float VisualScale => _visualScale;
 }

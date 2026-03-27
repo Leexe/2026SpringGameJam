@@ -408,6 +408,54 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5085836571811655066, guid: 5a79dbd64f9d04d3b9b6542238984488, type: 3}
   m_PrefabInstance: {fileID: 534653306}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &281529174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 281529176}
+  - component: {fileID: 281529175}
+  m_Layer: 0
+  m_Name: BulletManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &281529175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281529174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bf590d26ecc4aa3929e33f97a02d6f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletManager
+  _maxBullets: 1000000
+  _playerTransform: {fileID: 534653307}
+  _playerHurtboxRadius: 0.25
+  _bulletBounds: 30
+--- !u!4 &281529176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281529174}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &309279655
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,6 +1070,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1924276919}
   m_SourcePrefab: {fileID: 100100000, guid: 5a79dbd64f9d04d3b9b6542238984488, type: 3}
+--- !u!4 &534653307 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5284281594869341120, guid: 5a79dbd64f9d04d3b9b6542238984488, type: 3}
+  m_PrefabInstance: {fileID: 534653306}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -3346,6 +3399,7 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 1085225232927101369}
   - {fileID: 3907365783205288794}
+  - {fileID: 281529176}
   - {fileID: 27842999}
   - {fileID: 741351822}
   - {fileID: 309279657}

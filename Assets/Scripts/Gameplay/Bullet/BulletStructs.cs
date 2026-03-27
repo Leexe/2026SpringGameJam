@@ -21,7 +21,7 @@ public struct Bullet
 
 	// Behavior Specific Parameters
 	public bool RotateTowardsDirection;
-	public float HitRadiusSqr;
+	public float HitRadius;
 	public BulletBehavior Behavior;
 	public float Amplitude;
 	public float Frequency;

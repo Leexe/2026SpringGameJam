@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class BulletManager : MonoBehaviour
@@ -21,11 +22,9 @@ public class BulletManager : MonoBehaviour
 	[Tooltip("Size of square around origin to delete bullets")]
 	private float _bulletBounds = 30f;
 
-	private float _playerRadiusSqr;
-
 	// Bullets Pool
 	private Bullet[] _bullets;
-	private Stack<int> _freeIndices;
+	private Stack<int> _freeInstances;
 
 	// Batched Rendering Data
 	private readonly Dictionary<BulletSO, List<Matrix4x4>> _renderBatches = new();
@@ -51,7 +50,6 @@ public class BulletManager : MonoBehaviour
 		}
 
 		InitializePool();
-		_playerRadiusSqr = _playerHurtboxRadius * _playerHurtboxRadius;
 	}
 
 	private void Update()
@@ -96,18 +94,18 @@ public class BulletManager : MonoBehaviour
 							dirToTarget * _bullets[i].Speed,
 							Time.deltaTime * _bullets[i].TrackingStrength
 						);
-						_bullets[i].Position += _bullets[i].Velocity * Time.deltaTime;
 					}
+					_bullets[i].Position += _bullets[i].Velocity * Time.deltaTime;
 					break;
 			}
 
 			// Collisions System
 			if (_playerTransform)
 			{
-				float hitRadiusSqr = _playerRadiusSqr + _bullets[i].HitRadiusSqr;
+				float combinedRadius = _playerHurtboxRadius + _bullets[i].HitRadius;
+				float hitRadiusSqr = combinedRadius * combinedRadius;
 				if ((_bullets[i].Position - playerPos).sqrMagnitude < hitRadiusSqr)
 				{
-					Debug.Log("Player Hit by Bullet");
 					KillBullet(i);
 					continue;
 				}
@@ -121,11 +119,16 @@ public class BulletManager : MonoBehaviour
 			}
 
 			// Prepare for Rendering
-			Quaternion targetRotation = _bullets[i].RotateTowardsDirection
-				? Quaternion.LookRotation(_bullets[i].Velocity)
-				: Quaternion.identity;
+			Quaternion targetRotation = Quaternion.identity;
+			if (_bullets[i].RotateTowardsDirection)
+			{
+				float angle = Mathf.Atan2(_bullets[i].Velocity.y, _bullets[i].Velocity.x) * Mathf.Rad2Deg;
+				targetRotation = Quaternion.Euler(0, 0, angle);
+			}
 
+			// Create Transition, Rotation, and Scale Matrix
 			var matrix = Matrix4x4.TRS(_bullets[i].Position, targetRotation, Vector3.one * _bullets[i].SO.VisualScale);
+			// Group by BulletSO
 			_renderBatches[_bullets[i].SO].Add(matrix);
 		}
 
@@ -156,9 +159,11 @@ public class BulletManager : MonoBehaviour
 	#region Public Methods
 
 	/// <summary>
-	/// Reads a PatternData config and spawns the exact amount of bullets across the spread angle.
+	/// Reads PatternSO and spawns bullets
 	/// </summary>
-	public void FirePattern(PatternSO pattern, Vector2 origin, Vector2 aimDirection)
+	[FoldoutGroup("Debug")]
+	[Button]
+	public void FirePattern(PatternSO pattern, Vector2 origin)
 	{
 		if (pattern.BulletSO == null)
 		{
@@ -166,42 +171,43 @@ public class BulletManager : MonoBehaviour
 			return;
 		}
 
-		// Ensure we have a rendering bucket ready for this bullet's visual material
+		// Create a new bucket if not already inside dictionary
 		if (!_renderBatches.ContainsKey(pattern.BulletSO))
 		{
 			_renderBatches[pattern.BulletSO] = new List<Matrix4x4>(_maxBullets);
 		}
 
-		// Convert direction Vector to Radian rotation
-		float startAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+		float startAngle = pattern.Direction;
+		if (pattern.TowardsPlayer && _playerTransform)
+		{
+			Vector2 dirToPlayer = (Vector2)_playerTransform.position - origin;
+			startAngle += Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * Mathf.Rad2Deg;
+		}
 
 		// Calculate slice per bullet
 		float angleStep = pattern.BulletCount > 1 ? pattern.SpreadAngle / (pattern.BulletCount - 1) : 0;
-		float currentAngle = startAngle - (pattern.SpreadAngle / 2f);
+		float currentAngle = pattern.BulletCount > 1 ? startAngle - (pattern.SpreadAngle / 2f) : startAngle;
 
 		for (int i = 0; i < pattern.BulletCount; i++)
 		{
-			if (_freeIndices.Count == 0)
+			if (_freeInstances.Count == 0)
 			{
-				Debug.LogWarning("Bullet pool exhausted! Increase Max Bullets.");
+				Debug.LogWarning("Bullet pool exhausted, Increase Max Bullets");
 				return;
 			}
 
-			// Math to get XY vector from angle
 			float rad = currentAngle * Mathf.Deg2Rad;
 			Vector2 velocity = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)) * pattern.BaseSpeed;
 
-			// O(1) Pop
-			int index = _freeIndices.Pop();
+			int index = _freeInstances.Pop();
 
-			// Assign struct properties instantly
 			_bullets[index].IsActive = true;
 			_bullets[index].SO = pattern.BulletSO;
 			_bullets[index].Position = origin;
 			_bullets[index].Velocity = velocity;
 			_bullets[index].Speed = pattern.BaseSpeed;
 			_bullets[index].RotateTowardsDirection = pattern.RotateTowardsDirection;
-			_bullets[index].HitRadiusSqr = pattern.BulletSO.HitboxRadius * pattern.BulletSO.HitboxRadius;
+			_bullets[index].HitRadius = pattern.BulletSO.HitboxRadius;
 			_bullets[index].Behavior = pattern.Behavior;
 			_bullets[index].TimeAlive = 0f;
 			_bullets[index].Amplitude = pattern.SineAmplitude;
@@ -218,22 +224,19 @@ public class BulletManager : MonoBehaviour
 
 	private void InitializePool()
 	{
-		// O(1) Allocations. This happens exactly once on awake.
 		_bullets = new Bullet[_maxBullets];
-		_freeIndices = new Stack<int>(_maxBullets);
+		_freeInstances = new Stack<int>(_maxBullets);
 
-		// Push all array indices into the "availability" pool
 		for (int i = _maxBullets - 1; i >= 0; i--)
 		{
-			_freeIndices.Push(i);
+			_freeInstances.Push(i);
 		}
 	}
 
 	private void KillBullet(int index)
 	{
 		_bullets[index].IsActive = false;
-		// O(1) Return to pool
-		_freeIndices.Push(index);
+		_freeInstances.Push(index);
 	}
 
 	#endregion
