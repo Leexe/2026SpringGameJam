@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StarryBackground
+  m_Name: StarryBackgroundMenu
   m_Shader: {fileID: 4800000, guid: 725cb5a27801456380225c7aefea96ed, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -40,32 +40,31 @@ Material:
     - _Octaves: 6
     m_Floats:
     - _FogDitherSpread: 0.05
-    - _FogPixelResolution: 800
-    - _FogScale: 1.81
+    - _FogPixelResolution: 1000
+    - _FogScale: 1
     - _FogScrollSpeed: 0.01
-    - _FogScrollSpeedX: -0.0001
-    - _FogScrollSpeedY: 0.001
+    - _FogScrollSpeedX: 0.01
+    - _FogScrollSpeedY: 0.02
     - _FogSpeed: 0.003
     - _PixelResolution: 600
     - _ScrollSpeed: 0.005
     - _Size: 1
     - _Speed: 0.04
     - _StarDensity: 0.5
-    - _StarFlicker: 3
-    - _StarGrid: 700
+    - _StarFlicker: 2
+    - _StarGrid: 800
     - _StarOpacity: 1
-    - _StarPixelResolution: 600
+    - _StarPixelResolution: 1000
     - _StarProbability: 0.06
     - _StarScale: 700
     - _StarScrollSpeed: 0.005
-    - _StarScrollSpeedX: 0.0001
-    - _StarScrollSpeedY: 0.0005
-    - _StarSize: 0.3
+    - _StarScrollSpeedX: 0.01
+    - _StarScrollSpeedY: 0.01
+    - _StarSize: 0.2
     - _StarSpeed: 1
     - _Use8x8Dither: 1
     m_Colors:
     - _Color1: {r: 0, g: 0, b: 0, a: 1}
     - _Color2: {r: 0.042052336, g: 0.042052336, b: 0.1981132, a: 1}
-    - _FogScrollSpeed: {r: 0, g: 0.1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

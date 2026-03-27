@@ -2,21 +2,30 @@ Shader "Unlit/StarryBackground"
 {
     Properties
     {
-        _FogScrollSpeed ("Fog Scroll Speed", Float) = 0.1
-        _StarScrollSpeed ("Star Scroll Speed", Float) = 0.1
+        [Header(Scrolling)]
+        _FogScrollSpeedX ("Fog Scroll Speed X", Float) = 0.0
+        _FogScrollSpeedY ("Fog Scroll Speed Y", Float) = 0.1
+        _StarScrollSpeedX ("Star Scroll Speed X", Float) = 0.0
+        _StarScrollSpeedY ("Star Scroll Speed Y", Float) = 0.1
+        
+        [Header(Resolution)]
         _FogPixelResolution ("Fog Pixel Resolution", Range(1.0, 2048.0)) = 600.0
         _StarPixelResolution ("Star Pixel Resolution", Range(1.0, 2048.0)) = 600.0
+
+        [Header(Fog)]
         _Octaves ("Octaves", Integer) = 10
         _FogScale ("Fog Scale", Float) = 1
         _FogSpeed ("Fog Speed", Float) = 0.5
         _FogColorRamp ("Fog Color Ramp", 2D) = "white" {}
         [Toggle(USE_8X8_DITHER)] _Use8x8Dither ("Use 8x8 Dither", Float) = 0
         _FogDitherSpread ("Fog Dither Spread", Range(0, 1)) = 0.05
+
+        [Header(Stars)]
         _StarGrid ("Star Grid", Range(1, 1000)) = 700.0
         _StarSize ("Star Scale", Range(0.0, 1.0)) = 0.3
         _StarOpacity ("Star Opacity", Range(0.0, 1.0)) = 1
         _StarProbability ("Star Probability", Range(0.0, 1.0)) = 0.02
-        _StarFlicker ("Star Speed", Float) = 3
+        _StarFlicker ("Star Flicker", Float) = 3
     }
     SubShader
     {
@@ -52,8 +61,10 @@ Shader "Unlit/StarryBackground"
             };
 
             UNITY_DECLARE_TEX2D(_FogColorRamp);
-            float _FogScrollSpeed;
-            float _StarScrollSpeed;
+            float _FogScrollSpeedX;
+            float _FogScrollSpeedY;
+            float _StarScrollSpeedX;
+            float _StarScrollSpeedY;
             float _FogPixelResolution;
             float _StarPixelResolution;
             int _Octaves;
@@ -76,18 +87,21 @@ Shader "Unlit/StarryBackground"
 
             fixed4 frag(Interpolators i) : SV_Target
             {
+                float aspect = _ScreenParams.x / _ScreenParams.y;
                 // Panning
                 float2 fogPannedUV = i.uv;
-                fogPannedUV.y += _Time.y * _FogScrollSpeed;
+                fogPannedUV.x += _Time.y * _FogScrollSpeedX;
+                fogPannedUV.y += _Time.y * _FogScrollSpeedY;
                 float2 starPannedUV = i.uv;
-                starPannedUV.y += _Time.y * _StarScrollSpeed;
+                starPannedUV.x += _Time.y * _StarScrollSpeedX;
+                starPannedUV.y += _Time.y * _StarScrollSpeedY;
 
                 // Pixelation
-                float2 fogPixelUV = floor(fogPannedUV * _FogPixelResolution) / _FogPixelResolution;
-                float2 starPixelUV = floor(starPannedUV * _StarPixelResolution) / _StarPixelResolution;
+                float2 fogPixelUV = floor(fogPannedUV * _FogPixelResolution * float2(aspect, 1.0)) / _FogPixelResolution / aspect;
+                float2 starPixelUV = floor(starPannedUV * _StarPixelResolution * float2(aspect, 1.0)) / _StarPixelResolution / aspect;
 
                 // Dithering Fog
-                int ditherX = i.uv.x * _FogPixelResolution;
+                int ditherX = i.uv.x * _FogPixelResolution * aspect;
                 int ditherY = i.uv.y * _FogPixelResolution;
 #ifdef USE_8X8_DITHER
                 float dither = bayerMatrix8x8[(ditherX % 8) + (ditherY % 8) * 8];
