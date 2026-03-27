@@ -16,10 +16,14 @@ public struct Bullet
 	// Core Physics
 	public Vector2 Position;
 	public Vector2 Velocity;
+	public float Speed;
 	public float TimeAlive;
 
 	// Behavior Specific Parameters
+	public bool RotateTowardsDirection;
+	public float HitRadiusSqr;
 	public BulletBehavior Behavior;
 	public float Amplitude;
 	public float Frequency;
+	public float TrackingStrength;
 }

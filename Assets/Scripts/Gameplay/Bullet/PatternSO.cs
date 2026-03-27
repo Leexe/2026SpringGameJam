@@ -6,7 +6,7 @@ public class PatternSO : ScriptableObject
 {
 	[Header("Bullet Type")]
 	[SerializeField]
-	private BulletSO _bulletType;
+	private BulletSO _bulletSO;
 
 	[SerializeField]
 	private BulletBehavior _behavior;
@@ -35,16 +35,28 @@ public class PatternSO : ScriptableObject
 
 	[Header("Behavior Settings")]
 	[SerializeField]
+	[Tooltip("Rotate bullet towards the velocity direction, disable for performance")]
+	private bool _rotateTowardsDirection = false;
+
+	[ShowIf("_behavior", BulletBehavior.SineWave)]
+	[SerializeField]
 	private float _sineAmplitude = 1f;
 
+	[ShowIf("_behavior", BulletBehavior.SineWave)]
 	[SerializeField]
 	private float _sineFrequency = 5f;
 
-	public BulletSO BulletType => _bulletType;
+	[ShowIf("_behavior", BulletBehavior.Tracking)]
+	[SerializeField]
+	private float _trackingStrength = 3f;
+
+	public BulletSO BulletSO => _bulletSO;
 	public BulletBehavior Behavior => _behavior;
+	public bool RotateTowardsDirection => _rotateTowardsDirection;
 	public int BulletCount => _bulletCount;
 	public float SpreadAngle => _spreadAngle;
 	public float BaseSpeed => _baseSpeed;
 	public float SineAmplitude => _sineAmplitude;
 	public float SineFrequency => _sineFrequency;
+	public float TrackingStrength => _trackingStrength;
 }
