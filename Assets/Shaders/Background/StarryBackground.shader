@@ -8,6 +8,7 @@ Shader "Unlit/StarryBackground"
         _FogScale ("Fog Scale", Float) = 1
         _FogSpeed ("Fog Speed", Float) = 0.5
         _FogColorRamp ("Fog Color Ramp", 2D) = "white" {}
+        _FogDitherSpread ("Fog Dither Spread", Range(0, 1)) = 0.05
         _StarGrid ("Star Grid", Range(1, 1000)) = 700.0
         _StarSize ("Star Scale", Range(0.0, 1.0)) = 0.3
         _StarOpacity ("Star Opacity", Range(0.0, 1.0)) = 1
@@ -30,6 +31,7 @@ Shader "Unlit/StarryBackground"
 
             #include "UnityCG.cginc"
             #include "Assets/Shaders/Utility/Fbm.hlsl"
+            #include "Assets/Shaders/Utility/Dithering.hlsl"
             #include "Assets/Shaders/Utility/keijiro/SimplexNoise2D.hlsl"
 
             struct MeshData
@@ -54,6 +56,7 @@ Shader "Unlit/StarryBackground"
             float _StarOpacity;
             float _FogScale;
             float _FogSpeed;
+            float _FogDitherSpread;
             float _StarSpeed;
 
             Interpolators vert(MeshData v)
@@ -70,9 +73,13 @@ Shader "Unlit/StarryBackground"
                 float2 fogPixelUV = floor(i.uv * _FogPixelResolution) / _FogPixelResolution;
                 float2 starPixelUV = floor(i.uv * _StarPixelResolution) / _StarPixelResolution;
 
+                // Dithering Fog
+                float dither = bayerMatrix4x4[(int(fogPixelUV.x * _FogPixelResolution) % 4) + (int(fogPixelUV.y * _FogPixelResolution) % 4) * 4];
+                float fogNoise = (dither - 0.5) * _FogDitherSpread;
+
                 // FBM Fog
                 float offset = fbm(float3(_FogScale * fogPixelUV, _Time.y * _FogSpeed), _Octaves);
-                float fogNoise = fbm(float3(fogPixelUV + offset, _Time.y * _FogSpeed), _Octaves);
+                fogNoise += fbm(float3(fogPixelUV + offset, _Time.y * _FogSpeed), _Octaves);
                 // Sample Color From Color Ramp
                 float3 fbmColor = UNITY_SAMPLE_TEX2D(_FogColorRamp, float2(fogNoise, 0.5)).rgb;
 
