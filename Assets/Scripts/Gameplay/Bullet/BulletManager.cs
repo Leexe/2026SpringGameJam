@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -21,6 +22,9 @@ public class BulletManager : MonoBehaviour
 	[SerializeField]
 	[Tooltip("Size of square around origin to delete bullets")]
 	private float _bulletBounds = 30f;
+
+	// Events
+	public event Action OnPlayerCollision;
 
 	// Bullets Pool
 	private Bullet[] _bullets;
@@ -107,6 +111,7 @@ public class BulletManager : MonoBehaviour
 				if ((_bullets[i].Position - playerPos).sqrMagnitude < hitRadiusSqr)
 				{
 					KillBullet(i);
+					OnPlayerCollision?.Invoke();
 					continue;
 				}
 			}
