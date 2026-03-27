@@ -3,13 +3,19 @@ Shader "Unlit/StarryBackground"
     Properties
     {
         [Header(Scrolling)]
+        [Tooltip(Controls how fast the fog moves horizontally)]
         _FogScrollSpeedX ("Fog Scroll Speed X", Float) = 0.0
+        [Tooltip(Controls how fast the fog moves vertically)]
         _FogScrollSpeedY ("Fog Scroll Speed Y", Float) = 0.1
+        [Tooltip(Controls how fast the stars move horizontally)]
         _StarScrollSpeedX ("Star Scroll Speed X", Float) = 0.0
+        [Tooltip(Controls how fast the stars move vertically)]
         _StarScrollSpeedY ("Star Scroll Speed Y", Float) = 0.1
         
         [Header(Resolution)]
+        [Tooltip(The pixelation resolution constraint for the fog effect)]
         _FogPixelResolution ("Fog Pixel Resolution", Range(1.0, 2048.0)) = 600.0
+        [Tooltip(The pixelation resolution constraint for the star field)]
         _StarPixelResolution ("Star Pixel Resolution", Range(1.0, 2048.0)) = 600.0
 
         [Header(Fog)]
