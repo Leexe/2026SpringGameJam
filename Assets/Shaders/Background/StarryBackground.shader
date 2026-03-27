@@ -2,6 +2,8 @@ Shader "Unlit/StarryBackground"
 {
     Properties
     {
+        _FogScrollSpeed ("Fog Scroll Speed", Float) = 0.1
+        _StarScrollSpeed ("Star Scroll Speed", Float) = 0.1
         _FogPixelResolution ("Fog Pixel Resolution", Range(1.0, 2048.0)) = 600.0
         _StarPixelResolution ("Star Pixel Resolution", Range(1.0, 2048.0)) = 600.0
         _Octaves ("Octaves", Integer) = 10
@@ -14,7 +16,7 @@ Shader "Unlit/StarryBackground"
         _StarSize ("Star Scale", Range(0.0, 1.0)) = 0.3
         _StarOpacity ("Star Opacity", Range(0.0, 1.0)) = 1
         _StarProbability ("Star Probability", Range(0.0, 1.0)) = 0.02
-        _StarSpeed ("Star Speed", Float) = 3
+        _StarFlicker ("Star Speed", Float) = 3
     }
     SubShader
     {
@@ -49,6 +51,8 @@ Shader "Unlit/StarryBackground"
             };
 
             UNITY_DECLARE_TEX2D(_FogColorRamp);
+            float _FogScrollSpeed;
+            float _StarScrollSpeed;
             float _FogPixelResolution;
             float _StarPixelResolution;
             int _Octaves;
@@ -59,7 +63,7 @@ Shader "Unlit/StarryBackground"
             float _FogScale;
             float _FogSpeed;
             float _FogDitherSpread;
-            float _StarSpeed;
+            float _StarFlicker;
 
             Interpolators vert(MeshData v)
             {
@@ -71,15 +75,23 @@ Shader "Unlit/StarryBackground"
 
             fixed4 frag(Interpolators i) : SV_Target
             {
+                // Panning
+                float2 fogPannedUV = i.uv;
+                fogPannedUV.y += _Time.y * _FogScrollSpeed;
+                float2 starPannedUV = i.uv;
+                starPannedUV.y += _Time.y * _StarScrollSpeed;
+
                 // Pixelation
-                float2 fogPixelUV = floor(i.uv * _FogPixelResolution) / _FogPixelResolution;
-                float2 starPixelUV = floor(i.uv * _StarPixelResolution) / _StarPixelResolution;
+                float2 fogPixelUV = floor(fogPannedUV * _FogPixelResolution) / _FogPixelResolution;
+                float2 starPixelUV = floor(starPannedUV * _StarPixelResolution) / _StarPixelResolution;
 
                 // Dithering Fog
+                int ditherX = i.uv.x * _FogPixelResolution;
+                int ditherY = i.uv.y * _FogPixelResolution;
 #ifdef USE_8X8_DITHER
-                float dither = bayerMatrix8x8[(int(fogPixelUV.x * _FogPixelResolution) % 8) + (int(fogPixelUV.y * _FogPixelResolution) % 8) * 8];
+                float dither = bayerMatrix8x8[(ditherX % 8) + (ditherY % 8) * 8];
 #else
-                float dither = bayerMatrix4x4[(int(fogPixelUV.x * _FogPixelResolution) % 4) + (int(fogPixelUV.y * _FogPixelResolution) % 4) * 4];
+                float dither = bayerMatrix4x4[(ditherX % 4) + (ditherY % 4) * 4];
 #endif
                 float fogNoise = (dither - 0.5) * _FogDitherSpread;
 
@@ -103,7 +115,7 @@ Shader "Unlit/StarryBackground"
                 float starShape = smoothstep(_StarSize, 0.0, length(starLocal));
                 float star = starShape * step(1.0 - _StarProbability, randomStar);
                 // 6) Make stars twinkle
-                float twinkle = sin(_Time.y * _StarSpeed + randomStar * 1000.0) * 0.5 + 0.5;
+                float twinkle = sin(_Time.y * _StarFlicker + randomStar * 1000.0) * 0.5 + 0.5;
                 float3 stars = star * twinkle * _StarOpacity;
 
                 return float4(fbmColor + stars, 1.0);
