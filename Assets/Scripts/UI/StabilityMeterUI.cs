@@ -1,4 +1,3 @@
-using System;
 using PrimeTween;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -59,16 +58,18 @@ public class StabilityMeterUI : MonoBehaviour
 	}
 
 	[Button]
-	private void UpdateInstabilityUI(float normalizedProgress)
+	private void UpdateInstabilityUI(float seconds)
 	{
+		float percent = seconds / _player.SecondsToDie;
 		_instabilityTween.Stop();
-		_instabilityTween = Tween.UIFillAmount(_instabilityBar, 1f - normalizedProgress, _tweenDuration);
+		_instabilityTween = Tween.UIFillAmount(_instabilityBar, percent, _tweenDuration);
 	}
 
 	[Button]
-	private void UpdateProgressUI(float normalizedProgress)
+	private void UpdateProgressUI(float seconds)
 	{
+		float percent = seconds / _player.SecondsToDie;
 		_progressTween.Stop();
-		_progressTween = Tween.UIFillAmount(_progressBar, 1f - normalizedProgress, _tweenDuration);
+		_progressTween = Tween.UIFillAmount(_progressBar, percent, _tweenDuration);
 	}
 }

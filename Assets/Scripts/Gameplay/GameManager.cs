@@ -70,7 +70,7 @@ public class GameManager : MonoSingleton<GameManager>
 		else
 		{
 			// pre game
-			if (_player.RepairProgress >= 1f)
+			if (_player.RepairSecondsLeft == 0f)
 			{
 				BeginSequence();
 			}
@@ -85,7 +85,7 @@ public class GameManager : MonoSingleton<GameManager>
 	private void InitPreSequence()
 	{
 		_player.DisableInstability = true;
-		_player.ResetRepairProgress(0.9f);
+		_player.ResetRepairProgress(3f, 10f);
 	}
 
 	// this starts the game
