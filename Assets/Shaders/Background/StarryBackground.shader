@@ -86,6 +86,7 @@ Shader "Unlit/StarryBackground"
 
             fixed4 frag(Interpolators i) : SV_Target
             {
+                float aspect = _ScreenParams.x / _ScreenParams.y;
                 // Panning
                 float2 fogPannedUV = i.uv;
                 fogPannedUV.x += _Time.y * _FogScrollSpeedX;
@@ -95,11 +96,11 @@ Shader "Unlit/StarryBackground"
                 starPannedUV.y += _Time.y * _StarScrollSpeedY;
 
                 // Pixelation
-                float2 fogPixelUV = floor(fogPannedUV * _FogPixelResolution) / _FogPixelResolution;
-                float2 starPixelUV = floor(starPannedUV * _StarPixelResolution) / _StarPixelResolution;
+                float2 fogPixelUV = floor(fogPannedUV * _FogPixelResolution * float2(aspect, 1.0)) / _FogPixelResolution / aspect;
+                float2 starPixelUV = floor(starPannedUV * _StarPixelResolution * float2(aspect, 1.0)) / _StarPixelResolution / aspect;
 
                 // Dithering Fog
-                int ditherX = i.uv.x * _FogPixelResolution;
+                int ditherX = i.uv.x * _FogPixelResolution * aspect;
                 int ditherY = i.uv.y * _FogPixelResolution;
 #ifdef USE_8X8_DITHER
                 float dither = bayerMatrix8x8[(ditherX % 8) + (ditherY % 8) * 8];
