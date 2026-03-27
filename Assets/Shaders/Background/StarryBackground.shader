@@ -32,6 +32,7 @@ Shader "Unlit/StarryBackground"
         Tags
         {
             "RenderType"="Opaque"
+            "PreviewType"="Plane"
         }
         LOD 100
 

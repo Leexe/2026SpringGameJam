@@ -225,4 +225,9 @@ public class PlayerController : MonoBehaviour
 		Rb.linearVelocity = Vector2.zero;
 		_animancer.Play(_deathAnim);
 	}
+
+	public void DieFromHit()
+	{
+		Die(true);
+	}
 }
