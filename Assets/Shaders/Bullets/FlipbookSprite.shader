@@ -84,19 +84,16 @@ Shader "Unlit/FlipbookSprite"
 
                 // Calculate X and Y indices for the sprite sheet
                 float frameX = fmod(currentFrame, cols);
-                
-                // Assuming standard sprite sheet where frame 0 is Top-Left:
                 float frameY = rows - 1.0 - floor(currentFrame / cols);
 
                 // Scale UVs according to columns and rows
                 float2 size = float2(1.0 / cols, 1.0 / rows);
-                
-                // Offset UVs to point to the correct frame
                 float2 uv = i.uv * size + float2(frameX, frameY) * size;
 
                 // Sample texture with tint
                 fixed4 col = tex2D(_MainTex, uv) * _Color;
 
+                // Clip Low Alpha Pixels
                 clip(col.a - 0.001);
 
                 return col;
