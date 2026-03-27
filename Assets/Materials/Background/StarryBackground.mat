@@ -41,8 +41,10 @@ Material:
     m_Floats:
     - _FogDitherSpread: 0.05
     - _FogPixelResolution: 800
-    - _FogScale: 1
+    - _FogScale: 1.81
     - _FogScrollSpeed: 0.01
+    - _FogScrollSpeedX: -0.0001
+    - _FogScrollSpeedY: 0.001
     - _FogSpeed: 0.003
     - _PixelResolution: 600
     - _ScrollSpeed: 0.005
@@ -56,11 +58,14 @@ Material:
     - _StarProbability: 0.06
     - _StarScale: 700
     - _StarScrollSpeed: 0.005
+    - _StarScrollSpeedX: 0.0001
+    - _StarScrollSpeedY: 0.0005
     - _StarSize: 0.3
     - _StarSpeed: 1
     - _Use8x8Dither: 1
     m_Colors:
     - _Color1: {r: 0, g: 0, b: 0, a: 1}
     - _Color2: {r: 0.042052336, g: 0.042052336, b: 0.1981132, a: 1}
+    - _FogScrollSpeed: {r: 0, g: 0.1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
