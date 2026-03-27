@@ -2,17 +2,21 @@ Shader "Unlit/StarryBackground"
 {
     Properties
     {
+        _FogScrollSpeed ("Fog Scroll Speed", Float) = 0.1
+        _StarScrollSpeed ("Star Scroll Speed", Float) = 0.1
         _FogPixelResolution ("Fog Pixel Resolution", Range(1.0, 2048.0)) = 600.0
         _StarPixelResolution ("Star Pixel Resolution", Range(1.0, 2048.0)) = 600.0
         _Octaves ("Octaves", Integer) = 10
         _FogScale ("Fog Scale", Float) = 1
         _FogSpeed ("Fog Speed", Float) = 0.5
         _FogColorRamp ("Fog Color Ramp", 2D) = "white" {}
+        [Toggle(USE_8X8_DITHER)] _Use8x8Dither ("Use 8x8 Dither", Float) = 0
+        _FogDitherSpread ("Fog Dither Spread", Range(0, 1)) = 0.05
         _StarGrid ("Star Grid", Range(1, 1000)) = 700.0
         _StarSize ("Star Scale", Range(0.0, 1.0)) = 0.3
         _StarOpacity ("Star Opacity", Range(0.0, 1.0)) = 1
         _StarProbability ("Star Probability", Range(0.0, 1.0)) = 0.02
-        _StarSpeed ("Star Speed", Float) = 3
+        _StarFlicker ("Star Speed", Float) = 3
     }
     SubShader
     {
@@ -27,9 +31,11 @@ Shader "Unlit/StarryBackground"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma shader_feature USE_8X8_DITHER
 
             #include "UnityCG.cginc"
             #include "Assets/Shaders/Utility/Fbm.hlsl"
+            #include "Assets/Shaders/Utility/Dithering.hlsl"
             #include "Assets/Shaders/Utility/keijiro/SimplexNoise2D.hlsl"
 
             struct MeshData
@@ -45,6 +51,8 @@ Shader "Unlit/StarryBackground"
             };
 
             UNITY_DECLARE_TEX2D(_FogColorRamp);
+            float _FogScrollSpeed;
+            float _StarScrollSpeed;
             float _FogPixelResolution;
             float _StarPixelResolution;
             int _Octaves;
@@ -54,7 +62,8 @@ Shader "Unlit/StarryBackground"
             float _StarOpacity;
             float _FogScale;
             float _FogSpeed;
-            float _StarSpeed;
+            float _FogDitherSpread;
+            float _StarFlicker;
 
             Interpolators vert(MeshData v)
             {
@@ -66,13 +75,29 @@ Shader "Unlit/StarryBackground"
 
             fixed4 frag(Interpolators i) : SV_Target
             {
+                // Panning
+                float2 fogPannedUV = i.uv;
+                fogPannedUV.y += _Time.y * _FogScrollSpeed;
+                float2 starPannedUV = i.uv;
+                starPannedUV.y += _Time.y * _StarScrollSpeed;
+
                 // Pixelation
-                float2 fogPixelUV = floor(i.uv * _FogPixelResolution) / _FogPixelResolution;
-                float2 starPixelUV = floor(i.uv * _StarPixelResolution) / _StarPixelResolution;
+                float2 fogPixelUV = floor(fogPannedUV * _FogPixelResolution) / _FogPixelResolution;
+                float2 starPixelUV = floor(starPannedUV * _StarPixelResolution) / _StarPixelResolution;
+
+                // Dithering Fog
+                int ditherX = i.uv.x * _FogPixelResolution;
+                int ditherY = i.uv.y * _FogPixelResolution;
+#ifdef USE_8X8_DITHER
+                float dither = bayerMatrix8x8[(ditherX % 8) + (ditherY % 8) * 8];
+#else
+                float dither = bayerMatrix4x4[(ditherX % 4) + (ditherY % 4) * 4];
+#endif
+                float fogNoise = (dither - 0.5) * _FogDitherSpread;
 
                 // FBM Fog
                 float offset = fbm(float3(_FogScale * fogPixelUV, _Time.y * _FogSpeed), _Octaves);
-                float fogNoise = fbm(float3(fogPixelUV + offset, _Time.y * _FogSpeed), _Octaves);
+                fogNoise += fbm(float3(fogPixelUV + offset, _Time.y * _FogSpeed), _Octaves);
                 // Sample Color From Color Ramp
                 float3 fbmColor = UNITY_SAMPLE_TEX2D(_FogColorRamp, float2(fogNoise, 0.5)).rgb;
 
@@ -90,7 +115,7 @@ Shader "Unlit/StarryBackground"
                 float starShape = smoothstep(_StarSize, 0.0, length(starLocal));
                 float star = starShape * step(1.0 - _StarProbability, randomStar);
                 // 6) Make stars twinkle
-                float twinkle = sin(_Time.y * _StarSpeed + randomStar * 1000.0) * 0.5 + 0.5;
+                float twinkle = sin(_Time.y * _StarFlicker + randomStar * 1000.0) * 0.5 + 0.5;
                 float3 stars = star * twinkle * _StarOpacity;
 
                 return float4(fbmColor + stars, 1.0);

@@ -11,7 +11,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: 725cb5a27801456380225c7aefea96ed, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - USE_8X8_DITHER
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -24,7 +25,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _FogColorRamp:
-        m_Texture: {fileID: 2800000, guid: f2065cf60a69843e0af0ab30bea5460a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 69aff4bfb35369245bc2eb2c41d45669, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -38,20 +39,26 @@ Material:
     m_Ints:
     - _Octaves: 6
     m_Floats:
-    - _FogPixelResolution: 300
+    - _FogDitherSpread: 0.05
+    - _FogPixelResolution: 800
     - _FogScale: 1
-    - _FogSpeed: 0.004
+    - _FogScrollSpeed: 0.01
+    - _FogSpeed: 0.003
     - _PixelResolution: 600
+    - _ScrollSpeed: 0.005
     - _Size: 1
     - _Speed: 0.04
     - _StarDensity: 0.5
+    - _StarFlicker: 3
     - _StarGrid: 700
     - _StarOpacity: 1
     - _StarPixelResolution: 600
     - _StarProbability: 0.06
     - _StarScale: 700
+    - _StarScrollSpeed: 0.005
     - _StarSize: 0.3
     - _StarSpeed: 1
+    - _Use8x8Dither: 1
     m_Colors:
     - _Color1: {r: 0, g: 0, b: 0, a: 1}
     - _Color2: {r: 0.042052336, g: 0.042052336, b: 0.1981132, a: 1}
