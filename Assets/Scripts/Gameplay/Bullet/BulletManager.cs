@@ -67,6 +67,13 @@ public class BulletManager : MonoSingleton<BulletManager>
 
 			_bullets[i].TimeAlive += Time.deltaTime;
 
+			// Lifetime expiration
+			if (_bullets[i].TimeAlive >= _bullets[i].MaxLifeTime)
+			{
+				KillBullet(i);
+				continue;
+			}
+
 			// Behaviors System
 			switch (_bullets[i].Behavior)
 			{
@@ -206,6 +213,7 @@ public class BulletManager : MonoSingleton<BulletManager>
 			_bullets[index].HitRadius = pattern.BulletSO.HitboxRadius;
 			_bullets[index].Behavior = pattern.Behavior;
 			_bullets[index].TimeAlive = 0f;
+			_bullets[index].MaxLifeTime = pattern.MaxLifeTime;
 			_bullets[index].Amplitude = pattern.SineAmplitude;
 			_bullets[index].Frequency = pattern.SineFrequency;
 			_bullets[index].TrackingStrength = pattern.TrackingStrength;

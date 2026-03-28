@@ -42,6 +42,10 @@ public class PatternSO : ScriptableObject
 	[Tooltip("Rotate bullet towards the velocity direction, disable for performance")]
 	private bool _rotateTowardsDirection = false;
 
+	[SerializeField]
+	[Tooltip("The duration of the bullet")]
+	private float _lifeTime = 8f;
+
 	[ShowIf("_behavior", BulletBehavior.SineWave)]
 	[SerializeField]
 	private float _sineAmplitude = 1f;
@@ -62,6 +66,7 @@ public class PatternSO : ScriptableObject
 	public float Direction => _direction;
 	public float BaseSpeed => _baseSpeed;
 	public bool RotateTowardsDirection => _rotateTowardsDirection;
+	public float MaxLifeTime => _lifeTime;
 	public float SineAmplitude => _sineAmplitude;
 	public float SineFrequency => _sineFrequency;
 	public float TrackingStrength => _trackingStrength;

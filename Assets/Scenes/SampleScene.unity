@@ -618,6 +618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   _patterns:
   - {fileID: 11400000, guid: 39ec5cbfc52354f4b9c483a2cb6dce90, type: 2}
+  - {fileID: 11400000, guid: 52fcaf64d1ac1411bae1a24fa88c0025, type: 2}
   _shootPoints:
   - {fileID: 223724487}
   - {fileID: 1472269730}

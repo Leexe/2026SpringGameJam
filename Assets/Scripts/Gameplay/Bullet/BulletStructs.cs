@@ -18,6 +18,7 @@ public struct Bullet
 	public Vector2 Velocity;
 	public float Speed;
 	public float TimeAlive;
+	public float MaxLifeTime;
 
 	// Behavior Specific Parameters
 	public bool RotateTowardsDirection;
