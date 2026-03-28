@@ -850,7 +850,8 @@ public class AudioManager : PersistentMonoSingleton<AudioManager>
 		for (int i = 1; i < numBuckets + 1; i++)
 		{
 			float t = (float)i / numBuckets;
-			bucketSizes[i] = (int)(spectrumSize * Mathf.Pow(t, exponent)) + 1;
+			int calculated = (int)(spectrumSize * Mathf.Pow(t, exponent)) + 1;
+			bucketSizes[i] = Mathf.Max(calculated, bucketSizes[i - 1] + 1);
 		}
 
 		return bucketSizes;
