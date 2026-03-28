@@ -51,7 +51,7 @@ public class AudioVisualizerUI : MonoBehaviour
 			ref _bucketSizes,
 			AudioManager.AudioBusType.Music,
 			1f,
-			0.05f,
+			0.02f,
 			0.7f
 		);
 

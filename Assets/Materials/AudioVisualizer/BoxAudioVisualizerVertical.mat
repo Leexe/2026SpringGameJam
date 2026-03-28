@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BoxAudioVisualizer
+  m_Name: BoxAudioVisualizerVertical
   m_Shader: {fileID: 4800000, guid: 3201e87b521e424ebf11e6fde1ef9923, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0

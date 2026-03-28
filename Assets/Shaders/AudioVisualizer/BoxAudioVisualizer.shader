@@ -2,9 +2,14 @@ Shader "Custom/BoxAudioVisualizer"
 {
     Properties
     {
-        _MainTex ("MainTex", 2D) = "white" {}
+        [Tooltip(The color gradient applied to the visualizer)]
+        _ColorRamp ("Color Ramp", 2D) = "white" {}
+
+        [Tooltip(How many bars the visualizer has)]
         _Bars ("Bar Count", Integer) = 64
-        _Opacity ("Bar Count", Float) = 0.6
+
+        [Tooltip(How many transparent the visualizer has)]
+        _Opacity ("Opacity", Float) = 0.6
     }
     SubShader
     {
@@ -20,11 +25,11 @@ Shader "Custom/BoxAudioVisualizer"
 
         Pass
         {
-            HLSLPROGRAM
+            CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
 
-            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            #include "UnityCG.cginc"
 
             CBUFFER_START(UnityPerMaterial)
             float _Bars;
@@ -44,10 +49,12 @@ Shader "Custom/BoxAudioVisualizer"
                 float2 uv : TEXCOORD0;
             };
 
+            UNITY_DECLARE_TEX2D(_ColorRamp);
+
             Interpolators vert(MeshData v)
             {
                 Interpolators o;
-                o.vertex = TransformObjectToHClip(v.vertex);
+                o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
                 return o;
             }
@@ -60,12 +67,13 @@ Shader "Custom/BoxAudioVisualizer"
 
             float4 frag(Interpolators i) : SV_Target
             {
-                float h = _Frequency[i.uv.x * _Bars];
+                int index = (int)(i.uv.x * _Bars);
+                float h = _Frequency[index];
                 float bar = Bars(i.uv, h);
-                float3 col = bar * float3(sin(i.uv.x + 0.02), cos(i.uv.y + 2), .3);
+                float3 col = bar * UNITY_SAMPLE_TEX2D(_ColorRamp, float2(i.uv.y, 0.5)).rgb;
                 return float4(col, bar * _Opacity);
             }
-            ENDHLSL
+            ENDCG
         }
     }
 }
