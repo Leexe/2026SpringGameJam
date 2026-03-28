@@ -3309,6 +3309,11 @@ MonoBehaviour:
   _marker: {fileID: 1162684983}
   _backgroundImage: {fileID: 643840530}
   _tweenDuration: 0.1
+--- !u!4 &1614356338 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8115887077513006736, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
+  m_PrefabInstance: {fileID: 7910538195316627082}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1635383701
 GameObject:
   m_ObjectHideFlags: 0
@@ -4256,6 +4261,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedShipEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+      propertyPath: _patterns.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+      propertyPath: '_patterns.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 39ec5cbfc52354f4b9c483a2cb6dce90, type: 2}
+    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+      propertyPath: '_patterns.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 52fcaf64d1ac1411bae1a24fa88c0025, type: 2}
+    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+      propertyPath: '_patterns.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 4ae3471fe4dc3476e87f4fe897a017b6, type: 2}
+    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+      propertyPath: '_patterns.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: acfa69ac9ab7d4cbea7b26f2fa518148, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4269,6 +4294,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3920182549128952105, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920182549128952105, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
+      propertyPath: _shootPoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920182549128952105, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
+      propertyPath: '_shootPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1614356338}
     - target: {fileID: 3920182549128952105, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
       propertyPath: '_shootPoints.Array.data[1]'
       value: 

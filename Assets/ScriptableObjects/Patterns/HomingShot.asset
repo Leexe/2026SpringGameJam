@@ -18,12 +18,12 @@ MonoBehaviour:
   _spreadAngle: 60
   _towardsPlayer: 1
   _direction: 270
-  _baseSpeed: 10
+  _baseSpeed: 8
   _rotateTowardsDirection: 1
   _lifeTime: 4
   _sineAmplitude: 5
   _sineFrequency: 5
   _trackingStrength: 0.6
   _maxSteerForce: 1
-  _maxTurnRate: 30
-  _turnAcceleration: 30
+  _maxTurnRate: 90
+  _turnAcceleration: 60
