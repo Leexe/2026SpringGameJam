@@ -4,7 +4,7 @@ public enum BulletBehavior
 {
 	Linear = 0,
 	SineWave = 1,
-	Tracking = 2,
+	Following = 2,
 }
 
 [System.Serializable]

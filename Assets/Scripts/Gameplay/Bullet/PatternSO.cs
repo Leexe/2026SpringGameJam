@@ -54,7 +54,7 @@ public class PatternSO : ScriptableObject
 	[SerializeField]
 	private float _sineFrequency = 5f;
 
-	[ShowIf("_behavior", BulletBehavior.Tracking)]
+	[ShowIf("_behavior", BulletBehavior.Following)]
 	[SerializeField]
 	private float _trackingStrength = 3f;
 

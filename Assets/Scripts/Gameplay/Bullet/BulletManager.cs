@@ -87,7 +87,7 @@ public class BulletManager : MonoSingleton<BulletManager>
 					_bullets[i].Position +=
 						(_bullets[i].Velocity * Time.deltaTime) + (rightDir * (offset * Time.deltaTime));
 					break;
-				case BulletBehavior.Tracking:
+				case BulletBehavior.Following:
 					if (_playerTransform)
 					{
 						Vector2 dirToTarget = (playerPos - _bullets[i].Position).normalized;
