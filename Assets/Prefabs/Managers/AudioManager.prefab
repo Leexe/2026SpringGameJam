@@ -90,3 +90,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699faca94df2e4be181a094942e5ffc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FMODEvents
+  <Song_Bgm>k__BackingField:
+    Guid:
+      Data1: -1933092810
+      Data2: 1075633251
+      Data3: 748271531
+      Data4: 138083056
+    Path: event:/BGM/Warp Drive (Intro Demo)

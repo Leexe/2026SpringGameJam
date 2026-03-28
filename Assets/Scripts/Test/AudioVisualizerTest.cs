@@ -17,9 +17,7 @@ public class AudioVisualizerTest : MonoBehaviour
 	[Button]
 	private void StartMusic()
 	{
-		// AudioManager.Instance.SwitchMusic(FMODEvents.Instance.TnShi_Bgm);
-		// AudioManager.Instance.SwitchMusic(FMODEvents.Instance.Shop_Bgm);
-		AudioManager.Instance.SwitchMusic(FMODEvents.Instance.HAND2HAND_Bgm);
+		AudioManager.Instance.SwitchMusic(FMODEvents.Instance.Song_Bgm);
 	}
 
 	[Button]
@@ -32,14 +30,17 @@ public class AudioVisualizerTest : MonoBehaviour
 	{
 		if (_enableDebugMessages)
 		{
-			AudioManager.Instance.GetFrequencyPeaks(
+			bool status = AudioManager.Instance.GetFrequencyPeaks(
 				20,
 				ref _frequencyPeaks,
 				ref _bucketSizes,
 				AudioManager.AudioBusType.Music,
 				scaleFactor: 1.0f
 			);
-			Debug.Log("Frequency Array: " + string.Join(", ", _frequencyPeaks));
+			if (status)
+			{
+				Debug.Log("Frequency Array: " + string.Join(", ", _frequencyPeaks));
+			}
 		}
 	}
 }
