@@ -46,5 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BulletManager
   _maxBullets: 1000000
   _playerTransform: {fileID: 0}
-  _playerHurtboxRadius: 0.25
+  _playerHurtboxRadius: 0.22
   _bulletBounds: 30
+  _drawHitboxes: 1

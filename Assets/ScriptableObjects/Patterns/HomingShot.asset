@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PatternSO
   _bulletSO: {fileID: 11400000, guid: 88cfc3aa41e4a463f91708cd5761e11d, type: 2}
   _behavior: 4
-  _bulletCount: 5
+  _bulletCount: 3
   _spreadAngle: 60
   _towardsPlayer: 1
   _direction: 270
   _baseSpeed: 8
   _rotateTowardsDirection: 1
-  _lifeTime: 4
+  _lifeTime: 3
   _sineAmplitude: 5
   _sineFrequency: 5
   _trackingStrength: 0.6
   _maxSteerForce: 1
-  _maxTurnRate: 90
-  _turnAcceleration: 60
+  _maxTurnRate: 30
+  _turnAcceleration: 180

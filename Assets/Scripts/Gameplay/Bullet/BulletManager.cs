@@ -23,6 +23,10 @@ public class BulletManager : MonoSingleton<BulletManager>
 	[Tooltip("Size of square around origin to delete bullets")]
 	private float _bulletBounds = 30f;
 
+	[Header("Debug")]
+	[SerializeField]
+	private bool _drawHitboxes = false;
+
 	// Events
 	public event Action OnPlayerCollision;
 
@@ -273,6 +277,33 @@ public class BulletManager : MonoSingleton<BulletManager>
 	{
 		_bullets[index].IsActive = false;
 		_freeInstances.Push(index);
+	}
+
+	private void OnDrawGizmos()
+	{
+		if (!_drawHitboxes || _bullets == null)
+		{
+			return;
+		}
+
+		// Draw player hurtbox
+		if (_playerTransform)
+		{
+			Gizmos.color = Color.green;
+			Gizmos.DrawWireSphere(_playerTransform.position, _playerHurtboxRadius);
+		}
+
+		// Draw bullet hitboxes
+		Gizmos.color = Color.red;
+		for (int i = 0; i < _bullets.Length; i++)
+		{
+			if (!_bullets[i].IsActive)
+			{
+				continue;
+			}
+
+			Gizmos.DrawWireSphere(_bullets[i].Position, _bullets[i].HitRadius);
+		}
 	}
 
 	#endregion
