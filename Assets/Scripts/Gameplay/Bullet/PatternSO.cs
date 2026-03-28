@@ -58,6 +58,22 @@ public class PatternSO : ScriptableObject
 	[SerializeField]
 	private float _trackingStrength = 3f;
 
+	[ShowIf("_behavior", BulletBehavior.Steering)]
+	[SerializeField]
+	[Range(0f, 2f)]
+	[Tooltip("Maximum steering force magnitude (higher = tighter turns)")]
+	private float _maxSteerForce = 0.5f;
+
+	[ShowIf("_behavior", BulletBehavior.Homing)]
+	[SerializeField]
+	[Tooltip("Maximum angular velocity, makes the bullet turn sharper")]
+	private float _maxTurnRate = 180f;
+
+	[ShowIf("_behavior", BulletBehavior.Homing)]
+	[SerializeField]
+	[Tooltip("Angular acceleration, makes the bullet turn faster")]
+	private float _turnAcceleration = 360f;
+
 	public BulletSO BulletSO => _bulletSO;
 	public BulletBehavior Behavior => _behavior;
 	public int BulletCount => _bulletCount;
@@ -70,4 +86,7 @@ public class PatternSO : ScriptableObject
 	public float SineAmplitude => _sineAmplitude;
 	public float SineFrequency => _sineFrequency;
 	public float TrackingStrength => _trackingStrength;
+	public float MaxSteerForce => _maxSteerForce;
+	public float MaxTurnRate => _maxTurnRate;
+	public float TurnAcceleration => _turnAcceleration;
 }

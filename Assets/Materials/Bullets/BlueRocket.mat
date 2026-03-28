@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Rocket
+  m_Name: BlueRocket
   m_Shader: {fileID: 4800000, guid: e774d0bded4dc418487cdb9c74b3a6f5, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -33,6 +33,6 @@ Material:
     - _Columns: 1
     - _Rows: 1
     m_Colors:
-    - _Color: {r: 4, g: 4, b: 4, a: 1}
+    - _Color: {r: 0.15316956, g: 0, b: 5.3403134, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fd6476767660444eba8f75516e78836, type: 3}
-  m_Name: SimpleShotGun
+  m_Name: FollowingShot
   m_EditorClassIdentifier: Assembly-CSharp::PatternSO
-  _bulletSO: {fileID: 11400000, guid: 70bd3629fd756481b99f09d22e949889, type: 2}
-  _behavior: 0
+  _bulletSO: {fileID: 11400000, guid: 37e4f4875916243eaab95848caca0722, type: 2}
+  _behavior: 2
   _bulletCount: 3
-  _spreadAngle: 60
+  _spreadAngle: 270
   _towardsPlayer: 1
   _direction: 270
-  _baseSpeed: 2.5
-  _rotateTowardsDirection: 0
+  _baseSpeed: 3
+  _rotateTowardsDirection: 1
   _lifeTime: 8
   _sineAmplitude: 5
   _sineFrequency: 5
   _trackingStrength: 3
-  _maxSteerForce: 5
-  _maxTurnRate: 180
+  _maxSteerForce: 1
+  _maxTurnRate: 90
   _turnAcceleration: 360

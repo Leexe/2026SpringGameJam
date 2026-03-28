@@ -60,53 +60,78 @@ public class BulletManager : MonoSingleton<BulletManager>
 		// 2. Core Update Loop, Loop through all the bullets
 		for (int i = 0; i < _bullets.Length; i++)
 		{
-			if (!_bullets[i].IsActive)
+			ref Bullet bullet = ref _bullets[i];
+
+			if (!bullet.IsActive)
 			{
 				continue;
 			}
 
-			_bullets[i].TimeAlive += Time.deltaTime;
+			bullet.TimeAlive += Time.deltaTime;
 
 			// Lifetime expiration
-			if (_bullets[i].TimeAlive >= _bullets[i].MaxLifeTime)
+			if (bullet.TimeAlive >= bullet.MaxLifeTime)
 			{
 				KillBullet(i);
 				continue;
 			}
 
 			// Behaviors System
-			switch (_bullets[i].Behavior)
+			switch (bullet.Behavior)
 			{
 				case BulletBehavior.Linear:
-					_bullets[i].Position += _bullets[i].Velocity * Time.deltaTime;
+					bullet.Position += bullet.Velocity * Time.deltaTime;
 					break;
 				case BulletBehavior.SineWave:
-					Vector2 forwardDir = _bullets[i].Velocity.normalized;
+					Vector2 forwardDir = bullet.Velocity.normalized;
 					var rightDir = new Vector2(-forwardDir.y, forwardDir.x);
-					float offset = Mathf.Cos(_bullets[i].TimeAlive * _bullets[i].Frequency) * _bullets[i].Amplitude;
-					_bullets[i].Position +=
-						(_bullets[i].Velocity * Time.deltaTime) + (rightDir * (offset * Time.deltaTime));
+					float offset = Mathf.Cos(bullet.TimeAlive * bullet.Frequency) * bullet.Amplitude;
+					bullet.Position += (bullet.Velocity * Time.deltaTime) + (rightDir * (offset * Time.deltaTime));
 					break;
 				case BulletBehavior.Following:
 					if (_playerTransform)
 					{
-						Vector2 dirToTarget = (playerPos - _bullets[i].Position).normalized;
-						_bullets[i].Velocity = Vector2.Lerp(
-							_bullets[i].Velocity,
-							dirToTarget * _bullets[i].Speed,
-							Time.deltaTime * _bullets[i].TrackingStrength
+						Vector2 targetDir = (playerPos - bullet.Position).normalized;
+						bullet.Velocity = Vector2.Lerp(
+							bullet.Velocity,
+							targetDir * bullet.Speed,
+							Time.deltaTime * bullet.TrackingStrength
 						);
 					}
-					_bullets[i].Position += _bullets[i].Velocity * Time.deltaTime;
+					bullet.Position += bullet.Velocity * Time.deltaTime;
+					break;
+				case BulletBehavior.Steering:
+					Vector2 velToTarget = (playerPos - bullet.Position).normalized * bullet.Speed;
+					Vector2 steeringForce = velToTarget - bullet.Velocity;
+					steeringForce = Vector2.ClampMagnitude(steeringForce, bullet.MaxSteerForce * bullet.Speed);
+					bullet.Velocity += steeringForce * Time.deltaTime;
+					bullet.Velocity = Vector2.ClampMagnitude(bullet.Velocity, bullet.Speed);
+					bullet.Position += bullet.Velocity * Time.deltaTime;
+					break;
+				case BulletBehavior.Homing:
+					Vector2 dirToTarget = playerPos - bullet.Position;
+					float targetAngle = Mathf.Atan2(dirToTarget.y, dirToTarget.x) * Mathf.Rad2Deg;
+					float angleDiff = Mathf.DeltaAngle(bullet.Heading * Mathf.Rad2Deg, targetAngle);
+
+					bullet.AngularVelocity += Mathf.Sign(angleDiff) * bullet.TurnAcceleration * Time.deltaTime;
+					bullet.AngularVelocity = Mathf.Clamp(
+						bullet.AngularVelocity,
+						-bullet.MaxTurnRate,
+						bullet.MaxTurnRate
+					);
+
+					bullet.Heading += bullet.AngularVelocity * Mathf.Deg2Rad * Time.deltaTime;
+					bullet.Velocity = new Vector2(Mathf.Cos(bullet.Heading), Mathf.Sin(bullet.Heading)) * bullet.Speed;
+					bullet.Position += bullet.Velocity * Time.deltaTime;
 					break;
 			}
 
 			// Collisions System
 			if (_playerTransform)
 			{
-				float combinedRadius = _playerHurtboxRadius + _bullets[i].HitRadius;
+				float combinedRadius = _playerHurtboxRadius + bullet.HitRadius;
 				float hitRadiusSqr = combinedRadius * combinedRadius;
-				if ((_bullets[i].Position - playerPos).sqrMagnitude < hitRadiusSqr)
+				if ((bullet.Position - playerPos).sqrMagnitude < hitRadiusSqr)
 				{
 					KillBullet(i);
 					OnPlayerCollision?.Invoke();
@@ -115,7 +140,7 @@ public class BulletManager : MonoSingleton<BulletManager>
 			}
 
 			// Off-screen cleanup bounds
-			if (Mathf.Abs(_bullets[i].Position.x) > _bulletBounds || Mathf.Abs(_bullets[i].Position.y) > _bulletBounds)
+			if (Mathf.Abs(bullet.Position.x) > _bulletBounds || Mathf.Abs(bullet.Position.y) > _bulletBounds)
 			{
 				KillBullet(i);
 				continue;
@@ -123,16 +148,16 @@ public class BulletManager : MonoSingleton<BulletManager>
 
 			// Prepare for Rendering
 			Quaternion targetRotation = Quaternion.identity;
-			if (_bullets[i].RotateTowardsDirection)
+			if (bullet.RotateTowardsDirection)
 			{
-				float angle = Mathf.Atan2(_bullets[i].Velocity.y, _bullets[i].Velocity.x) * Mathf.Rad2Deg;
+				float angle = Mathf.Atan2(bullet.Velocity.y, bullet.Velocity.x) * Mathf.Rad2Deg;
 				targetRotation = Quaternion.Euler(0, 0, angle);
 			}
 
 			// Create Transition, Rotation, and Scale Matrix
-			var matrix = Matrix4x4.TRS(_bullets[i].Position, targetRotation, Vector3.one * _bullets[i].SO.VisualScale);
+			var matrix = Matrix4x4.TRS(bullet.Position, targetRotation, Vector3.one * bullet.SO.VisualScale);
 			// Group by BulletSO
-			_renderBatches[_bullets[i].SO].Add(matrix);
+			_renderBatches[bullet.SO].Add(matrix);
 		}
 
 		// 3. Render with DrawMeshInstanced
@@ -217,6 +242,13 @@ public class BulletManager : MonoSingleton<BulletManager>
 			_bullets[index].Amplitude = pattern.SineAmplitude;
 			_bullets[index].Frequency = pattern.SineFrequency;
 			_bullets[index].TrackingStrength = pattern.TrackingStrength;
+			_bullets[index].MaxSteerForce = pattern.MaxSteerForce;
+
+			// Homing parameters
+			_bullets[index].Heading = rad;
+			_bullets[index].AngularVelocity = 0f;
+			_bullets[index].MaxTurnRate = pattern.MaxTurnRate;
+			_bullets[index].TurnAcceleration = pattern.TurnAcceleration;
 
 			currentAngle += angleStep;
 		}

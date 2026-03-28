@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BulletSO
   _mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
   _material: {fileID: 2100000, guid: a6a00458def084e9e886623d5f5fa837, type: 2}
-  _hitboxRadius: 0.25
+  _hitboxRadius: 0.2
   _damage: 1
   _visualScale: 1.25
