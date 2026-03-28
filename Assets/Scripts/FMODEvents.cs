@@ -11,15 +11,7 @@ public class FMODEvents : MonoSingleton<FMODEvents>
 
 	[field: SerializeField]
 	[field: FoldoutGroup("Music", true)]
-	public EventReference TnShi_Bgm { get; private set; }
-
-	[field: SerializeField]
-	[field: FoldoutGroup("Music", true)]
-	public EventReference Shop_Bgm { get; private set; }
-
-	[field: SerializeField]
-	[field: FoldoutGroup("Music", true)]
-	public EventReference HAND2HAND_Bgm { get; private set; }
+	public EventReference Song_Bgm { get; private set; }
 
 	#endregion
 

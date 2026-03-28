@@ -98,6 +98,7 @@ public class GameManager : MonoSingleton<GameManager>
 	{
 		_player.DisableInstability = true;
 		_player.ResetRepairProgress(3f, 10f);
+		AudioManager.Instance.SwitchMusic(FMODEvents.Instance.Song_Bgm);
 	}
 
 	// this starts the game

@@ -3,28 +3,45 @@ Shader "Unlit/StarryBackground"
     Properties
     {
         [Header(Scrolling)]
+        [Tooltip(Controls how fast the fog moves horizontally)]
         _FogScrollSpeedX ("Fog Scroll Speed X", Float) = 0.0
+        [Tooltip(Controls how fast the fog moves vertically)]
         _FogScrollSpeedY ("Fog Scroll Speed Y", Float) = 0.1
+        [Tooltip(Controls how fast the stars move horizontally)]
         _StarScrollSpeedX ("Star Scroll Speed X", Float) = 0.0
+        [Tooltip(Controls how fast the stars move vertically)]
         _StarScrollSpeedY ("Star Scroll Speed Y", Float) = 0.1
-        
+
         [Header(Resolution)]
+        [Tooltip(The pixelation resolution for fog, lower values will pixelate)]
         _FogPixelResolution ("Fog Pixel Resolution", Range(1.0, 2048.0)) = 600.0
+        [Tooltip(The pixelation resolution constraint for the star field, lower values will pixelate)]
         _StarPixelResolution ("Star Pixel Resolution", Range(1.0, 2048.0)) = 600.0
 
         [Header(Fog)]
+        [Tooltip(The number of noise layers used for the fog, higher values add more detail)]
         _Octaves ("Octaves", Integer) = 10
+        [Tooltip(The overall scale of the fog noise)]
         _FogScale ("Fog Scale", Float) = 1
+        [Tooltip(How fast the fog festers in place)]
         _FogSpeed ("Fog Speed", Float) = 0.5
+        [Tooltip(The color gradient applied to the fog)]
         _FogColorRamp ("Fog Color Ramp", 2D) = "white" {}
+        [Tooltip(Enable using an 8x8 dithering matrix instead of 4x4)]
         [Toggle(USE_8X8_DITHER)] _Use8x8Dither ("Use 8x8 Dither", Float) = 0
+        [Tooltip(Controls the intensity of the dithering)]
         _FogDitherSpread ("Fog Dither Spread", Range(0, 1)) = 0.05
 
         [Header(Stars)]
+        [Tooltip(The density of the star grid)]
         _StarGrid ("Star Grid", Range(1, 1000)) = 700.0
+        [Tooltip(The size of each individual star)]
         _StarSize ("Star Scale", Range(0.0, 1.0)) = 0.3
+        [Tooltip(The opacity of the stars)]
         _StarOpacity ("Star Opacity", Range(0.0, 1.0)) = 1
+        [Tooltip(The probability of a star appearing in a grid cell)]
         _StarProbability ("Star Probability", Range(0.0, 1.0)) = 0.02
+        [Tooltip(The speed of the star twinkling)]
         _StarFlicker ("Star Flicker", Float) = 3
     }
     SubShader
