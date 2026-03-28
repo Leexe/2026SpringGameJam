@@ -13,13 +13,13 @@ Shader "Unlit/StarryBackground"
         _StarScrollSpeedY ("Star Scroll Speed Y", Float) = 0.1
 
         [Header(Resolution)]
-        [Tooltip(The pixelation resolution for fog, lower values will pixelate)]
+        [Tooltip(The pixelation resolution for fog. Lower values will pixelate)]
         _FogPixelResolution ("Fog Pixel Resolution", Range(1.0, 2048.0)) = 600.0
-        [Tooltip(The pixelation resolution constraint for the star field, lower values will pixelate)]
+        [Tooltip(The pixelation resolution constraint for the star field lower values will pixelate)]
         _StarPixelResolution ("Star Pixel Resolution", Range(1.0, 2048.0)) = 600.0
 
         [Header(Fog)]
-        [Tooltip(The number of noise layers used for the fog, higher values add more detail)]
+        [Tooltip(The number of noise layers used for the fog. Higher values add more detail)]
         _Octaves ("Octaves", Integer) = 10
         [Tooltip(The overall scale of the fog noise)]
         _FogScale ("Fog Scale", Float) = 1
@@ -27,7 +27,6 @@ Shader "Unlit/StarryBackground"
         _FogSpeed ("Fog Speed", Float) = 0.5
         [Tooltip(The color gradient applied to the fog)]
         _FogColorRamp ("Fog Color Ramp", 2D) = "white" {}
-        [Tooltip(Enable using an 8x8 dithering matrix instead of 4x4)]
         [Toggle(USE_8X8_DITHER)] _Use8x8Dither ("Use 8x8 Dither", Float) = 0
         [Tooltip(Controls the intensity of the dithering)]
         _FogDitherSpread ("Fog Dither Spread", Range(0, 1)) = 0.05
