@@ -43,23 +43,17 @@ public class PlayerController : MonoBehaviour
 	private float _repairSpeedMult = 0.5f;
 
 	[Header("Parameters - Repair")]
-	[SerializeField, Tooltip("Time it takes to repair from _startingRepairValue to 1")]
-	private float _repairTimeNeeded = 12f;
+	[field: SerializeField, Tooltip("Time it takes to finish repairs")]
+	public float SecondsToRepair { get; private set; } = 12f;
 
-	[SerializeField, Tooltip("Starting repair value")]
-	private float _startingRepairValue = 0.3f;
-
-	[SerializeField, Tooltip("Time it takes for Instability to go from 0 to 1")]
-	private float _timeUntilDeath = 30f;
-
-	[SerializeField, Tooltip("Time it takes for Instability to go from 1 to 0, when you win")]
-	private float _instabilityFadeTime = 3f;
+	[field: SerializeField, Tooltip("Time it takes for Instability to go from 0 to 1")]
+	public float SecondsToDie { get; private set; } = 30f;
 
 	/** Fields **/
 
 	public event Action OnDie;
-	public event Action<float> OnRepairProgressChanged;
-	public event Action<float> OnInstabilityProgressChanged;
+	public event Action<float> OnRepairProgressChanged; // secs, max
+	public event Action<float> OnInstabilityProgressChanged; // secs, max;
 
 	private bool _isRepairInputHeld;
 	private Vector2 _movementInput;
@@ -69,8 +63,8 @@ public class PlayerController : MonoBehaviour
 
 	// if instability > repair, lose. repair gets a head start (it doesn't start at 0)
 	public bool IsAlive { get; private set; }
-	public float RepairProgress { get; private set; }
-	public float InstabilityProgress { get; private set; }
+	public float RepairSecondsLeft { get; private set; }
+	public float DieSecondsLeft { get; private set; }
 
 	/** Unity Messages **/
 
@@ -83,8 +77,8 @@ public class PlayerController : MonoBehaviour
 		_isRepairInputHeld = false;
 		IsAlive = true;
 
-		RepairProgress = 1f;
-		InstabilityProgress = 0f;
+		RepairSecondsLeft = 1f;
+		DieSecondsLeft = 0f;
 	}
 
 	private void OnDisable()
@@ -136,18 +130,21 @@ public class PlayerController : MonoBehaviour
 	/** Public Methods **/
 
 	[Button]
-	public void ResetRepairProgress(float to)
+	public void ResetRepairProgress(float secondsToRepair, float secondsToDie)
 	{
-		RepairProgress = to;
-		InstabilityProgress = 0f;
+		SecondsToRepair = secondsToRepair;
+		SecondsToDie = secondsToDie;
 
-		OnRepairProgressChanged?.Invoke(RepairProgress);
-		OnInstabilityProgressChanged?.Invoke(InstabilityProgress);
+		RepairSecondsLeft = SecondsToRepair;
+		DieSecondsLeft = SecondsToDie;
+
+		OnRepairProgressChanged?.Invoke(RepairSecondsLeft);
+		OnInstabilityProgressChanged?.Invoke(DieSecondsLeft);
 	}
 
 	public void ResetRepairProgress()
 	{
-		ResetRepairProgress(_startingRepairValue);
+		ResetRepairProgress(SecondsToRepair, SecondsToDie);
 	}
 
 	/** Private Methods **/
@@ -183,34 +180,31 @@ public class PlayerController : MonoBehaviour
 
 	private void HandleRepairs(float dt)
 	{
-		float oldProg = RepairProgress;
-		float oldInstProg = InstabilityProgress;
+		float oldProg = RepairSecondsLeft;
+		float oldInstProg = DieSecondsLeft;
 
 		if (_isRepairInputHeld)
 		{
-			float repairRate = (1f - _startingRepairValue) / _repairTimeNeeded;
-			RepairProgress = Mathf.Clamp01(RepairProgress + (repairRate * dt));
+			RepairSecondsLeft = Mathf.Max(0f, RepairSecondsLeft - dt);
 		}
 
-		float instabilityRate = 1f / (RepairProgress >= 1f ? -_instabilityFadeTime : _timeUntilDeath);
-		if (DisableInstability)
+		if (!DisableInstability && RepairSecondsLeft > 0f)
 		{
-			instabilityRate = 0f;
+			DieSecondsLeft = Mathf.Max(0f, DieSecondsLeft - dt);
 		}
-		InstabilityProgress += instabilityRate * dt;
 
-		if (RepairProgress < InstabilityProgress)
+		if (DieSecondsLeft < RepairSecondsLeft)
 		{
 			Die(false);
 		}
 
-		if (oldProg != RepairProgress)
+		if (oldProg != RepairSecondsLeft)
 		{
-			OnRepairProgressChanged?.Invoke(RepairProgress);
+			OnRepairProgressChanged?.Invoke(RepairSecondsLeft);
 		}
-		if (oldInstProg != InstabilityProgress)
+		if (oldInstProg != DieSecondsLeft)
 		{
-			OnInstabilityProgressChanged?.Invoke(InstabilityProgress);
+			OnInstabilityProgressChanged?.Invoke(DieSecondsLeft);
 		}
 	}
 
@@ -225,8 +219,8 @@ public class PlayerController : MonoBehaviour
 		OnDie?.Invoke();
 		// TBD
 
-		InstabilityProgress = 1f;
-		OnInstabilityProgressChanged?.Invoke(InstabilityProgress);
+		DieSecondsLeft = 0f;
+		OnInstabilityProgressChanged?.Invoke(DieSecondsLeft);
 
 		Rb.linearVelocity = Vector2.zero;
 		_animancer.Play(_deathAnim);
