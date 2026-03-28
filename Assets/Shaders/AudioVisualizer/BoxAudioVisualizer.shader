@@ -2,6 +2,8 @@ Shader "Custom/BoxAudioVisualizer"
 {
     Properties
     {
+        [ToggleUI] _DisplayOnLeft ("Display on Left", Float) = 0
+        
         [Tooltip(The color gradient applied to the visualizer)]
         _ColorRamp ("Color Ramp", 2D) = "white" {}
 
@@ -34,6 +36,7 @@ Shader "Custom/BoxAudioVisualizer"
             CBUFFER_START(UnityPerMaterial)
             float _Bars;
             float _Opacity;
+            float _DisplayOnLeft;
             float _Frequency[256];
             CBUFFER_END
 
@@ -59,18 +62,23 @@ Shader "Custom/BoxAudioVisualizer"
                 return o;
             }
 
-            float Bars(float2 uv, float height)
+            float Bars(float2 uv, float height, float isLeft)
             {
-                float f = frac(uv.x * _Bars);
-                return step(uv.y, height) * step(0.1, f) * step(f, 0.9);
+                float barAxis = lerp(uv.x, uv.y, isLeft);
+                float growAxis = lerp(uv.y, uv.x, isLeft);
+                float f = frac(barAxis * _Bars);
+                return step(growAxis, height) * step(0.1, f) * step(f, 0.9);
             }
 
             float4 frag(Interpolators i) : SV_Target
             {
-                int index = (int)(i.uv.x * _Bars);
+                float barAxis = lerp(i.uv.x, i.uv.y, _DisplayOnLeft);
+                float growAxis = lerp(i.uv.y, i.uv.x, _DisplayOnLeft);
+
+                int index = (int)(barAxis * _Bars);
                 float h = _Frequency[index];
-                float bar = Bars(i.uv, h);
-                float3 col = bar * UNITY_SAMPLE_TEX2D(_ColorRamp, float2(i.uv.y, 0.5)).rgb;
+                float bar = Bars(i.uv, h, _DisplayOnLeft);
+                float3 col = bar * UNITY_SAMPLE_TEX2D(_ColorRamp, float2(growAxis, 0.5)).rgb;
                 return float4(col, bar * _Opacity);
             }
             ENDCG
