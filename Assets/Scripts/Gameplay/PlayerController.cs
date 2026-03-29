@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
 	public event Action OnDeathAnimationFinished;
 	public event Action<float> OnRepairProgressChanged; // secs, max
 	public event Action<float> OnInstabilityProgressChanged; // secs, max;
+	public event Action OnRepairFilledUp;
 
 	private bool _isRepairInputHeld;
 	private Vector2 _movementInput;
@@ -71,6 +72,16 @@ public class PlayerController : MonoBehaviour
 
 	// if instability > repair, lose. repair gets a head start (it doesn't start at 0)
 	public bool IsAlive { get; private set; }
+	public bool CanRepair { get; private set; } = true;
+	public bool IsBuffering { get; private set; }
+	private float _bufferDuration;
+	private float _bufferTimer;
+	private float _startBufferRepair;
+	private float _startBufferDie;
+
+	private float _defaultSecondsToRepair;
+	private float _defaultSecondsToDie;
+
 	public float RepairSecondsLeft { get; private set; }
 	public float DieSecondsLeft { get; private set; }
 
@@ -104,6 +115,8 @@ public class PlayerController : MonoBehaviour
 	private void Start()
 	{
 		_startPosition = transform.position;
+		_defaultSecondsToRepair = SecondsToRepair;
+		_defaultSecondsToDie = SecondsToDie;
 	}
 
 	private void Update()
@@ -156,13 +169,29 @@ public class PlayerController : MonoBehaviour
 		RepairSecondsLeft = SecondsToRepair;
 		DieSecondsLeft = SecondsToDie;
 
+		IsBuffering = false;
+		CanRepair = true;
+
 		OnRepairProgressChanged?.Invoke(RepairSecondsLeft);
 		OnInstabilityProgressChanged?.Invoke(DieSecondsLeft);
 	}
 
+	public void StartBuffer(float fillDuration)
+	{
+		SecondsToRepair = _defaultSecondsToRepair;
+		SecondsToDie = _defaultSecondsToDie;
+
+		CanRepair = false;
+		IsBuffering = true;
+		_bufferDuration = fillDuration;
+		_bufferTimer = 0f;
+		_startBufferRepair = RepairSecondsLeft;
+		_startBufferDie = DieSecondsLeft;
+	}
+
 	public void ResetRepairProgress()
 	{
-		ResetRepairProgress(SecondsToRepair, SecondsToDie);
+		ResetRepairProgress(_defaultSecondsToRepair, _defaultSecondsToDie);
 	}
 
 	public void Respawn()
@@ -213,19 +242,36 @@ public class PlayerController : MonoBehaviour
 		float oldProg = RepairSecondsLeft;
 		float oldInstProg = DieSecondsLeft;
 
-		if (_isRepairInputHeld)
+		if (IsBuffering)
 		{
-			RepairSecondsLeft = Mathf.Max(0f, RepairSecondsLeft - dt);
-		}
+			_bufferTimer += dt;
+			float t = _bufferDuration > 0f ? Mathf.Clamp01(_bufferTimer / _bufferDuration) : 1f;
+			RepairSecondsLeft = Mathf.Lerp(_startBufferRepair, SecondsToRepair, t);
+			DieSecondsLeft = Mathf.Lerp(_startBufferDie, SecondsToDie, t);
 
-		if (!DisableInstability && RepairSecondsLeft > 0f)
-		{
-			DieSecondsLeft = Mathf.Max(0f, DieSecondsLeft - dt);
+			if (t >= 1f)
+			{
+				IsBuffering = false;
+				CanRepair = true;
+				OnRepairFilledUp?.Invoke();
+			}
 		}
-
-		if (DieSecondsLeft < RepairSecondsLeft)
+		else
 		{
-			Die(false);
+			if (_isRepairInputHeld && CanRepair)
+			{
+				RepairSecondsLeft = Mathf.Max(0f, RepairSecondsLeft - dt);
+			}
+
+			if (!DisableInstability && RepairSecondsLeft > 0f)
+			{
+				DieSecondsLeft = Mathf.Max(0f, DieSecondsLeft - dt);
+			}
+
+			if (DieSecondsLeft < RepairSecondsLeft)
+			{
+				Die(false);
+			}
 		}
 
 		if (!Mathf.Approximately(oldProg, RepairSecondsLeft))

@@ -53,18 +53,13 @@ public class TransitionUI : MonoBehaviour
 
 			if (GameManager.Instance != null)
 			{
-				GameManager.Instance.CanPause = true;
+				GameManager.Instance.OnFadeInFinish?.Invoke();
 			}
 		};
 	}
 
 	private void PlayTransitionOut()
 	{
-		if (GameManager.Instance != null)
-		{
-			GameManager.Instance.CanPause = false;
-		}
-
 		Tween.Delay(
 			_transitionOutDelay,
 			() =>
@@ -73,7 +68,11 @@ public class TransitionUI : MonoBehaviour
 				fadeOutState.Events(this).OnEnd = () =>
 				{
 					fadeOutState.Stop();
-					GameManager.Instance.RestartGame();
+					if (GameManager.Instance != null)
+					{
+						GameManager.Instance.OnFadeOutFinish?.Invoke();
+						GameManager.Instance.RestartGame();
+					}
 				};
 			}
 		);

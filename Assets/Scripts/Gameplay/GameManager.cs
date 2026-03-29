@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
 {
+	[Header("References")]
 	[SerializeField]
 	private PlayerController _player;
 
@@ -18,6 +19,13 @@ public class GameManager : MonoSingleton<GameManager>
 
 	[SerializeField]
 	private PlayableDirector _enemyDirector;
+
+	[Header("Game Details")]
+	[SerializeField]
+	private int _maxPhase = 5;
+
+	[SerializeField]
+	private float _timeBetweenPhases = 5f;
 
 	/** Events **/
 
@@ -34,10 +42,22 @@ public class GameManager : MonoSingleton<GameManager>
 	public UnityEvent OnGameRestart;
 
 	[HideInInspector]
+	public UnityEvent OnGameLose;
+
+	[HideInInspector]
+	public UnityEvent OnGameWin;
+
+	[HideInInspector]
 	public UnityEvent OnPlayerDeath;
 
 	[HideInInspector]
 	public UnityEvent OnDeathAnimationFinish;
+
+	[HideInInspector]
+	public UnityEvent OnFadeInFinish;
+
+	[HideInInspector]
+	public UnityEvent OnFadeOutFinish;
 
 	/** Fields **/
 
@@ -52,6 +72,9 @@ public class GameManager : MonoSingleton<GameManager>
 
 	private void OnEnable()
 	{
+		OnFadeInFinish.AddListener(EnablePause);
+		OnPlayerDeath.AddListener(DisablePause);
+
 		_bulletManager.OnPlayerCollision += _player.DieFromHit;
 		_player.OnDie += TriggerPlayerDie;
 		_player.OnDeathAnimationFinished += PlayTransitionOut;
@@ -88,6 +111,20 @@ public class GameManager : MonoSingleton<GameManager>
 		if (GameTime >= 0f)
 		{
 			GameTime += Time.fixedDeltaTime;
+
+			if (_phase < _maxPhase && _player.RepairSecondsLeft == 0f && !_player.IsBuffering)
+			{
+				_phase++;
+
+				if (_phase >= _maxPhase)
+				{
+					OnGameWin?.Invoke();
+				}
+				else
+				{
+					_player.StartBuffer(_timeBetweenPhases);
+				}
+			}
 		}
 		else
 		{
@@ -129,7 +166,6 @@ public class GameManager : MonoSingleton<GameManager>
 	{
 		_player.DisableInstability = true;
 		_player.ResetRepairProgress(3f, 10f);
-		// AudioManager.Instance.SwitchMusic(FMODEvents.Instance.Song_Bgm);
 	}
 
 	// this starts the game
@@ -137,9 +173,11 @@ public class GameManager : MonoSingleton<GameManager>
 	{
 		GameTime = 0f;
 		_player.DisableInstability = false;
-		_player.ResetRepairProgress();
+		_player.StartBuffer(_timeBetweenPhases);
 
-		// start music, etc...
+		StartDirector();
+
+		OnGameStart?.Invoke();
 	}
 
 	private void TriggerPlayerDie()
@@ -148,10 +186,29 @@ public class GameManager : MonoSingleton<GameManager>
 
 		if (_enemyDirector != null)
 		{
-			_enemyDirector.Stop();
-			_enemyDirector.time = 0;
-			_enemyDirector.Play();
+			StopDirector();
 		}
+	}
+
+	private void EnablePause()
+	{
+		CanPause = true;
+	}
+
+	private void DisablePause()
+	{
+		CanPause = false;
+	}
+
+	private void StopDirector()
+	{
+		_enemyDirector.Stop();
+	}
+
+	private void StartDirector()
+	{
+		_enemyDirector.time = 0;
+		_enemyDirector.Play();
 	}
 
 	private void PlayTransitionOut()
