@@ -108,6 +108,7 @@ public class GameManager : MonoSingleton<GameManager>
 	private void Start()
 	{
 		InitPreSequence();
+		HideCursor();
 	}
 
 	private void FixedUpdate()
@@ -191,10 +192,26 @@ public class GameManager : MonoSingleton<GameManager>
 	{
 		OnPlayerDeath?.Invoke();
 
-		if (_enemyDirector != null)
+		if (_enemyDirector)
 		{
 			StopDirector();
 		}
+	}
+
+	/// <summary>
+	/// Shows the cursor and unlocks it
+	/// </summary>
+	public void ShowCursor()
+	{
+		LevelManager.Instance.ShowCursor();
+	}
+
+	/// <summary>
+	/// Hides the cursor and locks it to the center of the screen
+	/// </summary>
+	public void HideCursor()
+	{
+		LevelManager.Instance.HideCursor();
 	}
 
 	private void EnablePause()
@@ -256,4 +273,6 @@ public class GameManager : MonoSingleton<GameManager>
 		Time.timeScale = 1f;
 		_isPaused = false;
 	}
+
+	private void ReturnToMainMenu() { }
 }
