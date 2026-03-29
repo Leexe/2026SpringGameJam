@@ -26,6 +26,7 @@ public class PauseMenuUI : MonoBehaviour
 		_canvasGroup.alpha = 1;
 		_canvasGroup.blocksRaycasts = true;
 		_canvasGroup.interactable = true;
+		GameManager.Instance.ShowCursor();
 	}
 
 	private void CloseUI()
@@ -33,5 +34,6 @@ public class PauseMenuUI : MonoBehaviour
 		_canvasGroup.alpha = 0;
 		_canvasGroup.blocksRaycasts = false;
 		_canvasGroup.interactable = false;
+		GameManager.Instance.HideCursor();
 	}
 }
