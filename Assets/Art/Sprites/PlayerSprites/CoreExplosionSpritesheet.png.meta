@@ -172,12 +172,12 @@ TextureImporter:
       name: CoreExplosionSpritesheet_0
       rect:
         serializedVersion: 2
-        x: 1610
-        y: 367
-        width: 10
-        height: 10
+        x: 384
+        y: 0
+        width: 384
+        height: 384
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -194,12 +194,12 @@ TextureImporter:
       name: CoreExplosionSpritesheet_1
       rect:
         serializedVersion: 2
-        x: 1175
-        y: 76
-        width: 355
-        height: 277
+        x: 768
+        y: 0
+        width: 384
+        height: 384
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -216,12 +216,12 @@ TextureImporter:
       name: CoreExplosionSpritesheet_2
       rect:
         serializedVersion: 2
-        x: 1232
-        y: 344
-        width: 15
-        height: 21
+        x: 1152
+        y: 0
+        width: 384
+        height: 384
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -238,12 +238,12 @@ TextureImporter:
       name: CoreExplosionSpritesheet_3
       rect:
         serializedVersion: 2
-        x: 2385
-        y: 333
-        width: 17
-        height: 29
+        x: 1536
+        y: 0
+        width: 384
+        height: 384
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -260,12 +260,12 @@ TextureImporter:
       name: CoreExplosionSpritesheet_4
       rect:
         serializedVersion: 2
-        x: 2440
-        y: 342
-        width: 71
-        height: 20
+        x: 1920
+        y: 0
+        width: 384
+        height: 384
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -282,12 +282,12 @@ TextureImporter:
       name: CoreExplosionSpritesheet_5
       rect:
         serializedVersion: 2
-        x: 2598
-        y: 262
-        width: 79
-        height: 85
+        x: 2304
+        y: 0
+        width: 384
+        height: 384
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -300,407 +300,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: CoreExplosionSpritesheet_6
-      rect:
-        serializedVersion: 2
-        x: 1897
-        y: 288
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a4a66734159bd6ba0800000000000000
-      internalID: -6094010962087089590
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CoreExplosionSpritesheet_7
-      rect:
-        serializedVersion: 2
-        x: 504
-        y: 94
-        width: 157
-        height: 155
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 78bd3014a64339650800000000000000
-      internalID: 6238387539800218503
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CoreExplosionSpritesheet_8
-      rect:
-        serializedVersion: 2
-        x: 628
-        y: 248
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 94f3c0ce1452ddc10800000000000000
-      internalID: 2079859567978364745
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CoreExplosionSpritesheet_9
-      rect:
-        serializedVersion: 2
-        x: 1686
-        y: 247
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 48cb536303059e900800000000000000
-      internalID: 714190183913077892
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CoreExplosionSpritesheet_10
-      rect:
-        serializedVersion: 2
-        x: 2356
-        y: 178
-        width: 25
-        height: 73
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6fee0cc5575255700800000000000000
-      internalID: 528369717283450614
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CoreExplosionSpritesheet_11
-      rect:
-        serializedVersion: 2
-        x: 2429
-        y: 143
-        width: 130
-        height: 108
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2b869752b92db09f0800000000000000
-      internalID: -501075369731200846
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CoreExplosionSpritesheet_12
-      rect:
-        serializedVersion: 2
-        x: 958
-        y: 174
-        width: 11
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 051068f978c644d10800000000000000
-      internalID: 2108929855268979024
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CoreExplosionSpritesheet_13
-      rect:
-        serializedVersion: 2
-        x: 1710
-        y: 180
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6e5ca5f466131d770800000000000000
-      internalID: 8633736276133725670
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CoreExplosionSpritesheet_14
-      rect:
-        serializedVersion: 2
-        x: 2093
-        y: 156
-        width: 40
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d9d021609d60a50b0800000000000000
-      internalID: -5739267245950759523
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CoreExplosionSpritesheet_15
-      rect:
-        serializedVersion: 2
-        x: 1763
-        y: 155
-        width: 12
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 465b600fdbff032f0800000000000000
-      internalID: -995014326408006300
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CoreExplosionSpritesheet_16
-      rect:
-        serializedVersion: 2
-        x: 1667
-        y: 139
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cadbc15c6e281c1b0800000000000000
-      internalID: -5638081330830066260
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CoreExplosionSpritesheet_17
-      rect:
-        serializedVersion: 2
-        x: 1545
-        y: 77
-        width: 12
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d7824f8aa5e4dc440800000000000000
-      internalID: 4957704916093380733
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CoreExplosionSpritesheet_18
-      rect:
-        serializedVersion: 2
-        x: 2319
-        y: 84
-        width: 46
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2e77f9ebe0e08afc0800000000000000
-      internalID: -3483518855280625694
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CoreExplosionSpritesheet_19
-      rect:
-        serializedVersion: 2
-        x: 2417
-        y: 59
-        width: 26
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fb5346d91e4945d50800000000000000
-      internalID: 6725163840300135871
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CoreExplosionSpritesheet_20
-      rect:
-        serializedVersion: 2
-        x: 2512
-        y: 48
-        width: 15
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: feb38da470e1c9d30800000000000000
-      internalID: 4439456349349755887
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CoreExplosionSpritesheet_21
-      rect:
-        serializedVersion: 2
-        x: 2586
-        y: 60
-        width: 55
-        height: 67
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d6b368b8e2aebf410800000000000000
-      internalID: 1512059585543158637
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CoreExplosionSpritesheet_22
-      rect:
-        serializedVersion: 2
-        x: 1644
-        y: 27
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3bd025f4e696bffb0800000000000000
-      internalID: -4612977470812844621
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CoreExplosionSpritesheet_23
-      rect:
-        serializedVersion: 2
-        x: 1751
-        y: 1
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4ba4f01196064f5b0800000000000000
-      internalID: -5335533654153147724
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3ba6f49dc8fa0e64bad1a94a3cf0361a
     internalID: 0
     vertices: []
     indices: 
@@ -708,32 +312,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":384.0,"y":384.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       CoreExplosionSpritesheet_0: 7076666435269508238
       CoreExplosionSpritesheet_1: -2836766796954221262
-      CoreExplosionSpritesheet_10: 528369717283450614
-      CoreExplosionSpritesheet_11: -501075369731200846
-      CoreExplosionSpritesheet_12: 2108929855268979024
-      CoreExplosionSpritesheet_13: 8633736276133725670
-      CoreExplosionSpritesheet_14: -5739267245950759523
-      CoreExplosionSpritesheet_15: -995014326408006300
-      CoreExplosionSpritesheet_16: -5638081330830066260
-      CoreExplosionSpritesheet_17: 4957704916093380733
-      CoreExplosionSpritesheet_18: -3483518855280625694
-      CoreExplosionSpritesheet_19: 6725163840300135871
       CoreExplosionSpritesheet_2: -984448962188721617
-      CoreExplosionSpritesheet_20: 4439456349349755887
-      CoreExplosionSpritesheet_21: 1512059585543158637
-      CoreExplosionSpritesheet_22: -4612977470812844621
-      CoreExplosionSpritesheet_23: -5335533654153147724
       CoreExplosionSpritesheet_3: 3260670491443750270
       CoreExplosionSpritesheet_4: -6147231142846495698
       CoreExplosionSpritesheet_5: -6069745829201654516
-      CoreExplosionSpritesheet_6: -6094010962087089590
-      CoreExplosionSpritesheet_7: 6238387539800218503
-      CoreExplosionSpritesheet_8: 2079859567978364745
-      CoreExplosionSpritesheet_9: 714190183913077892
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
