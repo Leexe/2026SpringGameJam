@@ -43,8 +43,8 @@ Material:
     - _FogPixelResolution: 800
     - _FogScale: 1.81
     - _FogScrollSpeed: 0.01
-    - _FogScrollSpeedX: -0.0001
-    - _FogScrollSpeedY: 0.001
+    - _FogScrollSpeedX: -0.0005
+    - _FogScrollSpeedY: 0.0015
     - _FogSpeed: 0.003
     - _PixelResolution: 600
     - _ScrollSpeed: 0.005
@@ -58,7 +58,7 @@ Material:
     - _StarProbability: 0.06
     - _StarScale: 700
     - _StarScrollSpeed: 0.005
-    - _StarScrollSpeedX: 0.0001
+    - _StarScrollSpeedX: 0.0004
     - _StarScrollSpeedY: 0.0005
     - _StarSize: 0.3
     - _StarSpeed: 1
