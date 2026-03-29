@@ -2,6 +2,7 @@ using PrimeTween;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
@@ -14,6 +15,9 @@ public class GameManager : MonoSingleton<GameManager>
 
 	[SerializeField]
 	private TMP_Text _debugTimeDisplay;
+
+	[SerializeField]
+	private PlayableDirector _enemyDirector;
 
 	/** Events **/
 
@@ -125,7 +129,7 @@ public class GameManager : MonoSingleton<GameManager>
 	{
 		_player.DisableInstability = true;
 		_player.ResetRepairProgress(3f, 10f);
-		AudioManager.Instance.SwitchMusic(FMODEvents.Instance.Song_Bgm);
+		// AudioManager.Instance.SwitchMusic(FMODEvents.Instance.Song_Bgm);
 	}
 
 	// this starts the game
@@ -141,6 +145,13 @@ public class GameManager : MonoSingleton<GameManager>
 	private void TriggerPlayerDie()
 	{
 		OnPlayerDeath?.Invoke();
+
+		if (_enemyDirector != null)
+		{
+			_enemyDirector.Stop();
+			_enemyDirector.time = 0;
+			_enemyDirector.Play();
+		}
 	}
 
 	private void PlayTransitionOut()
