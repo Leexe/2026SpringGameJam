@@ -1118,15 +1118,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1760331147589138555, guid: 5a79dbd64f9d04d3b9b6542238984488, type: 3}
       propertyPath: m_LocalScale.x
-      value: 11.999999
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1760331147589138555, guid: 5a79dbd64f9d04d3b9b6542238984488, type: 3}
       propertyPath: m_LocalScale.y
-      value: 11.999999
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1760331147589138555, guid: 5a79dbd64f9d04d3b9b6542238984488, type: 3}
       propertyPath: m_LocalScale.z
-      value: 11.999999
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1760331147589138555, guid: 5a79dbd64f9d04d3b9b6542238984488, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -2828,6 +2828,10 @@ PrefabInstance:
       propertyPath: _playerTransform
       value: 
       objectReference: {fileID: 507716039}
+    - target: {fileID: 1434231415882497670, guid: 34c88c8177ada4a4c81d3c8a4dfcbba7, type: 3}
+      propertyPath: _playerHurtboxRadius
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2595817622411834832, guid: 34c88c8177ada4a4c81d3c8a4dfcbba7, type: 3}
       propertyPath: m_Name
       value: BulletManager
