@@ -234,9 +234,7 @@ public class PlayerController : MonoBehaviour
 
 		Rb.linearVelocity = Vector2.zero;
 
-		AnimancerState deathState = isFromHit
-			? _animancer.Play(_hitDeathAnim)
-			: _animancer.Play(_coreDeathAnim);
+		AnimancerState deathState = isFromHit ? _animancer.Play(_hitDeathAnim) : _animancer.Play(_coreDeathAnim);
 
 		deathState.Events(this).OnEnd ??= () => OnDeathAnimationFinished?.Invoke();
 	}

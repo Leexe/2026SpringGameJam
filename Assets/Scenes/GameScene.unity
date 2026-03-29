@@ -648,6 +648,7 @@ MonoBehaviour:
   _animancer: {fileID: 292278734}
   _transitionIn: {fileID: 7400000, guid: 780c348fcf2c4ba4189591800e5a9c6c, type: 2}
   _transitionOut: {fileID: 7400000, guid: e4b7d0a4f9ab99842a6e29dff79e9ed5, type: 2}
+  _transitionOutDelay: 0.75
 --- !u!1 &420577004
 GameObject:
   m_ObjectHideFlags: 0
@@ -2434,7 +2435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4024,7 +4025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

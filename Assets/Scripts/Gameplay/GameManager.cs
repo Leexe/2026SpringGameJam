@@ -94,6 +94,13 @@ public class GameManager : MonoSingleton<GameManager>
 		_debugTimeDisplay.text = $"T: {GameTime:F2}";
 	}
 
+	/** Public Methods **/
+
+	public void RestartGame()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
+
 	/** Private Methods **/
 
 	// player must repair to start game. this sets that up
@@ -122,7 +129,6 @@ public class GameManager : MonoSingleton<GameManager>
 	private void PlayTransitionOut()
 	{
 		OnDeathAnimationFinish?.Invoke();
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
 	private void TogglePause()

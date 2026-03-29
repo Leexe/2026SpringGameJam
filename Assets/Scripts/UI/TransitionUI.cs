@@ -1,4 +1,5 @@
 using Animancer;
+using PrimeTween;
 using UnityEngine;
 
 public class TransitionUI : MonoBehaviour
@@ -14,6 +15,10 @@ public class TransitionUI : MonoBehaviour
 	[SerializeField]
 	private AnimationClip _transitionOut;
 
+	[Header("Settings")]
+	[SerializeField]
+	private float _transitionOutDelay = 1f;
+
 	private void Start()
 	{
 		PlayTransitionIn();
@@ -21,12 +26,15 @@ public class TransitionUI : MonoBehaviour
 
 	private void OnEnable()
 	{
-		GameManager.Instance.OnDeathAnimationFinish.AddListener(PlayTransitionOut);
+		GameManager.Instance.OnPlayerDeath.AddListener(PlayTransitionOut);
 	}
 
 	private void OnDisable()
 	{
-		GameManager.Instance.OnDeathAnimationFinish.RemoveListener(PlayTransitionOut);
+		if (GameManager.Instance)
+		{
+			GameManager.Instance.OnPlayerDeath.RemoveListener(PlayTransitionOut);
+		}
 	}
 
 	private void PlayTransitionIn()
@@ -36,6 +44,13 @@ public class TransitionUI : MonoBehaviour
 
 	private void PlayTransitionOut()
 	{
-		_animancer.Play(_transitionOut);
+		Tween.Delay(
+			_transitionOutDelay,
+			() =>
+			{
+				AnimancerState fadeOutState = _animancer.Play(_transitionOut);
+				fadeOutState.Events(this).OnEnd = GameManager.Instance.RestartGame;
+			}
+		);
 	}
 }
