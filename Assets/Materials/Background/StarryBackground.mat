@@ -40,11 +40,11 @@ Material:
     - _Octaves: 6
     m_Floats:
     - _FogDitherSpread: 0.05
-    - _FogPixelResolution: 800
+    - _FogPixelResolution: 350
     - _FogScale: 1.81
     - _FogScrollSpeed: 0.01
-    - _FogScrollSpeedX: -0.0005
-    - _FogScrollSpeedY: 0.0015
+    - _FogScrollSpeedX: -0.0009
+    - _FogScrollSpeedY: 0.005
     - _FogSpeed: 0.003
     - _PixelResolution: 600
     - _ScrollSpeed: 0.005
@@ -58,8 +58,8 @@ Material:
     - _StarProbability: 0.06
     - _StarScale: 700
     - _StarScrollSpeed: 0.005
-    - _StarScrollSpeedX: 0.0004
-    - _StarScrollSpeedY: 0.0005
+    - _StarScrollSpeedX: 0.0005
+    - _StarScrollSpeedY: 0.002
     - _StarSize: 0.3
     - _StarSpeed: 1
     - _Use8x8Dither: 1
