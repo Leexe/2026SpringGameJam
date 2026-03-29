@@ -26,10 +26,18 @@ public class GameManager : MonoSingleton<GameManager>
 	[HideInInspector]
 	public UnityEvent OnGameResume;
 
+	[HideInInspector]
+	public UnityEvent OnGameStart; // Game starts when the player completes the first phase
+
+	[HideInInspector]
+	public UnityEvent OnGameEnd;
+
 	/** Fields **/
 
 	// a negative value means game has not started yet
 	public float GameTime { get; private set; } = -1f;
+
+	private int _phase = 0;
 	private bool _canPause = true;
 	private bool _isPaused = false;
 
@@ -113,6 +121,8 @@ public class GameManager : MonoSingleton<GameManager>
 
 	private void HandlePlayerDie()
 	{
+		OnGameEnd?.Invoke();
+
 		// for now - fade out and reload scene. more fitting transition TBD
 		Sequence
 			.Create()

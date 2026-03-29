@@ -26,10 +26,12 @@ public class BulletManager : MonoSingleton<BulletManager>
 
 	[Header("Debug")]
 	[SerializeField]
-	private bool _drawHitboxes = false;
+	private bool _drawHitboxes;
 
 	// Events
 	public event Action OnPlayerCollision;
+
+	private bool _playerIsTargetable = true;
 
 	// Bullets Pool
 	private Bullet[] _bullets;
@@ -55,6 +57,19 @@ public class BulletManager : MonoSingleton<BulletManager>
 
 		InitializePool();
 		_propertyBlock = new MaterialPropertyBlock();
+	}
+
+	private void OnEnable()
+	{
+		GameManager.Instance.OnGameEnd.AddListener(DisableHitbox);
+	}
+
+	private void OnDisable()
+	{
+		if (GameManager.Instance)
+		{
+			GameManager.Instance.OnGameEnd.RemoveListener(DisableHitbox);
+		}
 	}
 
 	private void Update()
@@ -150,7 +165,7 @@ public class BulletManager : MonoSingleton<BulletManager>
 			}
 
 			// Collisions System
-			if (!bullet.IsFading && _playerTransform)
+			if (!bullet.IsFading && _playerTransform && _playerIsTargetable)
 			{
 				float combinedRadius = _playerHurtboxRadius + bullet.HitRadius;
 				float hitRadiusSqr = combinedRadius * combinedRadius;
@@ -315,6 +330,16 @@ public class BulletManager : MonoSingleton<BulletManager>
 		var matrix = Matrix4x4.TRS(bullet.Position, targetRotation, Vector3.one * bullet.SO.VisualScale);
 		_renderBatches[bullet.SO].Add(matrix);
 		_alphaBatches[bullet.SO].Add(alpha);
+	}
+
+	private void EnableHitbox()
+	{
+		_playerIsTargetable = true;
+	}
+
+	private void DisableHitbox()
+	{
+		_playerIsTargetable = false;
 	}
 
 	private void OnDrawGizmos()
