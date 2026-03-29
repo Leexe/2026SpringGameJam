@@ -13,9 +13,6 @@ public class GameManager : MonoSingleton<GameManager>
 	private BulletManager _bulletManager;
 
 	[SerializeField]
-	private CanvasGroup _fader;
-
-	[SerializeField]
 	private TMP_Text _debugTimeDisplay;
 
 	/** Events **/
@@ -30,7 +27,10 @@ public class GameManager : MonoSingleton<GameManager>
 	public UnityEvent OnGameStart; // Game starts when the player completes the first phase
 
 	[HideInInspector]
-	public UnityEvent OnGameEnd;
+	public UnityEvent OnPlayerDeath;
+
+	[HideInInspector]
+	public UnityEvent OnDeathAnimationFinish;
 
 	/** Fields **/
 
@@ -39,14 +39,15 @@ public class GameManager : MonoSingleton<GameManager>
 
 	private int _phase = 0;
 	private bool _canPause = true;
-	private bool _isPaused = false;
+	private bool _isPaused;
 
 	/** Unity Messages **/
 
 	private void OnEnable()
 	{
 		_bulletManager.OnPlayerCollision += _player.DieFromHit;
-		_player.OnDie += HandlePlayerDie;
+		_player.OnDie += TriggerPlayerDie;
+		_player.OnDeathAnimationFinished += PlayTransitionOut;
 
 		InputManager.Instance.OnEscapePerformed.AddListener(TogglePause);
 	}
@@ -55,7 +56,8 @@ public class GameManager : MonoSingleton<GameManager>
 	{
 		if (_player != null)
 		{
-			_player.OnDie -= HandlePlayerDie;
+			_player.OnDie -= TriggerPlayerDie;
+			_player.OnDeathAnimationFinished -= PlayTransitionOut;
 		}
 
 		if (_bulletManager != null)
@@ -69,15 +71,8 @@ public class GameManager : MonoSingleton<GameManager>
 		}
 	}
 
-	protected override void Awake()
-	{
-		base.Awake();
-		_fader.alpha = 1f;
-	}
-
 	private void Start()
 	{
-		Sequence.Create().ChainDelay(0.1f).Chain(Tween.Alpha(_fader, endValue: 0f, duration: 1f));
 		InitPreSequence();
 	}
 
@@ -119,16 +114,15 @@ public class GameManager : MonoSingleton<GameManager>
 		// start music, etc...
 	}
 
-	private void HandlePlayerDie()
+	private void TriggerPlayerDie()
 	{
-		OnGameEnd?.Invoke();
+		OnPlayerDeath?.Invoke();
+	}
 
-		// for now - fade out and reload scene. more fitting transition TBD
-		Sequence
-			.Create()
-			.ChainDelay(0.5f)
-			.Chain(Tween.Alpha(_fader, endValue: 1f, duration: 0.6f))
-			.ChainCallback(() => SceneManager.LoadScene(SceneManager.GetActiveScene().name));
+	private void PlayTransitionOut()
+	{
+		OnDeathAnimationFinish?.Invoke();
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
 	private void TogglePause()

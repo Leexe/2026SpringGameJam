@@ -61,14 +61,14 @@ public class BulletManager : MonoSingleton<BulletManager>
 
 	private void OnEnable()
 	{
-		GameManager.Instance.OnGameEnd.AddListener(DisableHitbox);
+		GameManager.Instance.OnPlayerDeath.AddListener(DisableHitbox);
 	}
 
 	private void OnDisable()
 	{
 		if (GameManager.Instance)
 		{
-			GameManager.Instance.OnGameEnd.RemoveListener(DisableHitbox);
+			GameManager.Instance.OnPlayerDeath.RemoveListener(DisableHitbox);
 		}
 	}
 

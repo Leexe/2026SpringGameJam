@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
 	/** Fields **/
 
 	public event Action OnDie;
+	public event Action OnDeathAnimationFinished;
 	public event Action<float> OnRepairProgressChanged; // secs, max
 	public event Action<float> OnInstabilityProgressChanged; // secs, max;
 
@@ -233,14 +234,11 @@ public class PlayerController : MonoBehaviour
 
 		Rb.linearVelocity = Vector2.zero;
 
-		if (isFromHit)
-		{
-			_animancer.Play(_hitDeathAnim);
-		}
-		else
-		{
-			_animancer.Play(_coreDeathAnim);
-		}
+		AnimancerState deathState = isFromHit
+			? _animancer.Play(_hitDeathAnim)
+			: _animancer.Play(_coreDeathAnim);
+
+		deathState.Events(this).OnEnd ??= () => OnDeathAnimationFinished?.Invoke();
 	}
 
 	public void DieFromHit()
