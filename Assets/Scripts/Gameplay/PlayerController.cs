@@ -33,7 +33,10 @@ public class PlayerController : MonoBehaviour
 	private AnimationClip _rightNoThrustAnim;
 
 	[SerializeField]
-	private AnimationClip _deathAnim;
+	private AnimationClip _coreDeathAnim;
+
+	[SerializeField]
+	private AnimationClip _hitDeathAnim;
 
 	[Header("Parameters - Movement")]
 	[SerializeField]
@@ -223,7 +226,15 @@ public class PlayerController : MonoBehaviour
 		OnInstabilityProgressChanged?.Invoke(DieSecondsLeft);
 
 		Rb.linearVelocity = Vector2.zero;
-		_animancer.Play(_deathAnim);
+
+		if (isFromHit)
+		{
+			_animancer.Play(_hitDeathAnim);
+		}
+		else
+		{
+			_animancer.Play(_coreDeathAnim);
+		}
 	}
 
 	public void DieFromHit()

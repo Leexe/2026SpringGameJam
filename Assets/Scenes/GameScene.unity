@@ -1149,6 +1149,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7400000, guid: 84150af30d55e8d4085072eeb45e7898, type: 2}
     - target: {fileID: 1805712646018447955, guid: 5a79dbd64f9d04d3b9b6542238984488, type: 3}
+      propertyPath: _hitDeathAnim
+      value: 
+      objectReference: {fileID: 7400000, guid: 84150af30d55e8d4085072eeb45e7898, type: 2}
+    - target: {fileID: 1805712646018447955, guid: 5a79dbd64f9d04d3b9b6542238984488, type: 3}
+      propertyPath: _coreDeathAnim
+      value: 
+      objectReference: {fileID: 7400000, guid: 84150af30d55e8d4085072eeb45e7898, type: 2}
+    - target: {fileID: 1805712646018447955, guid: 5a79dbd64f9d04d3b9b6542238984488, type: 3}
       propertyPath: _idleThrustAnim
       value: 
       objectReference: {fileID: 7400000, guid: 4e00a8d94169c0f4daf081b3d00908f7, type: 2}
@@ -2365,6 +2373,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1215932452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1215932453}
+  m_Layer: 0
+  m_Name: Enemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1215932453
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215932452}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.11766, y: -6.29787, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1245473135
 GameObject:
   m_ObjectHideFlags: 0
@@ -4458,3 +4497,4 @@ SceneRoots:
   - {fileID: 928876076}
   - {fileID: 1126172934}
   - {fileID: 27842999}
+  - {fileID: 1215932453}
