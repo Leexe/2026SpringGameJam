@@ -21,7 +21,7 @@ MonoBehaviour:
   _baseSpeed: 2.5
   _rotateTowardsDirection: 0
   _lifeTime: 8
-  _fadeDuration: 0.15
+  _fadeDuration: 0.25
   _sineAmplitude: 5
   _sineFrequency: 5
   _trackingStrength: 3

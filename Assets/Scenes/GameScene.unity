@@ -1370,6 +1370,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1434231415882497670, guid: 34c88c8177ada4a4c81d3c8a4dfcbba7, type: 3}
+      propertyPath: _maxBullets
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434231415882497670, guid: 34c88c8177ada4a4c81d3c8a4dfcbba7, type: 3}
       propertyPath: _drawHitboxes
       value: 0
       objectReference: {fileID: 0}
@@ -1763,6 +1767,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1893358024 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1415753999577776752, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+  m_PrefabInstance: {fileID: 2210282353848476348}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1893358026 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3956885364035814761, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+  m_PrefabInstance: {fileID: 2210282353848476348}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1893358027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893358024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03fcd06b2320a420d9d2b2c051f7373a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CoreProgressUI
+  _animancer: {fileID: 1893358028}
+  _coreProgressAnimations:
+  - {fileID: 7400000, guid: 03255378d597e9643bb4ba408932cf18, type: 2}
+  - {fileID: 7400000, guid: 69e0aafa79707aa4593a602168318200, type: 2}
+  - {fileID: 7400000, guid: f8cf7da17462aee4ab618926766bd5cb, type: 2}
+  - {fileID: 7400000, guid: 31f69c7af64d26e41af755581243a34a, type: 2}
+  - {fileID: 7400000, guid: bab0f8269dd0d7b439399c6302f58571, type: 2}
+  _coreProgress0: {fileID: 7400000, guid: 6b91ab5b2ba66469fafcf6bf7c3d81cb, type: 2}
+--- !u!114 &1893358028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893358024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad50f81b1d25c441943c37a89ba23f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Kybernetik.Animancer::Animancer.AnimancerComponent
+  _Animator: {fileID: 1893358026}
+  _Transitions: {fileID: 0}
+  _ActionOnDisable: 0
 --- !u!1001 &1929973059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1838,6 +1887,26 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 2403065796097638668, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
   m_PrefabInstance: {fileID: 7450665881196468990}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2147035581 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8054326650844441561, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+  m_PrefabInstance: {fileID: 2210282353848476348}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2147035583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2147035581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03fcd06b2320a420d9d2b2c051f7373a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _animancer: {fileID: 0}
+  _coreProgressAnimations: []
+  _coreProgress0: {fileID: 0}
 --- !u!1001 &1085225232927101369
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2182,7 +2251,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8054326650844441561, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2147035583}
+    - targetCorrespondingSourceObject: {fileID: 1415753999577776752, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1893358028}
+    - targetCorrespondingSourceObject: {fileID: 1415753999577776752, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1893358027}
   m_SourcePrefab: {fileID: 100100000, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
 --- !u!1001 &3907365783205288794
 PrefabInstance:

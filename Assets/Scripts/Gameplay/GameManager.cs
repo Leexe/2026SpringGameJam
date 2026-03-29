@@ -48,6 +48,9 @@ public class GameManager : MonoSingleton<GameManager>
 	public UnityEvent OnGameWin;
 
 	[HideInInspector]
+	public UnityEvent<int> OnIncrementPhase;
+
+	[HideInInspector]
 	public UnityEvent OnPlayerDeath;
 
 	[HideInInspector]
@@ -116,6 +119,7 @@ public class GameManager : MonoSingleton<GameManager>
 			if (_phase < _maxPhase && _player.RepairSecondsLeft == 0f && !_player.IsBuffering)
 			{
 				_phase++;
+				OnIncrementPhase?.Invoke(_phase);
 
 				if (_phase >= _maxPhase)
 				{
@@ -175,6 +179,7 @@ public class GameManager : MonoSingleton<GameManager>
 		GameTime = 0f;
 		_player.DisableInstability = false;
 		_player.StartBuffer(_timeBetweenPhases);
+		OnIncrementPhase?.Invoke(_phase);
 
 		StartDirector();
 		AudioManager.Instance.StopAmbience();
