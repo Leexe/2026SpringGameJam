@@ -16,4 +16,4 @@ MonoBehaviour:
   _material: {fileID: 2100000, guid: 51f1df172738e49739efc97d3d330715, type: 2}
   _hitboxRadius: 0.2
   _damage: 1
-  _visualScale: 1
+  _visualScale: 0.7

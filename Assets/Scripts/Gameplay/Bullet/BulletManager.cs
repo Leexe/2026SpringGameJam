@@ -24,11 +24,6 @@ public class BulletManager : MonoSingleton<BulletManager>
 	[Tooltip("Size of square around origin to delete bullets")]
 	private float _bulletBounds = 30f;
 
-	[Header("Fade Out")]
-	[SerializeField]
-	[Tooltip("Duration in seconds for bullets to fade out when killed")]
-	private float _fadeDuration = 0.15f;
-
 	[Header("Debug")]
 	[SerializeField]
 	private bool _drawHitboxes = false;
@@ -93,15 +88,14 @@ public class BulletManager : MonoSingleton<BulletManager>
 				bullet.FadeTimer += Time.deltaTime;
 				if (bullet.FadeTimer >= bullet.FadeDuration)
 				{
-					DeactivateBullet(i);
+					KillBullet(i);
 					continue;
 				}
 			}
 
-			// Lifetime expiration (only for non-fading bullets)
 			if (!bullet.IsFading && bullet.TimeAlive >= bullet.MaxLifeTime)
 			{
-				KillBullet(i);
+				DeactivateBullet(i);
 				continue;
 			}
 
@@ -155,14 +149,14 @@ public class BulletManager : MonoSingleton<BulletManager>
 					break;
 			}
 
-			// Collisions System (skip for fading bullets)
+			// Collisions System
 			if (!bullet.IsFading && _playerTransform)
 			{
 				float combinedRadius = _playerHurtboxRadius + bullet.HitRadius;
 				float hitRadiusSqr = combinedRadius * combinedRadius;
 				if ((bullet.Position - playerPos).sqrMagnitude < hitRadiusSqr)
 				{
-					KillBullet(i);
+					DeactivateBullet(i);
 					OnPlayerCollision?.Invoke();
 					continue;
 				}
@@ -171,7 +165,7 @@ public class BulletManager : MonoSingleton<BulletManager>
 			// Off-screen cleanup bounds
 			if (Mathf.Abs(bullet.Position.x) > _bulletBounds || Mathf.Abs(bullet.Position.y) > _bulletBounds)
 			{
-				DeactivateBullet(i);
+				KillBullet(i);
 				continue;
 			}
 
@@ -265,7 +259,7 @@ public class BulletManager : MonoSingleton<BulletManager>
 			_bullets[index].MaxLifeTime = pattern.MaxLifeTime;
 			_bullets[index].IsFading = false;
 			_bullets[index].FadeTimer = 0f;
-			_bullets[index].FadeDuration = _fadeDuration;
+			_bullets[index].FadeDuration = pattern.FadeDuration;
 			_bullets[index].Amplitude = pattern.SineAmplitude;
 			_bullets[index].Frequency = pattern.SineFrequency;
 			_bullets[index].TrackingStrength = pattern.TrackingStrength;
@@ -296,13 +290,13 @@ public class BulletManager : MonoSingleton<BulletManager>
 		}
 	}
 
-	private void KillBullet(int index)
+	private void DeactivateBullet(int index)
 	{
 		_bullets[index].IsFading = true;
 		_bullets[index].FadeTimer = 0f;
 	}
 
-	private void DeactivateBullet(int index)
+	private void KillBullet(int index)
 	{
 		_bullets[index].IsActive = false;
 		_bullets[index].IsFading = false;
