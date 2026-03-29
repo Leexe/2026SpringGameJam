@@ -52,6 +52,9 @@ public class PlayerController : MonoBehaviour
 	[field: SerializeField, Tooltip("Time it takes for Instability to go from 0 to 1")]
 	public float SecondsToDie { get; private set; } = 30f;
 
+	[Header("Layers")]
+	public LayerMask _enemyLayer;
+
 	/** Fields **/
 
 	public event Action OnDie;
@@ -110,7 +113,10 @@ public class PlayerController : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		Die(true);
+		if (((1 << other.gameObject.layer) & _enemyLayer) != 0)
+		{
+			Die(true);
+		}
 	}
 
 	/** Event Handlers **/
