@@ -73,6 +73,7 @@ public class GameManager : MonoSingleton<GameManager>
 	private void OnEnable()
 	{
 		OnFadeInFinish.AddListener(EnablePause);
+		OnFadeInFinish.AddListener(StartAmbience);
 		OnPlayerDeath.AddListener(DisablePause);
 
 		_bulletManager.OnPlayerCollision += _player.DieFromHit;
@@ -176,6 +177,7 @@ public class GameManager : MonoSingleton<GameManager>
 		_player.StartBuffer(_timeBetweenPhases);
 
 		StartDirector();
+		AudioManager.Instance.StopAmbience();
 
 		OnGameStart?.Invoke();
 	}
@@ -209,6 +211,11 @@ public class GameManager : MonoSingleton<GameManager>
 	{
 		_enemyDirector.time = 0;
 		_enemyDirector.Play();
+	}
+
+	private void StartAmbience()
+	{
+		AudioManager.Instance.SwitchAmbience(FMODEvents.Instance.Ambience_Amb);
 	}
 
 	private void PlayTransitionOut()

@@ -25,8 +25,8 @@ public class PlayerVisuals : MonoBehaviour
 		{
 			InputManager.Instance.OnAnchorPerformed.AddListener(ShowCircle);
 			InputManager.Instance.OnAnchorReleased.AddListener(HideCircle);
-			_hitBoxTween.Stop();
 		}
+		_hitBoxTween.Stop();
 	}
 
 	private void ShowCircle()
