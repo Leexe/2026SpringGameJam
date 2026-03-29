@@ -22,6 +22,11 @@ public struct Bullet
 	public float TimeAlive;
 	public float MaxLifeTime;
 
+	// Fade Out
+	public bool IsFading;
+	public float FadeTimer;
+	public float FadeDuration;
+
 	// Behavior Specific Parameters
 	public bool RotateTowardsDirection;
 	public float HitRadius;

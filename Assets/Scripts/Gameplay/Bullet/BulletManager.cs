@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class BulletManager : MonoSingleton<BulletManager>
 {
@@ -23,6 +24,11 @@ public class BulletManager : MonoSingleton<BulletManager>
 	[Tooltip("Size of square around origin to delete bullets")]
 	private float _bulletBounds = 30f;
 
+	[Header("Fade Out")]
+	[SerializeField]
+	[Tooltip("Duration in seconds for bullets to fade out when killed")]
+	private float _fadeDuration = 0.15f;
+
 	[Header("Debug")]
 	[SerializeField]
 	private bool _drawHitboxes = false;
@@ -36,9 +42,13 @@ public class BulletManager : MonoSingleton<BulletManager>
 
 	// Batched Rendering Data
 	private readonly Dictionary<BulletSO, List<Matrix4x4>> _renderBatches = new();
+	private readonly Dictionary<BulletSO, List<float>> _alphaBatches = new();
 
 	// DrawMeshInstanced can only draw 1023 matrices per draw call, so we have to chunk them
 	private readonly Matrix4x4[] _drawBuffer = new Matrix4x4[1023];
+	private readonly float[] _alphaBuffer = new float[1023];
+	private MaterialPropertyBlock _propertyBlock;
+	private static readonly int AlphaPropertyId = Shader.PropertyToID("_InstanceAlpha");
 
 	#endregion
 
@@ -49,12 +59,17 @@ public class BulletManager : MonoSingleton<BulletManager>
 		base.Awake();
 
 		InitializePool();
+		_propertyBlock = new MaterialPropertyBlock();
 	}
 
 	private void Update()
 	{
 		// 1. Flush Memory
 		foreach (KeyValuePair<BulletSO, List<Matrix4x4>> kvp in _renderBatches)
+		{
+			kvp.Value.Clear();
+		}
+		foreach (KeyValuePair<BulletSO, List<float>> kvp in _alphaBatches)
 		{
 			kvp.Value.Clear();
 		}
@@ -73,8 +88,18 @@ public class BulletManager : MonoSingleton<BulletManager>
 
 			bullet.TimeAlive += Time.deltaTime;
 
-			// Lifetime expiration
-			if (bullet.TimeAlive >= bullet.MaxLifeTime)
+			if (bullet.IsFading)
+			{
+				bullet.FadeTimer += Time.deltaTime;
+				if (bullet.FadeTimer >= bullet.FadeDuration)
+				{
+					DeactivateBullet(i);
+					continue;
+				}
+			}
+
+			// Lifetime expiration (only for non-fading bullets)
+			if (!bullet.IsFading && bullet.TimeAlive >= bullet.MaxLifeTime)
 			{
 				KillBullet(i);
 				continue;
@@ -130,8 +155,8 @@ public class BulletManager : MonoSingleton<BulletManager>
 					break;
 			}
 
-			// Collisions System
-			if (_playerTransform)
+			// Collisions System (skip for fading bullets)
+			if (!bullet.IsFading && _playerTransform)
 			{
 				float combinedRadius = _playerHurtboxRadius + bullet.HitRadius;
 				float hitRadiusSqr = combinedRadius * combinedRadius;
@@ -146,22 +171,13 @@ public class BulletManager : MonoSingleton<BulletManager>
 			// Off-screen cleanup bounds
 			if (Mathf.Abs(bullet.Position.x) > _bulletBounds || Mathf.Abs(bullet.Position.y) > _bulletBounds)
 			{
-				KillBullet(i);
+				DeactivateBullet(i);
 				continue;
 			}
 
 			// Prepare for Rendering
-			Quaternion targetRotation = Quaternion.identity;
-			if (bullet.RotateTowardsDirection)
-			{
-				float angle = Mathf.Atan2(bullet.Velocity.y, bullet.Velocity.x) * Mathf.Rad2Deg;
-				targetRotation = Quaternion.Euler(0, 0, angle);
-			}
-
-			// Create Transition, Rotation, and Scale Matrix
-			var matrix = Matrix4x4.TRS(bullet.Position, targetRotation, Vector3.one * bullet.SO.VisualScale);
-			// Group by BulletSO
-			_renderBatches[bullet.SO].Add(matrix);
+			float alpha = bullet.IsFading ? 1f - (bullet.FadeTimer / bullet.FadeDuration) : 1f;
+			AddToRenderBatch(ref bullet, alpha);
 		}
 
 		// 3. Render with DrawMeshInstanced
@@ -169,6 +185,7 @@ public class BulletManager : MonoSingleton<BulletManager>
 		{
 			BulletSO so = kvp.Key;
 			List<Matrix4x4> matrices = kvp.Value;
+			List<float> alphas = _alphaBatches[so];
 
 			if (!so || !so.Mesh || !so.Material || matrices.Count == 0)
 			{
@@ -180,8 +197,10 @@ public class BulletManager : MonoSingleton<BulletManager>
 			{
 				int length = Mathf.Min(1023, totalCount - i);
 				matrices.CopyTo(i, _drawBuffer, 0, length);
+				alphas.CopyTo(i, _alphaBuffer, 0, length);
 
-				Graphics.DrawMeshInstanced(so.Mesh, 0, so.Material, _drawBuffer, length);
+				_propertyBlock.SetFloatArray(AlphaPropertyId, _alphaBuffer);
+				Graphics.DrawMeshInstanced(so.Mesh, 0, so.Material, _drawBuffer, length, _propertyBlock);
 			}
 		}
 	}
@@ -207,6 +226,7 @@ public class BulletManager : MonoSingleton<BulletManager>
 		if (!_renderBatches.ContainsKey(pattern.BulletSO))
 		{
 			_renderBatches[pattern.BulletSO] = new List<Matrix4x4>(_maxBullets);
+			_alphaBatches[pattern.BulletSO] = new List<float>(_maxBullets);
 		}
 
 		float startAngle = pattern.Direction;
@@ -243,6 +263,9 @@ public class BulletManager : MonoSingleton<BulletManager>
 			_bullets[index].Behavior = pattern.Behavior;
 			_bullets[index].TimeAlive = 0f;
 			_bullets[index].MaxLifeTime = pattern.MaxLifeTime;
+			_bullets[index].IsFading = false;
+			_bullets[index].FadeTimer = 0f;
+			_bullets[index].FadeDuration = _fadeDuration;
 			_bullets[index].Amplitude = pattern.SineAmplitude;
 			_bullets[index].Frequency = pattern.SineFrequency;
 			_bullets[index].TrackingStrength = pattern.TrackingStrength;
@@ -275,8 +298,29 @@ public class BulletManager : MonoSingleton<BulletManager>
 
 	private void KillBullet(int index)
 	{
+		_bullets[index].IsFading = true;
+		_bullets[index].FadeTimer = 0f;
+	}
+
+	private void DeactivateBullet(int index)
+	{
 		_bullets[index].IsActive = false;
+		_bullets[index].IsFading = false;
 		_freeInstances.Push(index);
+	}
+
+	private void AddToRenderBatch(ref Bullet bullet, float alpha)
+	{
+		Quaternion targetRotation = Quaternion.identity;
+		if (bullet.RotateTowardsDirection)
+		{
+			float angle = Mathf.Atan2(bullet.Velocity.y, bullet.Velocity.x) * Mathf.Rad2Deg;
+			targetRotation = Quaternion.Euler(0, 0, angle);
+		}
+
+		var matrix = Matrix4x4.TRS(bullet.Position, targetRotation, Vector3.one * bullet.SO.VisualScale);
+		_renderBatches[bullet.SO].Add(matrix);
+		_alphaBatches[bullet.SO].Add(alpha);
 	}
 
 	private void OnDrawGizmos()

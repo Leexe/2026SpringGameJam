@@ -55,9 +55,9 @@ Shader "Unlit/FlipbookSprite"
             float _AnimationSpeed;
 
             // Instanced properties, for per-bullet variations
-            // UNITY_INSTANCING_BUFFER_START(Props)
-            // UNITY_DEFINE_INSTANCED_PROP(float4, _Color)
-            // UNITY_INSTANCING_BUFFER_END(Props)
+            UNITY_INSTANCING_BUFFER_START(Props)
+                UNITY_DEFINE_INSTANCED_PROP(float, _InstanceAlpha)
+            UNITY_INSTANCING_BUFFER_END(Props)
 
             Interpolators vert (MeshData v)
             {
@@ -92,6 +92,9 @@ Shader "Unlit/FlipbookSprite"
 
                 // Sample texture with tint
                 fixed4 col = tex2D(_MainTex, uv) * _Color;
+
+                // Apply per-instance alpha
+                col.a *= UNITY_ACCESS_INSTANCED_PROP(Props, _InstanceAlpha);
 
                 // Clip Low Alpha Pixels
                 clip(col.a - 0.001);
