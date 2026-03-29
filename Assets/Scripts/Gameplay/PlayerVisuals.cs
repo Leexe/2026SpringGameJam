@@ -32,12 +32,18 @@ public class PlayerVisuals : MonoBehaviour
 	private void ShowCircle()
 	{
 		_hitBoxTween.Stop();
-		_hitBoxTween = Tween.Alpha(_hitBoxRenderer, 1f, _circleTweenDuration);
+		if (_hitBoxRenderer)
+		{
+			_hitBoxTween = Tween.Alpha(_hitBoxRenderer, 1f, _circleTweenDuration);
+		}
 	}
 
 	private void HideCircle()
 	{
 		_hitBoxTween.Stop();
-		_hitBoxTween = Tween.Alpha(_hitBoxRenderer, 0f, _circleTweenDuration);
+		if (_hitBoxRenderer)
+		{
+			_hitBoxTween = Tween.Alpha(_hitBoxRenderer, 0f, _circleTweenDuration);
+		}
 	}
 }

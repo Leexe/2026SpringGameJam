@@ -878,21 +878,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &507716038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 238266930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad50f81b1d25c441943c37a89ba23f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Kybernetik.Animancer::Animancer.AnimancerComponent
-  _Animator: {fileID: 507716037}
-  _Transitions: {fileID: 0}
-  _ActionOnDisable: 0
 --- !u!4 &507716039 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5284281594869341120, guid: 5a79dbd64f9d04d3b9b6542238984488, type: 3}
@@ -912,6 +897,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   _hitBoxRenderer: {fileID: 1451673209}
   _circleTweenDuration: 0.2
+--- !u!114 &507716041 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7980070845480148150, guid: 5a79dbd64f9d04d3b9b6542238984488, type: 3}
+  m_PrefabInstance: {fileID: 534653306}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238266930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad50f81b1d25c441943c37a89ba23f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Kybernetik.Animancer::Animancer.AnimancerComponent
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,7 +1232,7 @@ PrefabInstance:
     - target: {fileID: 1805712646018447955, guid: 5a79dbd64f9d04d3b9b6542238984488, type: 3}
       propertyPath: _animancer
       value: 
-      objectReference: {fileID: 507716038}
+      objectReference: {fileID: 507716041}
     - target: {fileID: 1805712646018447955, guid: 5a79dbd64f9d04d3b9b6542238984488, type: 3}
       propertyPath: _deathAnim
       value: 
@@ -1453,9 +1449,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5085836571811655066, guid: 5a79dbd64f9d04d3b9b6542238984488, type: 3}
       insertIndex: -1
       addedObject: {fileID: 507716037}
-    - targetCorrespondingSourceObject: {fileID: 5085836571811655066, guid: 5a79dbd64f9d04d3b9b6542238984488, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 507716038}
     - targetCorrespondingSourceObject: {fileID: 5496188259288041315, guid: 5a79dbd64f9d04d3b9b6542238984488, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1924276919}
@@ -3607,7 +3600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -48.67, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 4.6099854, y: 0}
+  m_AnchoredPosition: {x: 4.6101074, y: 0}
   m_SizeDelta: {x: 96.900024, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1586687445

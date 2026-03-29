@@ -70,6 +70,9 @@ public class StabilityMeterUI : MonoBehaviour
 	{
 		float percent = seconds / _player.SecondsToDie;
 		_progressTween.Stop();
-		_progressTween = Tween.UIFillAmount(_progressBar, percent, _tweenDuration);
+		if (!Mathf.Approximately(_progressBar.fillAmount, percent))
+		{
+			_progressTween = Tween.UIFillAmount(_progressBar, percent, _tweenDuration);
+		}
 	}
 }

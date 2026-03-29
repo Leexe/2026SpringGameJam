@@ -218,6 +218,18 @@ public class BulletManager : MonoSingleton<BulletManager>
 
 	#region Public Methods
 
+	public void ClearAllBullets()
+	{
+		_freeInstances.Clear();
+		for (int i = _maxBullets - 1; i >= 0; i--)
+		{
+			_bullets[i].IsActive = false;
+			_bullets[i].IsFading = false;
+			_freeInstances.Push(i);
+		}
+		EnableHitbox();
+	}
+
 	/// <summary>
 	/// Reads PatternSO and spawns bullets
 	/// </summary>

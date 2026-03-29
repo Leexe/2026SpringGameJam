@@ -53,7 +53,8 @@ public class PlayerController : MonoBehaviour
 	public float SecondsToDie { get; private set; } = 30f;
 
 	[Header("Layers")]
-	public LayerMask _enemyLayer;
+	[SerializeField]
+	private LayerMask _enemyLayer;
 
 	/** Fields **/
 
@@ -72,6 +73,8 @@ public class PlayerController : MonoBehaviour
 	public bool IsAlive { get; private set; }
 	public float RepairSecondsLeft { get; private set; }
 	public float DieSecondsLeft { get; private set; }
+
+	private Vector2 _startPosition;
 
 	/** Unity Messages **/
 
@@ -96,6 +99,11 @@ public class PlayerController : MonoBehaviour
 			InputManager.Instance.OnAnchorPerformed.RemoveListener(HandleAnchorPerformed);
 			InputManager.Instance.OnAnchorReleased.RemoveListener(HandleAnchorReleased);
 		}
+	}
+
+	private void Start()
+	{
+		_startPosition = transform.position;
 	}
 
 	private void Update()
@@ -155,6 +163,18 @@ public class PlayerController : MonoBehaviour
 	public void ResetRepairProgress()
 	{
 		ResetRepairProgress(SecondsToRepair, SecondsToDie);
+	}
+
+	public void Respawn()
+	{
+		transform.position = _startPosition;
+		Rb.linearVelocity = Vector2.zero;
+
+		_isRepairInputHeld = false;
+		IsAlive = true;
+
+		RepairSecondsLeft = 1f;
+		DieSecondsLeft = 0f;
 	}
 
 	/** Private Methods **/
@@ -236,7 +256,11 @@ public class PlayerController : MonoBehaviour
 
 		AnimancerState deathState = isFromHit ? _animancer.Play(_hitDeathAnim) : _animancer.Play(_coreDeathAnim);
 
-		deathState.Events(this).OnEnd ??= () => OnDeathAnimationFinished?.Invoke();
+		deathState.Events(this).OnEnd ??= () =>
+		{
+			deathState.IsPlaying = false;
+			OnDeathAnimationFinished?.Invoke();
+		};
 	}
 
 	public void DieFromHit()

@@ -27,6 +27,9 @@ public class GameManager : MonoSingleton<GameManager>
 	public UnityEvent OnGameStart; // Game starts when the player completes the first phase
 
 	[HideInInspector]
+	public UnityEvent OnGameRestart;
+
+	[HideInInspector]
 	public UnityEvent OnPlayerDeath;
 
 	[HideInInspector]
@@ -38,7 +41,7 @@ public class GameManager : MonoSingleton<GameManager>
 	public float GameTime { get; private set; } = -1f;
 
 	private int _phase = 0;
-	private bool _canPause = true;
+	public bool CanPause { get; set; } = true;
 	private bool _isPaused;
 
 	/** Unity Messages **/
@@ -98,7 +101,21 @@ public class GameManager : MonoSingleton<GameManager>
 
 	public void RestartGame()
 	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		GameTime = -1f;
+		_phase = 0;
+		if (_isPaused)
+		{
+			ResumeGame();
+		}
+
+		_player.Respawn();
+		if (BulletManager.Instance != null)
+		{
+			BulletManager.Instance.ClearAllBullets();
+		}
+
+		InitPreSequence();
+		OnGameRestart?.Invoke();
 	}
 
 	/** Private Methods **/
@@ -145,7 +162,7 @@ public class GameManager : MonoSingleton<GameManager>
 
 	private void PauseGame()
 	{
-		if (_canPause)
+		if (CanPause)
 		{
 			OnGamePause?.Invoke();
 			Time.timeScale = 0f;

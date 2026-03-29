@@ -27,6 +27,7 @@ public class TransitionUI : MonoBehaviour
 	private void OnEnable()
 	{
 		GameManager.Instance.OnPlayerDeath.AddListener(PlayTransitionOut);
+		GameManager.Instance.OnGameRestart.AddListener(PlayTransitionIn);
 	}
 
 	private void OnDisable()
@@ -34,22 +35,46 @@ public class TransitionUI : MonoBehaviour
 		if (GameManager.Instance)
 		{
 			GameManager.Instance.OnPlayerDeath.RemoveListener(PlayTransitionOut);
+			GameManager.Instance.OnGameRestart.RemoveListener(PlayTransitionIn);
 		}
 	}
 
 	private void PlayTransitionIn()
 	{
-		_animancer.Play(_transitionIn);
+		if (GameManager.Instance != null)
+		{
+			GameManager.Instance.CanPause = false;
+		}
+
+		AnimancerState state = _animancer.Play(_transitionIn);
+		state.Events(this).OnEnd = () =>
+		{
+			state.Stop();
+
+			if (GameManager.Instance != null)
+			{
+				GameManager.Instance.CanPause = true;
+			}
+		};
 	}
 
 	private void PlayTransitionOut()
 	{
+		if (GameManager.Instance != null)
+		{
+			GameManager.Instance.CanPause = false;
+		}
+
 		Tween.Delay(
 			_transitionOutDelay,
 			() =>
 			{
 				AnimancerState fadeOutState = _animancer.Play(_transitionOut);
-				fadeOutState.Events(this).OnEnd = GameManager.Instance.RestartGame;
+				fadeOutState.Events(this).OnEnd = () =>
+				{
+					fadeOutState.Stop();
+					GameManager.Instance.RestartGame();
+				};
 			}
 		);
 	}
