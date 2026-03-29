@@ -10,33 +10,7 @@ public class PlayerController : MonoBehaviour
 	[field: SerializeField]
 	public Rigidbody2D Rb { get; private set; }
 
-	[SerializeField]
-	private AnimancerComponent _animancer;
-
-	[Header("Animations")]
-	[SerializeField]
-	private AnimationClip _idleThrustAnim;
-
-	[SerializeField]
-	private AnimationClip _leftThrustAnim;
-
-	[SerializeField]
-	private AnimationClip _rightThrustAnim;
-
-	[SerializeField]
-	private AnimationClip _idleNoThrustAnim;
-
-	[SerializeField]
-	private AnimationClip _leftNoThrustAnim;
-
-	[SerializeField]
-	private AnimationClip _rightNoThrustAnim;
-
-	[SerializeField]
-	private AnimationClip _coreDeathAnim;
-
-	[SerializeField]
-	private AnimationClip _hitDeathAnim;
+	public Vector2 MovementInput => _movementInput;
 
 	[Header("Parameters - Movement")]
 	[SerializeField]
@@ -58,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
 	/** Fields **/
 
-	public event Action OnDie;
+	public event Action<bool> OnDie; // isFromHit
 	public event Action OnDeathAnimationFinished;
 	public event Action<float> OnRepairProgressChanged; // secs, max
 	public event Action<float> OnInstabilityProgressChanged; // secs, max;
@@ -66,7 +40,6 @@ public class PlayerController : MonoBehaviour
 
 	private bool _isRepairInputHeld;
 	private Vector2 _movementInput;
-	private AnimancerState _animancerState;
 
 	public bool DisableInstability { get; set; } = false;
 
@@ -119,11 +92,6 @@ public class PlayerController : MonoBehaviour
 		_defaultSecondsToDie = SecondsToDie;
 	}
 
-	private void Update()
-	{
-		HandleVisuals();
-	}
-
 	private void FixedUpdate()
 	{
 		if (IsAlive)
@@ -159,6 +127,11 @@ public class PlayerController : MonoBehaviour
 	}
 
 	/** Public Methods **/
+
+	public void TriggerDeathAnimationFinished()
+	{
+		OnDeathAnimationFinished?.Invoke();
+	}
 
 	[Button]
 	public void ResetRepairProgress(float secondsToRepair, float secondsToDie)
@@ -207,29 +180,6 @@ public class PlayerController : MonoBehaviour
 	}
 
 	/** Private Methods **/
-
-	private void HandleVisuals()
-	{
-		if (IsAlive)
-		{
-			bool thrust = _movementInput.y > 0f;
-
-			AnimationClip animToPlay = thrust ? _idleThrustAnim : _idleNoThrustAnim;
-			if (_movementInput.x < 0f)
-			{
-				animToPlay = thrust ? _leftThrustAnim : _leftNoThrustAnim;
-			}
-			else if (_movementInput.x > 0f)
-			{
-				animToPlay = thrust ? _rightThrustAnim : _rightNoThrustAnim;
-			}
-
-			if (_animancerState == null || _animancerState.Clip != animToPlay)
-			{
-				_animancerState = _animancer.Play(animToPlay);
-			}
-		}
-	}
 
 	private void HandleMovementPhysics()
 	{
@@ -292,29 +242,14 @@ public class PlayerController : MonoBehaviour
 		}
 		IsAlive = false;
 
-		OnDie?.Invoke();
+		OnDie?.Invoke(isFromHit);
 
 		DieSecondsLeft = 0f;
 		OnInstabilityProgressChanged?.Invoke(DieSecondsLeft);
 
 		Rb.linearVelocity = Vector2.zero;
 
-		if (isFromHit)
-		{
-			AudioManager.Instance.PlayOneShot(FMODEvents.Instance.Explosion_Sfx);
-		}
-		else
-		{
-			AudioManager.Instance.PlayOneShot(FMODEvents.Instance.Explosion_Sfx);
-		}
-
-		AnimancerState deathState = isFromHit ? _animancer.Play(_hitDeathAnim) : _animancer.Play(_coreDeathAnim);
-
-		deathState.Events(this).OnEnd ??= () =>
-		{
-			deathState.IsPlaying = false;
-			OnDeathAnimationFinished?.Invoke();
-		};
+		AudioManager.Instance.PlayOneShot(FMODEvents.Instance.Explosion_Sfx);
 	}
 
 	public void DieFromHit()

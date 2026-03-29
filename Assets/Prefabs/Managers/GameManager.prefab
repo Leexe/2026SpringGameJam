@@ -46,11 +46,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   _player: {fileID: 0}
   _bulletManager: {fileID: 0}
-  _fader: {fileID: 0}
   _debugTimeDisplay: {fileID: 0}
+  _enemyDirector: {fileID: 0}
+  _maxPhase: 5
+  _timeBetweenPhases: 4
   OnGamePause:
     m_PersistentCalls:
       m_Calls: []
   OnGameResume:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGameStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGameRestart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGameLose:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGameWin:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeathAnimationFinish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFadeInFinish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFadeOutFinish:
     m_PersistentCalls:
       m_Calls: []

@@ -148,7 +148,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -189200311, guid: dcaefa71c76ea6542870f3902b72a6f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -170,10 +170,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5284281594869341120}
   - component: {fileID: 1805712646018447955}
-  - component: {fileID: 2439278865526243839}
+  - component: {fileID: 7854746886439013998}
   - component: {fileID: 5024962950807002626}
-  - component: {fileID: 1087701657945171793}
   - component: {fileID: 7980070845480148150}
+  - component: {fileID: 4301070318209885038}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -212,20 +212,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   <Rb>k__BackingField: {fileID: 5024962950807002626}
-  _animancer: {fileID: 7980070845480148150}
-  _idleThrustAnim: {fileID: 7400000, guid: 4e00a8d94169c0f4daf081b3d00908f7, type: 2}
-  _leftThrustAnim: {fileID: 7400000, guid: 60a05f474be9d1b43b8b9ed7dc453942, type: 2}
-  _rightThrustAnim: {fileID: 7400000, guid: 9438cb880d6ccd7478f589f4429349e2, type: 2}
-  _idleNoThrustAnim: {fileID: 7400000, guid: 57b65ea24636ffd45b7f81eced90d116, type: 2}
-  _leftNoThrustAnim: {fileID: 7400000, guid: 9752927eb84f0014b8c7b9990d19453b, type: 2}
-  _rightNoThrustAnim: {fileID: 7400000, guid: 36c043e466b1104498bf1a79a486a5bc, type: 2}
-  _coreDeathAnim: {fileID: 0}
-  _hitDeathAnim: {fileID: 0}
   _baseMoveSpeed: 7
   _repairSpeedMult: 0.5
-  <SecondsToRepair>k__BackingField: 12
+  <SecondsToRepair>k__BackingField: 10
   <SecondsToDie>k__BackingField: 30
---- !u!114 &2439278865526243839
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &7854746886439013998
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -237,7 +231,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6571b7280d6874cd0b1bde534f0cdf2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  _playerController: {fileID: 1805712646018447955}
   _hitBoxRenderer: {fileID: 2143798013073103645}
+  _animancer: {fileID: 7980070845480148150}
+  _idleThrustAnim: {fileID: 7400000, guid: 4e00a8d94169c0f4daf081b3d00908f7, type: 2}
+  _leftThrustAnim: {fileID: 7400000, guid: 60a05f474be9d1b43b8b9ed7dc453942, type: 2}
+  _rightThrustAnim: {fileID: 7400000, guid: 9438cb880d6ccd7478f589f4429349e2, type: 2}
+  _idleNoThrustAnim: {fileID: 7400000, guid: 57b65ea24636ffd45b7f81eced90d116, type: 2}
+  _leftNoThrustAnim: {fileID: 7400000, guid: 9752927eb84f0014b8c7b9990d19453b, type: 2}
+  _rightNoThrustAnim: {fileID: 7400000, guid: 36c043e466b1104498bf1a79a486a5bc, type: 2}
+  _coreDeathAnim: {fileID: 7400000, guid: 03ecbadf323be114cb8658c7ecbec077, type: 2}
+  _hitDeathAnim: {fileID: 7400000, guid: 84150af30d55e8d4085072eeb45e7898, type: 2}
   _circleTweenDuration: 0.2
 --- !u!50 &5024962950807002626
 Rigidbody2D:
@@ -266,7 +270,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!95 &1087701657945171793
+--- !u!114 &7980070845480148150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5085836571811655066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad50f81b1d25c441943c37a89ba23f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Kybernetik.Animancer::Animancer.AnimancerComponent
+  _Animator: {fileID: 4301070318209885038}
+  _Transitions: {fileID: 0}
+  _ActionOnDisable: 0
+--- !u!95 &4301070318209885038
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -288,21 +307,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7980070845480148150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5085836571811655066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad50f81b1d25c441943c37a89ba23f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Kybernetik.Animancer::Animancer.AnimancerComponent
-  _Animator: {fileID: 1087701657945171793}
-  _Transitions: {fileID: 0}
-  _ActionOnDisable: 0
 --- !u!1 &5390392462532900757
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,8 +334,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 14, y: 14, z: 14}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5604309431476438177}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -382,10 +386,10 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 1
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.3537736, g: 0.72705954, b: 1, a: 1}
+  m_SortingOrder: 2
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: 21300000, guid: 2db40b4f775642348a4a844bcbd1f538, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -403,7 +407,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3070261757962547218}
-  - component: {fileID: 267761179190976392}
+  - component: {fileID: 8526694932315416967}
   m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
@@ -426,7 +430,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5284281594869341120}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &267761179190976392
+--- !u!212 &8526694932315416967
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
@@ -475,7 +479,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -189200311, guid: dcaefa71c76ea6542870f3902b72a6f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -483,5 +487,5 @@ SpriteRenderer:
   m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0

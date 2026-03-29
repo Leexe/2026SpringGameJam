@@ -182,7 +182,7 @@ public class GameManager : MonoSingleton<GameManager>
 		OnGameStart?.Invoke();
 	}
 
-	private void TriggerPlayerDie()
+	private void TriggerPlayerDie(bool isFromHit)
 	{
 		OnPlayerDeath?.Invoke();
 
