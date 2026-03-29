@@ -45,6 +45,7 @@ public class TransitionUI : MonoBehaviour
 		{
 			GameManager.Instance.CanPause = false;
 		}
+		AudioManager.Instance.PlayOneShot(FMODEvents.Instance.FadeIn_Sfx);
 
 		AnimancerState state = _animancer.Play(_transitionIn);
 		state.Events(this).OnEnd = () =>
@@ -64,6 +65,8 @@ public class TransitionUI : MonoBehaviour
 			_transitionOutDelay,
 			() =>
 			{
+				AudioManager.Instance.PlayOneShot(FMODEvents.Instance.FadeOut_Sfx);
+
 				AnimancerState fadeOutState = _animancer.Play(_transitionOut);
 				fadeOutState.Events(this).OnEnd = () =>
 				{

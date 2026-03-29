@@ -293,12 +293,20 @@ public class PlayerController : MonoBehaviour
 		IsAlive = false;
 
 		OnDie?.Invoke();
-		// TBD
 
 		DieSecondsLeft = 0f;
 		OnInstabilityProgressChanged?.Invoke(DieSecondsLeft);
 
 		Rb.linearVelocity = Vector2.zero;
+
+		if (isFromHit)
+		{
+			AudioManager.Instance.PlayOneShot(FMODEvents.Instance.Explosion_Sfx);
+		}
+		else
+		{
+			AudioManager.Instance.PlayOneShot(FMODEvents.Instance.Explosion_Sfx);
+		}
 
 		AnimancerState deathState = isFromHit ? _animancer.Play(_hitDeathAnim) : _animancer.Play(_coreDeathAnim);
 

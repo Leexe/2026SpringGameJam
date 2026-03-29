@@ -97,3 +97,52 @@ MonoBehaviour:
       Data3: 748271531
       Data4: 138083056
     Path: event:/BGM/Warp Drive (Intro Demo)
+  <Menu_Bgm>k__BackingField:
+    Guid:
+      Data1: -504031839
+      Data2: 1227370384
+      Data3: -429010762
+      Data4: -1655308064
+    Path: event:/BGM/Menu Theme
+  <Ambience_Amb>k__BackingField:
+    Guid:
+      Data1: 1936923306
+      Data2: 1335964905
+      Data3: 2051158934
+      Data4: 1636207754
+    Path: event:/AMB/Ambience
+  <FadeIn_Sfx>k__BackingField:
+    Guid:
+      Data1: -1154310358
+      Data2: 1265275762
+      Data3: 1333641122
+      Data4: -356627114
+    Path: event:/SFX/Menu/Fade In
+  <FadeOut_Sfx>k__BackingField:
+    Guid:
+      Data1: 909389815
+      Data2: 1305680826
+      Data3: 1841663110
+      Data4: -608572242
+    Path: event:/SFX/Menu/Fade Out
+  <Explosion_Sfx>k__BackingField:
+    Guid:
+      Data1: 1803890779
+      Data2: 1181832292
+      Data3: -1568472415
+      Data4: -1711674594
+    Path: event:/SFX/Gameplay/Explosion
+  <ButtonHover_Sfx>k__BackingField:
+    Guid:
+      Data1: 436086679
+      Data2: 1220093175
+      Data3: 313373371
+      Data4: 1027619517
+    Path: event:/SFX/Menu/Button Hover
+  <Warning_LoopSFX>k__BackingField:
+    Guid:
+      Data1: 148345646
+      Data2: 1301032897
+      Data3: -1108812129
+      Data4: 1125838926
+    Path: event:/SFX/Gameplay/Warning
