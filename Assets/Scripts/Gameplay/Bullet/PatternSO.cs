@@ -46,6 +46,10 @@ public class PatternSO : ScriptableObject
 	[Tooltip("The duration of the bullet")]
 	private float _lifeTime = 8f;
 
+	[SerializeField]
+	[Tooltip("Duration in seconds for bullets to fade out when killed")]
+	private float _fadeDuration = 0.15f;
+
 	[ShowIf("_behavior", BulletBehavior.SineWave)]
 	[SerializeField]
 	private float _sineAmplitude = 1f;
@@ -83,6 +87,7 @@ public class PatternSO : ScriptableObject
 	public float BaseSpeed => _baseSpeed;
 	public bool RotateTowardsDirection => _rotateTowardsDirection;
 	public float MaxLifeTime => _lifeTime;
+	public float FadeDuration => _fadeDuration;
 	public float SineAmplitude => _sineAmplitude;
 	public float SineFrequency => _sineFrequency;
 	public float TrackingStrength => _trackingStrength;

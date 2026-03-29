@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: FollowingShot
   m_EditorClassIdentifier: Assembly-CSharp::PatternSO
   _bulletSO: {fileID: 11400000, guid: 37e4f4875916243eaab95848caca0722, type: 2}
-  _behavior: 2
+  _behavior: 3
   _bulletCount: 3
   _spreadAngle: 270
   _towardsPlayer: 1
   _direction: 270
-  _baseSpeed: 3
+  _baseSpeed: 8
   _rotateTowardsDirection: 1
   _lifeTime: 8
+  _fadeDuration: 0.15
   _sineAmplitude: 5
   _sineFrequency: 5
   _trackingStrength: 3
