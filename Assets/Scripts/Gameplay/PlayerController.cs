@@ -228,11 +228,11 @@ public class PlayerController : MonoBehaviour
 			Die(false);
 		}
 
-		if (oldProg != RepairSecondsLeft)
+		if (!Mathf.Approximately(oldProg, RepairSecondsLeft))
 		{
 			OnRepairProgressChanged?.Invoke(RepairSecondsLeft);
 		}
-		if (oldInstProg != DieSecondsLeft)
+		if (!Mathf.Approximately(oldInstProg, DieSecondsLeft))
 		{
 			OnInstabilityProgressChanged?.Invoke(DieSecondsLeft);
 		}
