@@ -14,10 +14,16 @@ public class Enemy : MonoBehaviour
 	[SerializeField]
 	private List<Transform> _shootPoints;
 
+	[SerializeField]
+	private bool _enableShooting;
+
+	[SerializeField]
+	[Tooltip("Multiplier for the time between attacks.")]
+	private float _attackDelayMultiplier = 1f;
+
 	private int _patternIndex;
 	private int _attackIndex;
 	private int _shootPointIndex;
-	private bool _enableShooting;
 	private float _delayTimer;
 	private bool _isWaitingForDelay;
 
@@ -94,7 +100,7 @@ public class Enemy : MonoBehaviour
 		// Apply delay after this attack
 		if (entry.DelayAfter > 0f)
 		{
-			_delayTimer = entry.DelayAfter;
+			_delayTimer = entry.DelayAfter * _attackDelayMultiplier;
 			_isWaitingForDelay = true;
 		}
 	}

@@ -95,6 +95,7 @@ public class AsteroidAttack : MonoBehaviour
 		// Initialize with fixed seed so the sequence of asteroids is perfectly deterministic
 		_rng = new System.Random(_seed);
 		_spawnTimer = 0f;
+		StopAttack();
 	}
 
 	private void Update()

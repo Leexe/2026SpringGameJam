@@ -20,7 +20,7 @@ MonoBehaviour:
   _direction: 270
   _baseSpeed: 5
   _rotateTowardsDirection: 0
-  _lifeTime: 24
+  _lifeTime: 30
   _fadeDuration: 0.15
   _sineAmplitude: 1
   _sineFrequency: 5

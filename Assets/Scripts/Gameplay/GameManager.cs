@@ -26,7 +26,7 @@ public class GameManager : MonoSingleton<GameManager>
 	private int _maxPhase = 5;
 
 	[SerializeField]
-	private float _timeBetweenPhases = 5f;
+	private float _timeBetweenRepairs = 5f;
 
 	[SerializeField]
 	private float _winDelay = 1.5f;
@@ -138,18 +138,7 @@ public class GameManager : MonoSingleton<GameManager>
 
 			if (_phase < _maxPhase && Player.DieSecondsLeft == 0f && Player.IsAlive && !Player.IsBuffering)
 			{
-				_phase++;
-				OnIncrementPhase?.Invoke(_phase);
-
-				if (_phase >= _maxPhase)
-				{
-					OnGameWin?.Invoke();
-					Invoke(nameof(TriggerWinScreenShow), _winDelay);
-				}
-				else
-				{
-					Player.StartBuffer(_timeBetweenPhases);
-				}
+				Player.StartBuffer(_timeBetweenRepairs);
 			}
 		}
 		else
@@ -171,7 +160,6 @@ public class GameManager : MonoSingleton<GameManager>
 		CancelInvoke(nameof(TriggerWinScreenShow));
 
 		GameTime = -1f;
-		_phase = 0;
 		if (_isPaused)
 		{
 			ResumeGame();
@@ -193,7 +181,20 @@ public class GameManager : MonoSingleton<GameManager>
 
 		CanPause = false;
 
+		_phase = 0;
 		FadeIn();
+	}
+
+	public void IncrementPhase()
+	{
+		_phase++;
+		OnIncrementPhase?.Invoke(_phase);
+
+		if (_phase >= _maxPhase)
+		{
+			OnGameWin?.Invoke();
+			Invoke(nameof(TriggerWinScreenShow), _winDelay);
+		}
 	}
 
 	/** Private Methods **/
@@ -212,7 +213,7 @@ public class GameManager : MonoSingleton<GameManager>
 	{
 		GameTime = 0f;
 		Player.DisableInstability = false;
-		Player.StartBuffer(_timeBetweenPhases);
+		Player.StartBuffer(_timeBetweenRepairs);
 		AudioManager.Instance.StopMusic();
 
 		StartDirector();
