@@ -82,8 +82,6 @@ public class GameManager : MonoSingleton<GameManager>
 
 	private void OnEnable()
 	{
-		OnFadeInFinish.AddListener(EnablePause);
-		OnFadeInFinish.AddListener(StartAmbience);
 		OnPlayerDeath.AddListener(DisablePause);
 
 		_bulletManager.OnPlayerCollision += _player.DieFromHit;
@@ -92,10 +90,8 @@ public class GameManager : MonoSingleton<GameManager>
 
 		InputManager.Instance.OnEscapePerformed.AddListener(TogglePause);
 
-		if (LevelManager.Instance != null)
-		{
-			LevelManager.Instance.OnSceneReady.AddListener(TriggerSceneReady);
-		}
+		LevelManager.Instance.OnSceneReady.AddListener(TriggerSceneReady);
+		LevelManager.Instance.OnSceneReady.AddListener(FadeIn);
 	}
 
 	private void OnDisable()
@@ -119,6 +115,7 @@ public class GameManager : MonoSingleton<GameManager>
 		if (LevelManager.Instance != null)
 		{
 			LevelManager.Instance.OnSceneReady.RemoveListener(TriggerSceneReady);
+			LevelManager.Instance.OnSceneReady.RemoveListener(FadeIn);
 		}
 	}
 
@@ -127,11 +124,7 @@ public class GameManager : MonoSingleton<GameManager>
 		CanPause = false;
 		InitPreSequence();
 		HideCursor();
-
-		_transitionUI.PlayTransitionIn(() =>
-		{
-			OnFadeInFinish?.Invoke();
-		});
+		FadeIn();
 	}
 
 	private void FixedUpdate()
@@ -189,10 +182,7 @@ public class GameManager : MonoSingleton<GameManager>
 
 		CanPause = false;
 
-		_transitionUI.PlayTransitionIn(() =>
-		{
-			OnFadeInFinish?.Invoke();
-		});
+		FadeIn();
 	}
 
 	/** Private Methods **/
@@ -248,11 +238,6 @@ public class GameManager : MonoSingleton<GameManager>
 	public void HideCursor()
 	{
 		LevelManager.Instance.HideCursor();
-	}
-
-	private void EnablePause()
-	{
-		CanPause = true;
 	}
 
 	private void DisablePause()
@@ -326,18 +311,18 @@ public class GameManager : MonoSingleton<GameManager>
 		}
 	}
 
-	public void ReturnToMainMenu()
-	{
-		LevelManager.Instance.LoadSceneAsync(LevelManager.SceneNames.MainMenu);
-	}
-
-	public void ActivatePreloadedScene()
-	{
-		LevelManager.Instance.ActivatePreloadedScene();
-	}
-
 	private void TriggerSceneReady()
 	{
 		OnSceneReady?.Invoke();
+	}
+
+	private void FadeIn()
+	{
+		_transitionUI.PlayTransitionIn(() =>
+		{
+			OnFadeInFinish?.Invoke();
+			CanPause = true;
+			StartAmbience();
+		});
 	}
 }
