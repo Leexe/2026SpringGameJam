@@ -23,8 +23,11 @@ public class CautionSymbolUI : MonoBehaviour
 
 	private void OnDisable()
 	{
-		GameManager.Instance.Player.OnWarningStart -= PlayFlashingClip;
-		GameManager.Instance.Player.OnWarningEnd -= PlayInvisibleClip;
+		if (GameManager.Instance)
+		{
+			GameManager.Instance.Player.OnWarningStart -= PlayFlashingClip;
+			GameManager.Instance.Player.OnWarningEnd -= PlayInvisibleClip;
+		}
 	}
 
 	private void PlayInvisibleClip()

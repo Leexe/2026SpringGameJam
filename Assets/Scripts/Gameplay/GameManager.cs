@@ -175,6 +175,9 @@ public class GameManager : MonoSingleton<GameManager>
 			BulletManager.Instance.ClearAllBullets();
 		}
 
+		_enemyDirector.time = 0;
+		_enemyDirector.Evaluate();
+
 		InitPreSequence();
 		OnGameRestart?.Invoke();
 
