@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fd6476767660444eba8f75516e78836, type: 3}
-  m_Name: SimpleShotGun
+  m_Name: AlienShotgun
   m_EditorClassIdentifier: Assembly-CSharp::PatternSO
-  _bulletSO: {fileID: 11400000, guid: 70bd3629fd756481b99f09d22e949889, type: 2}
+  _bulletSO: {fileID: 11400000, guid: 75095a1e733eb4b4e83d97075a475ee9, type: 2}
   _behavior: 0
-  _bulletCount: 7
+  _bulletCount: 4
   _spreadAngle: 90
   _towardsPlayer: 1
   _direction: 270
-  _baseSpeed: 2.5
+  _baseSpeed: 3
   _rotateTowardsDirection: 0
   _lifeTime: 8
-  _fadeDuration: 0.25
+  _fadeDuration: 0.2
   _sineAmplitude: 5
   _sineFrequency: 5
   _trackingStrength: 3

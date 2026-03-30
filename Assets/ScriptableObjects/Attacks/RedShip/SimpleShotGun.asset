@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fd6476767660444eba8f75516e78836, type: 3}
-  m_Name: HomingShot
+  m_Name: SimpleShotGun
   m_EditorClassIdentifier: Assembly-CSharp::PatternSO
-  _bulletSO: {fileID: 11400000, guid: 88cfc3aa41e4a463f91708cd5761e11d, type: 2}
-  _behavior: 4
-  _bulletCount: 3
-  _spreadAngle: 60
+  _bulletSO: {fileID: 11400000, guid: 70bd3629fd756481b99f09d22e949889, type: 2}
+  _behavior: 0
+  _bulletCount: 7
+  _spreadAngle: 180
   _towardsPlayer: 1
   _direction: 270
-  _baseSpeed: 8
-  _rotateTowardsDirection: 1
-  _lifeTime: 3
+  _baseSpeed: 2.5
+  _rotateTowardsDirection: 0
+  _lifeTime: 8
   _fadeDuration: 0.25
   _sineAmplitude: 5
   _sineFrequency: 5
-  _trackingStrength: 0.6
-  _maxSteerForce: 1
-  _maxTurnRate: 30
-  _turnAcceleration: 180
+  _trackingStrength: 3
+  _maxSteerForce: 5
+  _maxTurnRate: 180
+  _turnAcceleration: 360

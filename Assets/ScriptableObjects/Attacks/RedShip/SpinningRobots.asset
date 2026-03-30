@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fd6476767660444eba8f75516e78836, type: 3}
+  m_Name: SpinningRobots
+  m_EditorClassIdentifier: Assembly-CSharp::PatternSO
+  _bulletSO: {fileID: 11400000, guid: 82f65a7c8e73d4c0c8666935b907ddef, type: 2}
+  _behavior: 3
+  _bulletCount: 2
+  _spreadAngle: 180
+  _towardsPlayer: 1
+  _direction: 270
+  _baseSpeed: 9
+  _rotateTowardsDirection: 1
+  _lifeTime: 8
+  _fadeDuration: 0.25
+  _sineAmplitude: 5
+  _sineFrequency: 5
+  _trackingStrength: 0.6
+  _maxSteerForce: 0.4
+  _maxTurnRate: 90
+  _turnAcceleration: 360

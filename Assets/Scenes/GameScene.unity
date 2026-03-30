@@ -1066,6 +1066,18 @@ PrefabInstance:
       propertyPath: _fireRate
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+      propertyPath: _patterns.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+      propertyPath: '_patterns.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 2350070b8231f40db950b03187c72123, type: 2}
+    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+      propertyPath: '_patterns.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1291dab0a64724d8cbeb2787983269c3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -3144,6 +3156,22 @@ PrefabInstance:
       propertyPath: _fireRate
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+      propertyPath: _patterns.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+      propertyPath: '_patterns.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1291dab0a64724d8cbeb2787983269c3, type: 2}
+    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+      propertyPath: '_patterns.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 2350070b8231f40db950b03187c72123, type: 2}
+    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+      propertyPath: '_patterns.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 2350070b8231f40db950b03187c72123, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -4101,8 +4129,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1798885929192609015, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
       propertyPath: m_Name
-      value: RedShipEnemy
+      value: MainRedShipEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+      propertyPath: _patterns.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+      propertyPath: '_patterns.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0fe364953a36c471eaea29339acc0f89, type: 2}
+    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+      propertyPath: '_patterns.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: db258371ad8184a1cba8eb9051c8f182, type: 2}
+    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+      propertyPath: '_patterns.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: bf848bd224c024d628ec7e8f8fb71988, type: 2}
+    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+      propertyPath: '_patterns.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1291dab0a64724d8cbeb2787983269c3, type: 2}
+    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+      propertyPath: '_patterns.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 14fdfdac3199542de9bd2620e747115f, type: 2}
+    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+      propertyPath: '_patterns.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: db258371ad8184a1cba8eb9051c8f182, type: 2}
     m_RemovedComponents:
     - {fileID: 945132728260446022, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
     m_RemovedGameObjects: []
@@ -4139,16 +4195,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3920182549128952105, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
       propertyPath: _patterns.Array.size
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3920182549128952105, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
       propertyPath: '_patterns.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: c4035e16fa5324893a0492873ba06905, type: 2}
     - target: {fileID: 3920182549128952105, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
       propertyPath: '_patterns.Array.data[1]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 4a0b8022e4d944c6aae51116d79aa5b0, type: 2}
     - target: {fileID: 3920182549128952105, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
       propertyPath: '_patterns.Array.data[2]'
       value: 

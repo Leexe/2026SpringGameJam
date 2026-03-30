@@ -10,12 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c70bc207e9f864c14840278c9027d9d8, type: 3}
-  m_Name: AlienShotgun
+  m_Name: AlienLeech
   m_EditorClassIdentifier: Assembly-CSharp::PatternSO
   _attacks:
-  - Attack: {fileID: 11400000, guid: 5904ac7010afb4fe4aa02fb7b61c2fc3, type: 2}
-    DelayAfter: 0.5
-  - Attack: {fileID: 11400000, guid: 4b707d1e1bfad4a3c8a535f1a1890768, type: 2}
-    DelayAfter: 0.5
-  - Attack: {fileID: 11400000, guid: 3faf0c68d712e450b9de4f5c69782304, type: 2}
+  - Attack: {fileID: 11400000, guid: 1134019e286674386b05595083830b06, type: 2}
     DelayAfter: 1
