@@ -166,6 +166,15 @@ public class PlayerVisuals : MonoBehaviour
 				_playerController.TriggerDeathAnimationFinished();
 			}
 		};
+
+		if (isFromHit)
+		{
+			_vfx.SendEvent("OnDieToBullet");
+		}
+		else
+		{
+			_vfx.SendEvent("OnDieToInstability");
+		}
 	}
 
 	private void PlayWinAnimation()
