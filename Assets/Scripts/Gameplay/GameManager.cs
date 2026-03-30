@@ -1,9 +1,7 @@
-using PrimeTween;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Playables;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
 {

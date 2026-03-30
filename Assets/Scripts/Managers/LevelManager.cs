@@ -28,6 +28,7 @@ public class LevelManager : PersistentMonoSingleton<LevelManager>
 
 	// Private Variables
 	private AsyncOperation _asyncOperation;
+	public bool _playedCredits { get; private set; }
 
 	private void OnEnable()
 	{
@@ -163,5 +164,10 @@ public class LevelManager : PersistentMonoSingleton<LevelManager>
 	public void SwitchScenes(SceneNames sceneName)
 	{
 		SceneManager.LoadScene((int)sceneName);
+	}
+
+	public void PlayedCredits()
+	{
+		_playedCredits = true;
 	}
 }

@@ -6,12 +6,18 @@ public class MainMenuController : MonoBehaviour
 {
 	[Header("References")]
 	[SerializeField]
-	private AnimancerComponent _mainMenuAnimancer;
+	private AnimancerComponent _creditsAnimancer;
 
 	[SerializeField]
 	private AnimancerComponent _transitionAnimancer;
 
+	[SerializeField]
+	private CanvasGroup _creditsCanvas;
+
 	[Header("Animation Clips")]
+	[SerializeField]
+	private AnimationClip _creditsClip;
+
 	[SerializeField]
 	private AnimationClip _introSequenceClip;
 
@@ -37,7 +43,14 @@ public class MainMenuController : MonoBehaviour
 
 	void Start()
 	{
-		PlayIntroSequence();
+		if (!LevelManager.Instance._playedCredits)
+		{
+			PlayCreditsSequence();
+		}
+		else
+		{
+			PlayIntroSequence();
+		}
 	}
 
 	/* Button Functions */
@@ -77,10 +90,23 @@ public class MainMenuController : MonoBehaviour
 		};
 	}
 
+	private void PlayCreditsSequence()
+	{
+		_creditsCanvas.alpha = 1f;
+		AnimancerState state = _creditsAnimancer.Play(_creditsClip);
+		state.Events(this).OnEnd = () =>
+		{
+			state.Stop();
+			LevelManager.Instance.PlayedCredits();
+			PlayIntroSequence();
+		};
+	}
+
 	private void PlayIntroSequence()
 	{
 		AnimancerState state = _transitionAnimancer.Play(_introSequenceClip);
 		AudioManager.Instance.PlayOneShot(FMODEvents.Instance.FadeIn_Sfx);
+		_creditsCanvas.alpha = 0f;
 		state.Events(this).OnEnd = () =>
 		{
 			state.Stop();
