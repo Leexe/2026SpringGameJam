@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class RedShipEnemy : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
 	[Header("References")]
 	[SerializeField]
@@ -20,8 +21,8 @@ public class RedShipEnemy : MonoBehaviour
 
 	private float _fireRateTimer;
 	private int _patternIndex;
-	private int _shootPointIndex;
 	private bool _enableShooting;
+	private int _shootPointIndex;
 
 	private void Start()
 	{
@@ -65,11 +66,13 @@ public class RedShipEnemy : MonoBehaviour
 
 	/* Public Methods */
 
+	[Button]
 	public void StartShooting()
 	{
 		_enableShooting = true;
 	}
 
+	[Button]
 	public void StopShooting()
 	{
 		_enableShooting = false;

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fd6476767660444eba8f75516e78836, type: 3}
+  m_Name: AlienLeechAttack
+  m_EditorClassIdentifier: Assembly-CSharp::PatternSO
+  _bulletSO: {fileID: 11400000, guid: 01178150e19c04fdc831c24a998b0b1a, type: 2}
+  _behavior: 3
+  _bulletCount: 2
+  _spreadAngle: 270
+  _towardsPlayer: 1
+  _direction: 270
+  _baseSpeed: 15
+  _rotateTowardsDirection: 1
+  _lifeTime: 12
+  _fadeDuration: 0.2
+  _sineAmplitude: 5
+  _sineFrequency: 5
+  _trackingStrength: 3
+  _maxSteerForce: 0.6
+  _maxTurnRate: 180
+  _turnAcceleration: 360
