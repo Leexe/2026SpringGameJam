@@ -1,0 +1,446 @@
+fileFormatVersion: 2
+guid: 9c3a3023c5575b445a15c133177ba758
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3593082778098318140
+    second: WarpAnimationSpritesheet_0
+  - first:
+      213: 6284312229736044515
+    second: WarpAnimationSpritesheet_1
+  - first:
+      213: 8035051064960620341
+    second: WarpAnimationSpritesheet_2
+  - first:
+      213: 7767835862562872963
+    second: WarpAnimationSpritesheet_3
+  - first:
+      213: 405298178972415315
+    second: WarpAnimationSpritesheet_4
+  - first:
+      213: 1078745530985178598
+    second: WarpAnimationSpritesheet_5
+  - first:
+      213: 5168363780793054065
+    second: WarpAnimationSpritesheet_6
+  - first:
+      213: 1142343734821786551
+    second: WarpAnimationSpritesheet_7
+  - first:
+      213: 8508655149494847414
+    second: WarpAnimationSpritesheet_8
+  - first:
+      213: -1660573801494824750
+    second: WarpAnimationSpritesheet_9
+  - first:
+      213: -5154144547520383836
+    second: WarpAnimationSpritesheet_10
+  - first:
+      213: -1204277802944479838
+    second: WarpAnimationSpritesheet_11
+  - first:
+      213: -8094008301303434433
+    second: WarpAnimationSpritesheet_12
+  - first:
+      213: -6123853331656262354
+    second: WarpAnimationSpritesheet_13
+  - first:
+      213: -152281087857289298
+    second: WarpAnimationSpritesheet_14
+  - first:
+      213: -6526994647787033303
+    second: WarpAnimationSpritesheet_15
+  - first:
+      213: -6178644550061371553
+    second: WarpAnimationSpritesheet_16
+  - first:
+      213: -1912524611295463415
+    second: WarpAnimationSpritesheet_17
+  - first:
+      213: 3141335895897029650
+    second: WarpAnimationSpritesheet_18
+  - first:
+      213: -6054973302214761491
+    second: WarpAnimationSpritesheet_19
+  - first:
+      213: -2179093460805913456
+    second: WarpAnimationSpritesheet_20
+  - first:
+      213: -3076047089505927772
+    second: WarpAnimationSpritesheet_21
+  - first:
+      213: 7052892119803783233
+    second: WarpAnimationSpritesheet_22
+  - first:
+      213: 2150646872597529615
+    second: WarpAnimationSpritesheet_23
+  - first:
+      213: -2959516051360282678
+    second: WarpAnimationSpritesheet_24
+  - first:
+      213: 5311720646493840388
+    second: WarpAnimationSpritesheet_25
+  - first:
+      213: -8657107124502283399
+    second: WarpAnimationSpritesheet_26
+  - first:
+      213: 5316882622082951762
+    second: WarpAnimationSpritesheet_27
+  - first:
+      213: -1089435066218265003
+    second: WarpAnimationSpritesheet_28
+  - first:
+      213: 6714425729892802809
+    second: WarpAnimationSpritesheet_29
+  - first:
+      213: 917147833726877358
+    second: WarpAnimationSpritesheet_30
+  - first:
+      213: 9084106953059310145
+    second: WarpAnimationSpritesheet_31
+  - first:
+      213: 2636151275682675770
+    second: WarpAnimationSpritesheet_32
+  - first:
+      213: 1643451082421879209
+    second: WarpAnimationSpritesheet_33
+  - first:
+      213: 9074733410196018285
+    second: WarpAnimationSpritesheet_34
+  - first:
+      213: 4220330310053732183
+    second: WarpAnimationSpritesheet_35
+  - first:
+      213: -1100380448480439734
+    second: WarpAnimationSpritesheet_36
+  - first:
+      213: -1639044311622065874
+    second: WarpAnimationSpritesheet_37
+  - first:
+      213: 2532291379256052566
+    second: WarpAnimationSpritesheet_38
+  - first:
+      213: -2281536806664380877
+    second: WarpAnimationSpritesheet_39
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: WarpAnimationSpritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 384
+        height: 384
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c440e2104ec22ec0800000000000000
+      internalID: -3593082778098318140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarpAnimationSpritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 384
+        height: 384
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e75f0f5dac563750800000000000000
+      internalID: 6284312229736044515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarpAnimationSpritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 384
+        width: 384
+        height: 384
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5371a1f3f5c328f60800000000000000
+      internalID: 8035051064960620341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarpAnimationSpritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 384
+        width: 384
+        height: 384
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38e999daf85eccb60800000000000000
+      internalID: 7767835862562872963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarpAnimationSpritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 384
+        width: 384
+        height: 384
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35573c1eb88ef9500800000000000000
+      internalID: 405298178972415315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarpAnimationSpritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 384
+        height: 384
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e56961585978fe00800000000000000
+      internalID: 1078745530985178598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarpAnimationSpritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 384
+        height: 384
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1733a28b977b9b740800000000000000
+      internalID: 5168363780793054065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarpAnimationSpritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 384
+        height: 384
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b3127d039b6adf00800000000000000
+      internalID: 1142343734821786551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarpAnimationSpritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 384
+        height: 384
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b740f517c0d41670800000000000000
+      internalID: 8508655149494847414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5cb339df5381d3542b730e54b6a118db
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":384.0,"y":384.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      WarpAnimationSpritesheet_0: -3593082778098318140
+      WarpAnimationSpritesheet_1: 6284312229736044515
+      WarpAnimationSpritesheet_2: 8035051064960620341
+      WarpAnimationSpritesheet_3: 7767835862562872963
+      WarpAnimationSpritesheet_4: 405298178972415315
+      WarpAnimationSpritesheet_5: 1078745530985178598
+      WarpAnimationSpritesheet_6: 5168363780793054065
+      WarpAnimationSpritesheet_7: 1142343734821786551
+      WarpAnimationSpritesheet_8: 8508655149494847414
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,6 +1,5 @@
 using Animancer;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
