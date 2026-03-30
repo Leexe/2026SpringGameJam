@@ -45,6 +45,18 @@ public class FMODEvents : MonoSingleton<FMODEvents>
 	[field: FoldoutGroup("SFX")]
 	public EventReference ButtonHover_Sfx { get; private set; }
 
+	[field: SerializeField]
+	[field: FoldoutGroup("SFX")]
+	public EventReference Atomized_Sfx { get; private set; }
+
+	[field: SerializeField]
+	[field: FoldoutGroup("SFX")]
+	public EventReference StabilityCheck_Sfx { get; private set; }
+
+	[field: SerializeField]
+	[field: FoldoutGroup("SFX")]
+	public EventReference Pause_Sfx { get; private set; }
+
 	#endregion
 
 	#region Looping SFX
@@ -52,6 +64,10 @@ public class FMODEvents : MonoSingleton<FMODEvents>
 	[field: SerializeField]
 	[field: FoldoutGroup("Loop SFX", true)]
 	public EventReference Warning_LoopSFX { get; private set; }
+
+	[field: SerializeField]
+	[field: FoldoutGroup("Loop SFX", true)]
+	public EventReference StabilityCharge_LoopSFX { get; private set; }
 
 	#endregion
 }

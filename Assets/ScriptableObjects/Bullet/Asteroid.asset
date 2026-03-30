@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Asteroid
   m_EditorClassIdentifier: Assembly-CSharp::BulletSO
   _mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
-  _material: {fileID: 2100000, guid: 7bd7dd0e339e8450bb056e146ae4886c, type: 2}
-  _hitboxRadius: 0.25
+  _material: {fileID: 2100000, guid: 59489cb3a7f74427ab90f64e0c13bf23, type: 2}
+  _hitboxRadius: 0.75
   _damage: 1
-  _visualScale: 0.875
+  _visualScale: 2.625

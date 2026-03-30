@@ -2322,8 +2322,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1215932453}
+  - component: {fileID: 1215932454}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: AstroidAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2344,6 +2345,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1215932454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215932452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0780ae51d696f439eabd6f8986be054e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeteorAttack
+  _asteroidPattern: {fileID: 11400000, guid: 598ff10ecd22c4f83aee53a71949cbda, type: 2}
+  _asteroidsPerSecond: 5
+  _minSpeed: 5
+  _maxSpeed: 10
+  _spawnYPlane: 20
+  _spawnXRange: 25
+  _seed: 2034
 --- !u!114 &1230480167 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7429625483698411024, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
@@ -3730,6 +3750,90 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5639886693327750685, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
+      propertyPath: <Song_Bgm>k__BackingField.Path
+      value: event:/BGM/Warp Drive
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639886693327750685, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
+      propertyPath: <Pause_Sfx>k__BackingField.Path
+      value: event:/SFX/Menu/Pause
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639886693327750685, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
+      propertyPath: <Atomized_Sfx>k__BackingField.Path
+      value: event:/SFX/Gameplay/Atomized
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639886693327750685, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
+      propertyPath: <Pause_Sfx>k__BackingField.Guid.Data1
+      value: 1812541742
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639886693327750685, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
+      propertyPath: <Pause_Sfx>k__BackingField.Guid.Data2
+      value: 1334120198
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639886693327750685, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
+      propertyPath: <Pause_Sfx>k__BackingField.Guid.Data3
+      value: -1421486403
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639886693327750685, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
+      propertyPath: <Pause_Sfx>k__BackingField.Guid.Data4
+      value: -603271825
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639886693327750685, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
+      propertyPath: <Atomized_Sfx>k__BackingField.Guid.Data1
+      value: -208108995
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639886693327750685, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
+      propertyPath: <Atomized_Sfx>k__BackingField.Guid.Data2
+      value: 1312685097
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639886693327750685, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
+      propertyPath: <Atomized_Sfx>k__BackingField.Guid.Data3
+      value: -362274640
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639886693327750685, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
+      propertyPath: <Atomized_Sfx>k__BackingField.Guid.Data4
+      value: -954318727
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639886693327750685, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
+      propertyPath: <StabilityCheck_Sfx>k__BackingField.Path
+      value: event:/SFX/Gameplay/Stability Check
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639886693327750685, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
+      propertyPath: <StabilityCharge_LoopSFX>k__BackingField.Path
+      value: event:/SFX/Gameplay/Stability Charge
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639886693327750685, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
+      propertyPath: <StabilityCheck_Sfx>k__BackingField.Guid.Data1
+      value: 1043694320
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639886693327750685, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
+      propertyPath: <StabilityCheck_Sfx>k__BackingField.Guid.Data2
+      value: 1187886319
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639886693327750685, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
+      propertyPath: <StabilityCheck_Sfx>k__BackingField.Guid.Data3
+      value: 1534124425
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639886693327750685, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
+      propertyPath: <StabilityCheck_Sfx>k__BackingField.Guid.Data4
+      value: -1717664716
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639886693327750685, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
+      propertyPath: <StabilityCharge_LoopSFX>k__BackingField.Guid.Data1
+      value: -378150354
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639886693327750685, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
+      propertyPath: <StabilityCharge_LoopSFX>k__BackingField.Guid.Data2
+      value: 1255389106
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639886693327750685, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
+      propertyPath: <StabilityCharge_LoopSFX>k__BackingField.Guid.Data3
+      value: 391172515
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639886693327750685, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
+      propertyPath: <StabilityCharge_LoopSFX>k__BackingField.Guid.Data4
+      value: -592081747
+      objectReference: {fileID: 0}
     - target: {fileID: 8755365223018331160, guid: b72855a5a65774f5d92518b0ed80d395, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4599,9 +4703,9 @@ SceneRoots:
   - {fileID: 1929973059}
   - {fileID: 681807725}
   - {fileID: 7910538195316627082}
+  - {fileID: 1215932453}
   - {fileID: 936422517}
   - {fileID: 1804997531}
   - {fileID: 2210282353848476348}
   - {fileID: 1126172934}
   - {fileID: 27842999}
-  - {fileID: 1215932453}

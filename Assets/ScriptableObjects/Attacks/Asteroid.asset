@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd6476767660444eba8f75516e78836, type: 3}
   m_Name: Asteroid
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
-  _bulletSO: {fileID: 0}
+  _bulletSO: {fileID: 11400000, guid: 46b5031c73a2b4ab7b2eb230fcf0fda8, type: 2}
   _behavior: 0
   _bulletCount: 1
-  _spreadAngle: 360
-  _towardsPlayer: 1
+  _spreadAngle: 20
+  _towardsPlayer: 0
   _direction: 270
   _baseSpeed: 5
   _rotateTowardsDirection: 0
-  _lifeTime: 8
+  _lifeTime: 15
   _fadeDuration: 0.15
   _sineAmplitude: 1
   _sineFrequency: 5

@@ -49,6 +49,7 @@ public class PauseMenuUI : MonoBehaviour
 		AudioManager.Instance.PauseAmbience();
 		AudioManager.Instance.PauseMusic();
 		GameManager.Instance.ShowCursor();
+		AudioManager.Instance.PlayOneShot(FMODEvents.Instance.Pause_Sfx);
 	}
 
 	private void CloseUI()

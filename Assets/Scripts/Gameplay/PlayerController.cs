@@ -76,6 +76,8 @@ public class PlayerController : MonoBehaviour
 	private Vector2 _startPosition;
 
 	private EventInstance _warningSfx;
+	private EventInstance _repairSfx;
+	private bool _isRepairSfxPlaying;
 
 	/** Unity Messages **/
 
@@ -109,6 +111,7 @@ public class PlayerController : MonoBehaviour
 		_defaultSecondsToRepair = SecondsToRepair;
 		_defaultSecondsToDie = SecondsToDie;
 		_warningSfx = AudioManager.Instance.CreateInstance(FMODEvents.Instance.Warning_LoopSFX);
+		_repairSfx = AudioManager.Instance.CreateInstance(FMODEvents.Instance.StabilityCharge_LoopSFX);
 
 		if (GameManager.Instance != null)
 		{
@@ -130,6 +133,11 @@ public class PlayerController : MonoBehaviour
 		if (_warningSfx.isValid() && AudioManager.Instance != null)
 		{
 			AudioManager.Instance.DestroyInstance(_warningSfx);
+		}
+
+		if (_repairSfx.isValid() && AudioManager.Instance != null)
+		{
+			AudioManager.Instance.DestroyInstance(_repairSfx);
 		}
 	}
 
@@ -186,6 +194,10 @@ public class PlayerController : MonoBehaviour
 		{
 			AudioManager.Instance.PauseInstance(_warningSfx);
 		}
+		if (_isRepairSfxPlaying && _repairSfx.isValid())
+		{
+			AudioManager.Instance.PauseInstance(_repairSfx);
+		}
 	}
 
 	private void OnGameResume()
@@ -193,6 +205,10 @@ public class PlayerController : MonoBehaviour
 		if (_isWarning && _warningSfx.isValid())
 		{
 			AudioManager.Instance.PlayInstance(_warningSfx);
+		}
+		if (_isRepairSfxPlaying && _repairSfx.isValid())
+		{
+			AudioManager.Instance.PlayInstance(_repairSfx);
 		}
 	}
 
@@ -203,6 +219,12 @@ public class PlayerController : MonoBehaviour
 			return;
 		}
 		HasWon = true;
+
+		if (_isRepairSfxPlaying)
+		{
+			AudioManager.Instance.StopInstance(_repairSfx);
+			_isRepairSfxPlaying = false;
+		}
 
 		Rb.linearVelocity = Vector2.zero;
 
@@ -244,6 +266,12 @@ public class PlayerController : MonoBehaviour
 			_isWarning = false;
 		}
 
+		if (_isRepairSfxPlaying)
+		{
+			AudioManager.Instance.StopInstance(_repairSfx);
+			_isRepairSfxPlaying = false;
+		}
+
 		CanRepair = false;
 		IsBuffering = true;
 		_bufferDuration = fillDuration;
@@ -261,6 +289,12 @@ public class PlayerController : MonoBehaviour
 	{
 		transform.position = _startPosition;
 		Rb.linearVelocity = Vector2.zero;
+
+		if (_isRepairSfxPlaying)
+		{
+			AudioManager.Instance.StopInstance(_repairSfx);
+			_isRepairSfxPlaying = false;
+		}
 
 		_isRepairInputHeld = false;
 		IsAlive = true;
@@ -282,6 +316,18 @@ public class PlayerController : MonoBehaviour
 	{
 		float oldProg = RepairSecondsLeft;
 		float oldInstProg = DieSecondsLeft;
+
+		bool isRepairingNow = _isRepairInputHeld && CanRepair && RepairSecondsLeft > 0f && !IsBuffering;
+		if (isRepairingNow && !_isRepairSfxPlaying)
+		{
+			AudioManager.Instance.PlayInstanceAtStart(_repairSfx);
+			_isRepairSfxPlaying = true;
+		}
+		else if (!isRepairingNow && _isRepairSfxPlaying)
+		{
+			AudioManager.Instance.StopInstance(_repairSfx);
+			_isRepairSfxPlaying = false;
+		}
 
 		if (IsBuffering)
 		{
@@ -338,6 +384,7 @@ public class PlayerController : MonoBehaviour
 		if (RepairSecondsLeft == 0f && oldProg != 0f)
 		{
 			OnFullyRepaired?.Invoke();
+			AudioManager.Instance.PlayOneShot(FMODEvents.Instance.StabilityCheck_Sfx);
 		}
 
 		if (!Mathf.Approximately(oldProg, RepairSecondsLeft))
@@ -358,6 +405,12 @@ public class PlayerController : MonoBehaviour
 		}
 		IsAlive = false;
 
+		if (_isRepairSfxPlaying)
+		{
+			AudioManager.Instance.StopInstance(_repairSfx);
+			_isRepairSfxPlaying = false;
+		}
+
 		OnDie?.Invoke(isFromHit);
 
 		DieSecondsLeft = 0f;
@@ -365,7 +418,14 @@ public class PlayerController : MonoBehaviour
 
 		Rb.linearVelocity = Vector2.zero;
 
-		AudioManager.Instance.PlayOneShot(FMODEvents.Instance.Explosion_Sfx);
+		if (isFromHit)
+		{
+			AudioManager.Instance.PlayOneShot(FMODEvents.Instance.Explosion_Sfx);
+		}
+		else
+		{
+			AudioManager.Instance.PlayOneShot(FMODEvents.Instance.Atomized_Sfx);
+		}
 	}
 
 	public void DieFromHit()
