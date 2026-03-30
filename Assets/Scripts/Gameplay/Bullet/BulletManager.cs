@@ -237,6 +237,14 @@ public class BulletManager : MonoSingleton<BulletManager>
 	[Button]
 	public void FireAttack(AttackSO pattern, Vector2 origin)
 	{
+		if (pattern != null)
+		{
+			FireAttack(pattern, origin, pattern.BaseSpeed);
+		}
+	}
+
+	public void FireAttack(AttackSO pattern, Vector2 origin, float speedOverride)
+	{
 		if (!pattern.BulletSO)
 		{
 			Debug.LogWarning("Pattern has no BulletData assigned!");
@@ -270,7 +278,7 @@ public class BulletManager : MonoSingleton<BulletManager>
 			}
 
 			float rad = currentAngle * Mathf.Deg2Rad;
-			Vector2 velocity = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)) * pattern.BaseSpeed;
+			Vector2 velocity = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)) * speedOverride;
 
 			int index = _freeInstances.Pop();
 
@@ -278,7 +286,7 @@ public class BulletManager : MonoSingleton<BulletManager>
 			_bullets[index].SO = pattern.BulletSO;
 			_bullets[index].Position = origin;
 			_bullets[index].Velocity = velocity;
-			_bullets[index].Speed = pattern.BaseSpeed;
+			_bullets[index].Speed = speedOverride;
 			_bullets[index].RotateTowardsDirection = pattern.RotateTowardsDirection;
 			_bullets[index].HitRadius = pattern.BulletSO.HitboxRadius;
 			_bullets[index].Behavior = pattern.Behavior;

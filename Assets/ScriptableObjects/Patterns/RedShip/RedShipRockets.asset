@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: RedShipRockets
   m_EditorClassIdentifier: Assembly-CSharp::PatternSO
   _attacks:
-  - Attack: {fileID: 11400000, guid: 4ae3471fe4dc3476e87f4fe897a017b6, type: 2}
+  - Attack: {fileID: 11400000, guid: 52fcaf64d1ac1411bae1a24fa88c0025, type: 2}
     DelayAfter: 1

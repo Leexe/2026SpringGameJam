@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd6476767660444eba8f75516e78836, type: 3}
   m_Name: SpinningRobots
   m_EditorClassIdentifier: Assembly-CSharp::PatternSO
-  _bulletSO: {fileID: 11400000, guid: 82f65a7c8e73d4c0c8666935b907ddef, type: 2}
+  _bulletSO: {fileID: 11400000, guid: 37e4f4875916243eaab95848caca0722, type: 2}
   _behavior: 3
   _bulletCount: 2
   _spreadAngle: 180
