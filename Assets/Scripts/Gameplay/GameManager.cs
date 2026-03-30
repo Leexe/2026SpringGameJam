@@ -119,7 +119,6 @@ public class GameManager : MonoSingleton<GameManager>
 	{
 		CanPause = false;
 		CanPause = true;
-		StartAmbience();
 		InitPreSequence();
 		HideCursor();
 		FadeIn();
@@ -195,6 +194,8 @@ public class GameManager : MonoSingleton<GameManager>
 	{
 		Player.DisableInstability = true;
 		Player.ResetRepairProgress(3f, 10);
+		AudioManager.Instance.SwitchMusic(FMODEvents.Instance.Menu_Bgm);
+		AudioManager.Instance.SwitchAmbience(FMODEvents.Instance.Ambience_Amb);
 	}
 
 	// this starts the game
@@ -204,9 +205,9 @@ public class GameManager : MonoSingleton<GameManager>
 		Player.DisableInstability = false;
 		Player.StartBuffer(_timeBetweenPhases);
 		OnIncrementPhase?.Invoke(_phase);
+		AudioManager.Instance.StopMusic();
 
 		StartDirector();
-		AudioManager.Instance.StopAmbience();
 
 		OnGameStart?.Invoke();
 	}
@@ -258,11 +259,6 @@ public class GameManager : MonoSingleton<GameManager>
 	{
 		_enemyDirector.time = 0;
 		_enemyDirector.Play();
-	}
-
-	private void StartAmbience()
-	{
-		AudioManager.Instance.SwitchAmbience(FMODEvents.Instance.Ambience_Amb);
 	}
 
 	private void PlayTransitionOut()
@@ -326,7 +322,6 @@ public class GameManager : MonoSingleton<GameManager>
 		{
 			OnFadeInFinish?.Invoke();
 			CanPause = true;
-			StartAmbience();
 		});
 	}
 }

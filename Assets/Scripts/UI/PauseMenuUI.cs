@@ -47,6 +47,7 @@ public class PauseMenuUI : MonoBehaviour
 		_canvasGroup.interactable = true;
 		_canPressButtons = true;
 		AudioManager.Instance.PauseAmbience();
+		AudioManager.Instance.PauseMusic();
 		GameManager.Instance.ShowCursor();
 	}
 
@@ -62,6 +63,7 @@ public class PauseMenuUI : MonoBehaviour
 		_canvasGroup.interactable = false;
 		_canPressButtons = false;
 		AudioManager.Instance.ResumeAmbience();
+		AudioManager.Instance.ResumeMusic();
 		GameManager.Instance.HideCursor();
 	}
 
