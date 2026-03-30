@@ -46,6 +46,9 @@ public class PlayerVisuals : MonoBehaviour
 	[SerializeField]
 	private AnimationClip _hitDeathAnim;
 
+	[SerializeField]
+	private AnimationClip _winAnim;
+
 	[Header("Animation Settings")]
 	[SerializeField]
 	private float _circleTweenDuration = 0.5f;
@@ -64,6 +67,7 @@ public class PlayerVisuals : MonoBehaviour
 		if (_playerController != null)
 		{
 			_playerController.OnDie += PlayDeathAnimation;
+			_playerController.OnWin += PlayWinAnimation;
 			_playerController.OnFullyRepaired += PlayFullyRepairedVFX;
 		}
 
@@ -83,6 +87,7 @@ public class PlayerVisuals : MonoBehaviour
 		if (_playerController != null)
 		{
 			_playerController.OnDie -= PlayDeathAnimation;
+			_playerController.OnWin -= PlayWinAnimation;
 			_playerController.OnFullyRepaired -= PlayFullyRepairedVFX;
 		}
 
@@ -125,7 +130,7 @@ public class PlayerVisuals : MonoBehaviour
 
 	private void HandleMovementAnimations()
 	{
-		if (_playerController != null && _playerController.IsAlive)
+		if (_playerController && _playerController.IsAlive && !_playerController.HasWon)
 		{
 			Vector2 movementInput = _playerController.MovementInput;
 			bool thrust = movementInput.y > 0f;
@@ -161,6 +166,13 @@ public class PlayerVisuals : MonoBehaviour
 				_playerController.TriggerDeathAnimationFinished();
 			}
 		};
+	}
+
+	private void PlayWinAnimation()
+	{
+		_animancer.Play(_winAnim);
+		_hitBoxTween.Stop();
+		_hitBoxRenderer.color *= new Color(1, 1, 1, 0);
 	}
 
 	private void ShowCircle()
