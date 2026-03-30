@@ -1082,6 +1082,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6857811206767632551}
   - component: {fileID: 1795717120862607037}
+  - component: {fileID: 3171466789060292666}
   m_Layer: 5
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -1166,6 +1167,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3171466789060292666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322894894248199568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b7a739f8c742fd91537fb628b48fd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PopOutButtonUI
+  _maxSize: 1.1
+  _tweenDuration: 0.15
+  _ease: 27
+  _enableOscillation: 0
+  _minOscillateSize: 1.05
+  _oscillateDuration: 1.5
+  _hoverSound:
+    Guid:
+      Data1: 436086679
+      Data2: 1220093175
+      Data3: 313373371
+      Data4: 1027619517
+    Path: event:/SFX/Menu/Button Hover
+  _useUnscaledTime: 1
 --- !u!1 &1372625060760847526
 GameObject:
   m_ObjectHideFlags: 0
@@ -3737,10 +3764,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _vignetteImage: {fileID: 7297659404847339391}
-  _warningColor: {r: 0.98064375, g: 1, b: 0, a: 1}
+  _warningColor: {r: 0.98064375, g: 1, b: 0, a: 0.3529412}
   _warningColorLower: 0.8
-  _warningDuration: 0.5
+  _warningPulseDuration: 0.5
   _returnDuration: 0.5
+  _deathColor: {r: 1, g: 0, b: 0, a: 1}
+  _deathDuration: 0.5
 --- !u!1 &6498299934890936858
 GameObject:
   m_ObjectHideFlags: 0
@@ -4348,9 +4377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _canvasGroup: {fileID: 8958303826261502867}
-  _transitionAnimancer: {fileID: 0}
-  _transitionIn: {fileID: 7400000, guid: 780c348fcf2c4ba4189591800e5a9c6c, type: 2}
-  _transitionOut: {fileID: 7400000, guid: e4b7d0a4f9ab99842a6e29dff79e9ed5, type: 2}
+  _transitionUI: {fileID: 6607602981462718785}
 --- !u!225 &8958303826261502867
 CanvasGroup:
   m_ObjectHideFlags: 0
