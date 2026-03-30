@@ -14,15 +14,12 @@ public class Enemy : MonoBehaviour
 	[SerializeField]
 	private List<Transform> _shootPoints;
 
-	[Header("Enemy Settings")]
-	[SerializeField]
-	[Tooltip("How long it takes to shoot a shot in seconds")]
-	private float _fireRate = 1f;
-
-	private float _fireRateTimer;
 	private int _patternIndex;
-	private bool _enableShooting;
+	private int _attackIndex;
 	private int _shootPointIndex;
+	private bool _enableShooting;
+	private float _delayTimer;
+	private bool _isWaitingForDelay;
 
 	private void Start()
 	{
@@ -51,16 +48,45 @@ public class Enemy : MonoBehaviour
 
 	private void Update()
 	{
-		if (_enableShooting)
+		if (!_enableShooting || _patterns == null || _patterns.Count == 0)
 		{
-			if (_fireRateTimer >= _fireRate)
+			return;
+		}
+
+		if (_isWaitingForDelay)
+		{
+			_delayTimer -= Time.deltaTime;
+			if (_delayTimer > 0f)
 			{
-				BulletManager.Instance.FirePattern(_patterns[_patternIndex], _shootPoints[_shootPointIndex].position);
-				_patternIndex = (_patternIndex + 1) % _patterns.Count;
-				_shootPointIndex = (_shootPointIndex + 1) % _shootPoints.Count;
-				_fireRateTimer -= _fireRate;
+				return;
 			}
-			_fireRateTimer += Time.deltaTime;
+			_isWaitingForDelay = false;
+		}
+
+		PatternSO currentPattern = _patterns[_patternIndex];
+		AttackEntry entry = currentPattern.Attacks[_attackIndex];
+
+		// Fire the attack
+		if (entry.Attack != null)
+		{
+			Vector2 origin = _shootPoints[_shootPointIndex].position;
+			BulletManager.Instance.FireAttack(entry.Attack, origin);
+			_shootPointIndex = (_shootPointIndex + 1) % _shootPoints.Count;
+		}
+
+		// Advance to the next attack
+		_attackIndex++;
+		if (_attackIndex >= currentPattern.Attacks.Count)
+		{
+			_attackIndex = 0;
+			_patternIndex = (_patternIndex + 1) % _patterns.Count;
+		}
+
+		// Apply delay after this attack
+		if (entry.DelayAfter > 0f)
+		{
+			_delayTimer = entry.DelayAfter;
+			_isWaitingForDelay = true;
 		}
 	}
 
@@ -70,11 +96,16 @@ public class Enemy : MonoBehaviour
 	public void StartShooting()
 	{
 		_enableShooting = true;
+		_patternIndex = 0;
+		_attackIndex = 0;
+		_isWaitingForDelay = false;
 	}
 
 	[Button]
 	public void StopShooting()
 	{
 		_enableShooting = false;
+		_isWaitingForDelay = false;
+		_delayTimer = 0f;
 	}
 }

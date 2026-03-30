@@ -231,11 +231,11 @@ public class BulletManager : MonoSingleton<BulletManager>
 	}
 
 	/// <summary>
-	/// Reads PatternSO and spawns bullets
+	/// Reads AttackSO and spawns bullets
 	/// </summary>
 	[FoldoutGroup("Debug")]
 	[Button]
-	public void FirePattern(PatternSO pattern, Vector2 origin)
+	public void FireAttack(AttackSO pattern, Vector2 origin)
 	{
 		if (!pattern.BulletSO)
 		{
