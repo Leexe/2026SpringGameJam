@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Febucci.TextAnimatorCore.Text;
 using Febucci.TextAnimatorForUnity;
 using PrimeTween;
@@ -23,14 +24,16 @@ public class TopTextUI : MonoBehaviour
 	private float _delay = 1.5f;
 
 	[SerializeField]
-	private string _firstText = "Phase 0 - Parsing Destination Vector";
+	private List<string> _sequenceTexts;
+	private int _sequenceIndex;
 
 	private Sequence _fadeTween;
+	private int _currentSequenceIndex;
 
 	private void OnEnable()
 	{
 		GameManager.Instance.OnFadeInFinish.AddListener(PlayFirstText);
-		GameManager.Instance.OnFadeOutFinish.AddListener(ClearText);
+		GameManager.Instance.OnFadeOutFinish.AddListener(ResetText);
 	}
 
 	private void OnDisable()
@@ -38,15 +41,18 @@ public class TopTextUI : MonoBehaviour
 		if (GameManager.Instance)
 		{
 			GameManager.Instance.OnFadeInFinish.RemoveListener(PlayFirstText);
-			GameManager.Instance.OnFadeOutFinish.RemoveListener(ClearText);
+			GameManager.Instance.OnFadeOutFinish.RemoveListener(ResetText);
 		}
 	}
 
-	public void SetText(string newText)
+	public void ShowNextSequenceText()
 	{
 		_fadeTween.Stop();
 		_canvasGroup.alpha = 1f;
-		_typewriter.ShowText(newText);
+		if (_sequenceIndex < _sequenceTexts.Count)
+		{
+			_typewriter.ShowText(_sequenceTexts[_sequenceIndex++]);
+		}
 	}
 
 	public void PlayVoice(CharacterData characterData)
@@ -62,11 +68,12 @@ public class TopTextUI : MonoBehaviour
 
 	private void PlayFirstText()
 	{
-		_typewriter.ShowText(_firstText);
+		ShowNextSequenceText();
 	}
 
-	private void ClearText()
+	private void ResetText()
 	{
+		_sequenceIndex = 0;
 		_typewriter.ShowText("");
 	}
 }
