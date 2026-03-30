@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: c6dfe1862d3989142af6e07574abfec2
+guid: 9b12f80674043904abdd9f07990d8975
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8589599473417749999
-    second: white19201080_0
+      213: 7371676280527287558
+    second: Rubble1_0
+  - first:
+      213: -1598327008149482564
+    second: Rubble1_1
+  - first:
+      213: -4494074447024743484
+    second: Rubble1_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +106,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: white19201080_0
+      name: Rubble1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2176
-        height: 1224
+        x: 49
+        y: 91
+        width: 81
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +121,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fe582ff1633643770800000000000000
-      internalID: 8589599473417749999
+      spriteID: 605700435847d4660800000000000000
+      internalID: 7371676280527287558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rubble1_1
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 126
+        width: 88
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb3565ced0a91d9e0800000000000000
+      internalID: -1598327008149482564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rubble1_2
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 78
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cb1eeed917d1a1c0800000000000000
+      internalID: -4494074447024743484
       vertices: []
       indices: 
       edges: []
@@ -135,7 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      white19201080_0: 8589599473417749999
+      Rubble1_0: 7371676280527287558
+      Rubble1_1: -1598327008149482564
+      Rubble1_2: -4494074447024743484
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
