@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
 	public event Action OnWarningStart;
 	public event Action OnWarningEnd;
 	public event Action OnRepairFilledUp;
+	public event Action OnWin;
 
 	private bool _isRepairInputHeld;
 	private Vector2 _movementInput;
@@ -55,6 +56,7 @@ public class PlayerController : MonoBehaviour
 
 	// if instability > repair, lose. repair gets a head start (it doesn't start at 0)
 	public bool IsAlive { get; private set; }
+	public bool HasWon { get; private set; }
 	public bool CanRepair { get; private set; } = true;
 	public bool IsBuffering { get; private set; }
 	private float _bufferDuration;
@@ -82,6 +84,7 @@ public class PlayerController : MonoBehaviour
 
 		_isRepairInputHeld = false;
 		IsAlive = true;
+		HasWon = false;
 
 		RepairSecondsLeft = 1f;
 		DieSecondsLeft = 0f;
@@ -108,6 +111,7 @@ public class PlayerController : MonoBehaviour
 		{
 			GameManager.Instance.OnGamePause.AddListener(OnGamePause);
 			GameManager.Instance.OnGameResume.AddListener(OnGameResume);
+			GameManager.Instance.OnGameWin.AddListener(TriggerWin);
 		}
 	}
 
@@ -117,6 +121,7 @@ public class PlayerController : MonoBehaviour
 		{
 			GameManager.Instance.OnGamePause.RemoveListener(OnGamePause);
 			GameManager.Instance.OnGameResume.RemoveListener(OnGameResume);
+			GameManager.Instance.OnGameWin.RemoveListener(TriggerWin);
 		}
 
 		if (_warningSfx.isValid() && AudioManager.Instance != null)
@@ -127,7 +132,7 @@ public class PlayerController : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if (IsAlive)
+		if (IsAlive && !HasWon)
 		{
 			HandleMovementPhysics();
 			HandleRepairs(Time.fixedDeltaTime);
@@ -136,6 +141,8 @@ public class PlayerController : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
+		if (HasWon) return;
+
 		if (((1 << other.gameObject.layer) & _enemyLayer) != 0)
 		{
 			Die(true);
@@ -169,10 +176,21 @@ public class PlayerController : MonoBehaviour
 
 	private void OnGameResume()
 	{
-		if (_isWarning && _warningSfx.isValid())
+		if (_isWarning && _warningSfx.isValid() && AudioManager.Instance != null)
 		{
 			AudioManager.Instance.PlayInstance(_warningSfx);
 		}
+	}
+
+	private void TriggerWin()
+	{
+		if (!IsAlive || HasWon) return;
+		HasWon = true;
+
+		// Lock movements immediately manually as a precaution
+		Rb.linearVelocity = Vector2.zero;
+
+		OnWin?.Invoke();
 	}
 
 	/** Public Methods **/
@@ -230,6 +248,7 @@ public class PlayerController : MonoBehaviour
 
 		_isRepairInputHeld = false;
 		IsAlive = true;
+		HasWon = false;
 
 		RepairSecondsLeft = 1f;
 		DieSecondsLeft = 0f;
@@ -312,7 +331,7 @@ public class PlayerController : MonoBehaviour
 
 	private void Die(bool isFromHit)
 	{
-		if (!IsAlive)
+		if (!IsAlive || HasWon)
 		{
 			return;
 		}
