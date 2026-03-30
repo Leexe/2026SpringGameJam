@@ -64,14 +64,11 @@ public class PlayerVisuals : MonoBehaviour
 		InputManager.Instance.OnAnchorPerformed.AddListener(ShowCircle);
 		InputManager.Instance.OnAnchorReleased.AddListener(HideCircle);
 
-		if (_playerController != null)
-		{
-			_playerController.OnDie += PlayDeathAnimation;
-			_playerController.OnWin += PlayWinAnimation;
-			_playerController.OnFullyRepaired += PlayFullyRepairedVFX;
-		}
+		_playerController.OnDie += PlayDeathAnimation;
+		_playerController.OnFullyRepaired += PlayFullyRepairedVFX;
 
 		GameManager.Instance.OnFadeInFinish.AddListener(PlayIdleAnimation);
+		GameManager.Instance.OnGameWin.AddListener(PlayWinAnimation);
 
 		_hitBoxRenderer.color *= new Color(1, 1, 1, 0);
 	}
@@ -87,13 +84,13 @@ public class PlayerVisuals : MonoBehaviour
 		if (_playerController != null)
 		{
 			_playerController.OnDie -= PlayDeathAnimation;
-			_playerController.OnWin -= PlayWinAnimation;
 			_playerController.OnFullyRepaired -= PlayFullyRepairedVFX;
 		}
 
 		if (GameManager.Instance)
 		{
 			GameManager.Instance.OnFadeInFinish.RemoveListener(PlayIdleAnimation);
+			GameManager.Instance.OnGameWin.RemoveListener(PlayWinAnimation);
 		}
 
 		_hitBoxTween.Stop();

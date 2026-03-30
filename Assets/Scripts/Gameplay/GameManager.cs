@@ -28,6 +28,9 @@ public class GameManager : MonoSingleton<GameManager>
 	[SerializeField]
 	private float _timeBetweenPhases = 5f;
 
+	[SerializeField]
+	private float _winDelay = 1.5f;
+
 	/** Events **/
 
 	[HideInInspector]
@@ -47,6 +50,9 @@ public class GameManager : MonoSingleton<GameManager>
 
 	[HideInInspector]
 	public UnityEvent OnGameWin;
+
+	[HideInInspector]
+	public UnityEvent OnWinScreenShow;
 
 	[HideInInspector]
 	public UnityEvent<int> OnIncrementPhase;
@@ -130,7 +136,7 @@ public class GameManager : MonoSingleton<GameManager>
 		{
 			GameTime += Time.fixedDeltaTime;
 
-			if (_phase < _maxPhase && Player.RepairSecondsLeft == 0f && !Player.IsBuffering)
+			if (_phase < _maxPhase && Player.DieSecondsLeft == 0f && Player.IsAlive && !Player.IsBuffering)
 			{
 				_phase++;
 				OnIncrementPhase?.Invoke(_phase);
@@ -138,6 +144,7 @@ public class GameManager : MonoSingleton<GameManager>
 				if (_phase >= _maxPhase)
 				{
 					OnGameWin?.Invoke();
+					Invoke(nameof(TriggerWinScreenShow), _winDelay);
 				}
 				else
 				{
@@ -161,6 +168,8 @@ public class GameManager : MonoSingleton<GameManager>
 
 	public void RestartGame()
 	{
+		CancelInvoke(nameof(TriggerWinScreenShow));
+
 		GameTime = -1f;
 		_phase = 0;
 		if (_isPaused)
@@ -323,5 +332,10 @@ public class GameManager : MonoSingleton<GameManager>
 			OnFadeInFinish?.Invoke();
 			CanPause = true;
 		});
+	}
+
+	private void TriggerWinScreenShow()
+	{
+		OnWinScreenShow?.Invoke();
 	}
 }

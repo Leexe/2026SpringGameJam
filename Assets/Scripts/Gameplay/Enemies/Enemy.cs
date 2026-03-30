@@ -33,6 +33,8 @@ public class Enemy : MonoBehaviour
 			GameManager.Instance.OnGameStart.AddListener(StopShooting);
 			GameManager.Instance.OnFadeOutFinish.AddListener(StopShooting);
 			GameManager.Instance.OnGameWin.AddListener(StopShooting);
+			GameManager.Instance.OnPlayerDeath.AddListener(StopShooting);
+			GameManager.Instance.OnGameRestart.AddListener(StopShooting);
 		}
 	}
 
@@ -43,10 +45,17 @@ public class Enemy : MonoBehaviour
 			GameManager.Instance.OnGameStart.RemoveListener(StopShooting);
 			GameManager.Instance.OnFadeOutFinish.RemoveListener(StopShooting);
 			GameManager.Instance.OnGameWin.RemoveListener(StopShooting);
+			GameManager.Instance.OnPlayerDeath.RemoveListener(StopShooting);
+			GameManager.Instance.OnGameRestart.RemoveListener(StopShooting);
 		}
 	}
 
 	private void Update()
+	{
+		HandleShooting();
+	}
+
+	private void HandleShooting()
 	{
 		if (!_enableShooting || _patterns == null || _patterns.Count == 0)
 		{

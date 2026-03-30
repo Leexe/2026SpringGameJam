@@ -304,13 +304,13 @@ public class PlayerController : MonoBehaviour
 				RepairSecondsLeft = Mathf.Max(0f, RepairSecondsLeft - dt);
 			}
 
-			if (!DisableInstability && RepairSecondsLeft > 0f)
+			if (!DisableInstability)
 			{
 				DieSecondsLeft = Mathf.Max(0f, DieSecondsLeft - dt);
 			}
 
 			float timeUntilFailure = DieSecondsLeft - RepairSecondsLeft;
-			if (IsAlive && timeUntilFailure >= 0f && timeUntilFailure <= SecondsBeforeWarning)
+			if (IsAlive && RepairSecondsLeft > 0f && timeUntilFailure >= 0f && timeUntilFailure <= SecondsBeforeWarning)
 			{
 				if (!_isWarning)
 				{
