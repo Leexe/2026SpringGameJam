@@ -21,25 +21,20 @@ public class RedShipEnemy : MonoBehaviour
 	private float _fireRateTimer;
 	private int _patternIndex;
 	private int _shootPointIndex;
-	private bool _enableShooting = false;
-
-	private void Awake()
-	{
-		DisableEnemy();
-	}
+	private bool _enableShooting;
 
 	private void Start()
 	{
-		DisableEnemy();
+		StopShooting();
 	}
 
 	private void OnEnable()
 	{
 		if (GameManager.Instance != null)
 		{
-			GameManager.Instance.OnGameStart.AddListener(EnableEnemy);
-			GameManager.Instance.OnFadeOutFinish.AddListener(DisableEnemy);
-			GameManager.Instance.OnGameWin.AddListener(DisableEnemy);
+			GameManager.Instance.OnGameStart.AddListener(StopShooting);
+			GameManager.Instance.OnFadeOutFinish.AddListener(StopShooting);
+			GameManager.Instance.OnGameWin.AddListener(StopShooting);
 		}
 	}
 
@@ -47,9 +42,9 @@ public class RedShipEnemy : MonoBehaviour
 	{
 		if (GameManager.Instance != null)
 		{
-			GameManager.Instance.OnGameStart.RemoveListener(EnableEnemy);
-			GameManager.Instance.OnFadeOutFinish.RemoveListener(DisableEnemy);
-			GameManager.Instance.OnGameWin.RemoveListener(DisableEnemy);
+			GameManager.Instance.OnGameStart.RemoveListener(StopShooting);
+			GameManager.Instance.OnFadeOutFinish.RemoveListener(StopShooting);
+			GameManager.Instance.OnGameWin.RemoveListener(StopShooting);
 		}
 	}
 
@@ -68,15 +63,15 @@ public class RedShipEnemy : MonoBehaviour
 		}
 	}
 
-	private void EnableEnemy()
+	/* Public Methods */
+
+	public void StartShooting()
 	{
 		_enableShooting = true;
-		_spriteRenderer.enabled = true;
 	}
 
-	private void DisableEnemy()
+	public void StopShooting()
 	{
 		_enableShooting = false;
-		_spriteRenderer.enabled = false;
 	}
 }

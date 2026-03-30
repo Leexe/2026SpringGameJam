@@ -272,6 +272,8 @@ PlayableDirector:
     value: {fileID: 1090429729}
   - key: {fileID: 8212433217120408200, guid: 9d4dbc5b1cc824804bdf22394427a176, type: 2}
     value: {fileID: 788727582}
+  - key: {fileID: -71942147377631024, guid: 9d4dbc5b1cc824804bdf22394427a176, type: 2}
+    value: {fileID: 7450665881196468991}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &44141023
@@ -1421,6 +1423,10 @@ PrefabInstance:
       propertyPath: _debugTimeDisplay
       value: 
       objectReference: {fileID: 1635383703}
+    - target: {fileID: 8882374545959850549, guid: 3f8216e7210a94b628101fc8e64a0bf2, type: 3}
+      propertyPath: <Player>k__BackingField
+      value: 
+      objectReference: {fileID: 507716035}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3606,6 +3612,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+--- !u!114 &7450665881196468991 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 945132728260446022, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+  m_PrefabInstance: {fileID: 7450665881196468990}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalReceiver
 --- !u!1001 &7910538195316627082
 PrefabInstance:
   m_ObjectHideFlags: 0
