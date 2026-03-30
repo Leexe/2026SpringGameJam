@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -27,9 +28,6 @@ public class GameManager : MonoSingleton<GameManager>
 
 	[SerializeField]
 	private float _timeBetweenRepairs = 5f;
-
-	[SerializeField]
-	private float _winDelay = 1.5f;
 
 	/** Events **/
 
@@ -185,16 +183,11 @@ public class GameManager : MonoSingleton<GameManager>
 		FadeIn();
 	}
 
+	[Button]
 	public void IncrementPhase()
 	{
 		_phase++;
 		OnIncrementPhase?.Invoke(_phase);
-
-		if (_phase >= _maxPhase)
-		{
-			OnGameWin?.Invoke();
-			Invoke(nameof(TriggerWinScreenShow), _winDelay);
-		}
 	}
 
 	/** Private Methods **/
@@ -334,7 +327,8 @@ public class GameManager : MonoSingleton<GameManager>
 		});
 	}
 
-	private void TriggerWinScreenShow()
+	[Button]
+	public void TriggerWinScreenShow()
 	{
 		OnWinScreenShow?.Invoke();
 	}

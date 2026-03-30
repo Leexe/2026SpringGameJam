@@ -14,8 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PatternSO
   _attacks:
   - Attack: {fileID: 11400000, guid: 5904ac7010afb4fe4aa02fb7b61c2fc3, type: 2}
-    DelayAfter: 0.5
+    DelayAfter: 0.25
   - Attack: {fileID: 11400000, guid: 4b707d1e1bfad4a3c8a535f1a1890768, type: 2}
-    DelayAfter: 0.5
+    DelayAfter: 0.25
   - Attack: {fileID: 11400000, guid: 3faf0c68d712e450b9de4f5c69782304, type: 2}
+    DelayAfter: 0.25
+  - Attack: {fileID: 11400000, guid: 4b707d1e1bfad4a3c8a535f1a1890768, type: 2}
+    DelayAfter: 0.25
+  - Attack: {fileID: 11400000, guid: 5904ac7010afb4fe4aa02fb7b61c2fc3, type: 2}
     DelayAfter: 1

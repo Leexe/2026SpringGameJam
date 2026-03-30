@@ -96,7 +96,7 @@ MonoBehaviour:
       Data2: 1075633251
       Data3: 748271531
       Data4: 138083056
-    Path: event:/BGM/Warp Drive (Intro Demo)
+    Path: event:/BGM/Warp Drive
   <Menu_Bgm>k__BackingField:
     Guid:
       Data1: -504031839
@@ -139,6 +139,27 @@ MonoBehaviour:
       Data3: 313373371
       Data4: 1027619517
     Path: event:/SFX/Menu/Button Hover
+  <Atomized_Sfx>k__BackingField:
+    Guid:
+      Data1: -208108995
+      Data2: 1312685097
+      Data3: -362274640
+      Data4: -954318727
+    Path: event:/SFX/Gameplay/Atomized
+  <StabilityCheck_Sfx>k__BackingField:
+    Guid:
+      Data1: 1043694320
+      Data2: 1187886319
+      Data3: 1534124425
+      Data4: -1717664716
+    Path: event:/SFX/Gameplay/Stability Check
+  <Pause_Sfx>k__BackingField:
+    Guid:
+      Data1: 1812541742
+      Data2: 1334120198
+      Data3: -1421486403
+      Data4: -603271825
+    Path: event:/SFX/Menu/Pause
   <Warning_LoopSFX>k__BackingField:
     Guid:
       Data1: 148345646
@@ -146,3 +167,10 @@ MonoBehaviour:
       Data3: -1108812129
       Data4: 1125838926
     Path: event:/SFX/Gameplay/Warning
+  <StabilityCharge_LoopSFX>k__BackingField:
+    Guid:
+      Data1: -378150354
+      Data2: 1255389106
+      Data3: 391172515
+      Data4: -592081747
+    Path: event:/SFX/Gameplay/Stability Charge

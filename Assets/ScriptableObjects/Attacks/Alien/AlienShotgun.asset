@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PatternSO
   _bulletSO: {fileID: 11400000, guid: 75095a1e733eb4b4e83d97075a475ee9, type: 2}
   _behavior: 0
-  _bulletCount: 4
+  _bulletCount: 8
   _spreadAngle: 90
   _towardsPlayer: 1
   _direction: 270
   _baseSpeed: 3
   _rotateTowardsDirection: 0
-  _lifeTime: 8
+  _lifeTime: 20
   _fadeDuration: 0.2
   _sineAmplitude: 5
   _sineFrequency: 5

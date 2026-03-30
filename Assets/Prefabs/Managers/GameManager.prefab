@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6875317524374282622}
   - component: {fileID: 8882374545959850549}
+  - component: {fileID: 6068597328805259692}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,12 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72c1c546b3b8544abcd768cce2853c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  _player: {fileID: 0}
+  <Player>k__BackingField: {fileID: 0}
   _bulletManager: {fileID: 0}
   _debugTimeDisplay: {fileID: 0}
   _enemyDirector: {fileID: 0}
+  _transitionUI: {fileID: 0}
   _maxPhase: 5
-  _timeBetweenPhases: 4
+  _timeBetweenRepairs: 5
+  _winDelay: 1.5
   OnGamePause:
     m_PersistentCalls:
       m_Calls: []
@@ -68,6 +71,12 @@ MonoBehaviour:
   OnGameWin:
     m_PersistentCalls:
       m_Calls: []
+  OnWinScreenShow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnIncrementPhase:
+    m_PersistentCalls:
+      m_Calls: []
   OnPlayerDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -80,3 +89,36 @@ MonoBehaviour:
   OnFadeOutFinish:
     m_PersistentCalls:
       m_Calls: []
+  OnSceneReady:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6068597328805259692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6909718901049759676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalReceiver
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 2d32bfbc57106467797589c321fb73fa, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8882374545959850549}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: IncrementPhase
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
