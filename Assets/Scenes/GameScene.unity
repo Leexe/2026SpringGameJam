@@ -246,6 +246,8 @@ PlayableDirector:
     value: {fileID: 1929973060}
   - key: {fileID: 2561514853262566852, guid: 9d4dbc5b1cc824804bdf22394427a176, type: 2}
     value: {fileID: 681807726}
+  - key: {fileID: 2929989777163080747, guid: 9d4dbc5b1cc824804bdf22394427a176, type: 2}
+    value: {fileID: 2210282353848476352}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &44141023
@@ -3615,9 +3617,17 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2431885419019876515, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2854515472129468446, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3864866081091896122, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5137890292086425730, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3863,6 +3873,66 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8087884368101346133, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: onTextShowed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8087884368101346133, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: onTypewriterStart.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8087884368101346133, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: onCharacterVisible.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8087884368101346133, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: onTextShowed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8087884368101346133, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: onTextShowed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2210282353848476353}
+    - target: {fileID: 8087884368101346133, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: onTextShowed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8087884368101346133, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: onTextShowed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FadeOutText
+      objectReference: {fileID: 0}
+    - target: {fileID: 8087884368101346133, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: onCharacterVisible.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2210282353848476353}
+    - target: {fileID: 8087884368101346133, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: onTypewriterStart.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8087884368101346133, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: onCharacterVisible.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8087884368101346133, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: onCharacterVisible.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayVoice
+      objectReference: {fileID: 0}
+    - target: {fileID: 8087884368101346133, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: onTextShowed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TopTextUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8087884368101346133, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: onCharacterVisible.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TopTextUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8087884368101346133, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: onTextShowed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8087884368101346133, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: onCharacterVisible.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8253615282110649379, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
       propertyPath: m_Alpha
       value: 0
@@ -3919,6 +3989,15 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2431885419019876515, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2210282353848476353}
+    - targetCorrespondingSourceObject: {fileID: 2431885419019876515, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2210282353848476352}
+    - targetCorrespondingSourceObject: {fileID: 2431885419019876515, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2210282353848476351}
     - targetCorrespondingSourceObject: {fileID: 6167900227367202439, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 932454343}
@@ -3926,6 +4005,82 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 932454342}
   m_SourcePrefab: {fileID: 100100000, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+--- !u!1 &2210282353848476349 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2431885419019876515, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+  m_PrefabInstance: {fileID: 2210282353848476348}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2210282353848476350 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8087884368101346133, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+  m_PrefabInstance: {fileID: 2210282353848476348}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2210282353848476349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac6b0a2b8ddbab342ad54b5409ccffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Febucci.TextAnimatorForUnity.Runtime::Febucci.TextAnimatorForUnity.TypewriterComponent
+--- !u!225 &2210282353848476351
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2210282353848476349}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &2210282353848476352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2210282353848476349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalReceiver
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: d68327bf565a34986867245f7ab3d4d4, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2210282353848476353}
+          m_TargetAssemblyTypeName: TopTextUI, Assembly-CSharp
+          m_MethodName: SetText
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Phase 1 - Optimizing Route
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &2210282353848476353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2210282353848476349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb73ae2a9a1e440a99c7dc5a89f12f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TopTextUI
+  _typewriter: {fileID: 2210282353848476350}
+  _voiceSO: {fileID: 11400000, guid: e003bb9a80a2249f4b366b7fa5309038, type: 2}
+  _canvasGroup: {fileID: 2210282353848476351}
+  _fadeDuration: 1.5
+  _delay: 1.5
+  _firstText: Phase 0 - Parsing Destination Vector
 --- !u!1001 &3907365783205288794
 PrefabInstance:
   m_ObjectHideFlags: 0
