@@ -41,6 +41,9 @@ public class PlayerController : MonoBehaviour
 
 	public event Action<bool> OnDie; // isFromHit
 	public event Action OnDeathAnimationFinished;
+	public event Action OnBeginRepair;
+	public event Action OnStopRepair;
+	public event Action OnFullyRepaired;
 	public event Action<float> OnRepairProgressChanged; // secs, max
 	public event Action<float> OnInstabilityProgressChanged; // secs, max;
 	public event Action OnWarningStart;
@@ -151,12 +154,20 @@ public class PlayerController : MonoBehaviour
 
 	private void HandleAnchorPerformed()
 	{
-		_isRepairInputHeld = true;
+		if (!_isRepairInputHeld)
+		{
+			_isRepairInputHeld = true;
+			OnBeginRepair?.Invoke();
+		}
 	}
 
 	private void HandleAnchorReleased()
 	{
-		_isRepairInputHeld = false;
+		if (_isRepairInputHeld)
+		{
+			_isRepairInputHeld = false;
+			OnStopRepair?.Invoke();
+		}
 	}
 
 	private void OnGamePause()
@@ -298,6 +309,11 @@ public class PlayerController : MonoBehaviour
 			{
 				Die(false);
 			}
+		}
+
+		if (RepairSecondsLeft == 0f && oldProg != 0f)
+		{
+			OnFullyRepaired?.Invoke();
 		}
 
 		if (!Mathf.Approximately(oldProg, RepairSecondsLeft))

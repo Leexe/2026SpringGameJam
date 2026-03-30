@@ -1,6 +1,7 @@
 using Animancer;
 using PrimeTween;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerVisuals : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class PlayerVisuals : MonoBehaviour
 
 	[SerializeField]
 	private SpriteRenderer _hitBoxRenderer;
+
+	[SerializeField]
+	private VisualEffect _vfx;
 
 	[SerializeField]
 	private AnimancerComponent _animancer;
@@ -43,6 +47,9 @@ public class PlayerVisuals : MonoBehaviour
 	[SerializeField]
 	private float _circleTweenDuration = 0.5f;
 
+	private float _lastRepairSecondsLeft = -100f;
+	private bool _repairVFXPlaying = false;
+
 	private Tween _hitBoxTween;
 	private AnimancerState _animancerState;
 
@@ -54,6 +61,7 @@ public class PlayerVisuals : MonoBehaviour
 		if (_playerController != null)
 		{
 			_playerController.OnDie += PlayDeathAnimation;
+			_playerController.OnFullyRepaired += PlayFullyRepairedVFX;
 		}
 
 		GameManager.Instance.OnFadeInFinish.AddListener(PlayIdleAnimation);
@@ -72,6 +80,7 @@ public class PlayerVisuals : MonoBehaviour
 		if (_playerController != null)
 		{
 			_playerController.OnDie -= PlayDeathAnimation;
+			_playerController.OnFullyRepaired -= PlayFullyRepairedVFX;
 		}
 
 		if (GameManager.Instance)
@@ -85,6 +94,30 @@ public class PlayerVisuals : MonoBehaviour
 	private void Update()
 	{
 		HandleMovementAnimations();
+	}
+
+	private void FixedUpdate()
+	{
+		HandleRepairVFXLogic();
+	}
+
+	private void HandleRepairVFXLogic()
+	{
+		// read repair values to determine if repairing
+		// makes it so particles only show if you're actually making progress, and not any time you press space
+		bool isRepairing = _lastRepairSecondsLeft > _playerController.RepairSecondsLeft;
+		if (!_repairVFXPlaying && isRepairing)
+		{
+			StartRepairVFX();
+			_repairVFXPlaying = true;
+		}
+		else if (_repairVFXPlaying && !isRepairing)
+		{
+			StopRepairVFX();
+			_repairVFXPlaying = false;
+		}
+
+		_lastRepairSecondsLeft = _playerController.RepairSecondsLeft;
 	}
 
 	private void HandleMovementAnimations()
@@ -148,5 +181,20 @@ public class PlayerVisuals : MonoBehaviour
 	private void PlayIdleAnimation()
 	{
 		_animancer.Play(_idleNoThrustAnim);
+	}
+
+	private void StartRepairVFX()
+	{
+		_vfx.SendEvent("OnRepairStart");
+	}
+
+	private void StopRepairVFX()
+	{
+		_vfx.SendEvent("OnRepairStop");
+	}
+
+	private void PlayFullyRepairedVFX()
+	{
+		_vfx.SendEvent("OnFullyRepaired");
 	}
 }
