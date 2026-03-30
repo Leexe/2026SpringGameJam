@@ -103,6 +103,26 @@ public class PlayerController : MonoBehaviour
 		_defaultSecondsToRepair = SecondsToRepair;
 		_defaultSecondsToDie = SecondsToDie;
 		_warningSfx = AudioManager.Instance.CreateInstance(FMODEvents.Instance.Warning_LoopSFX);
+
+		if (GameManager.Instance != null)
+		{
+			GameManager.Instance.OnGamePause.AddListener(OnGamePause);
+			GameManager.Instance.OnGameResume.AddListener(OnGameResume);
+		}
+	}
+
+	private void OnDestroy()
+	{
+		if (GameManager.Instance != null)
+		{
+			GameManager.Instance.OnGamePause.RemoveListener(OnGamePause);
+			GameManager.Instance.OnGameResume.RemoveListener(OnGameResume);
+		}
+
+		if (_warningSfx.isValid() && AudioManager.Instance != null)
+		{
+			AudioManager.Instance.DestroyInstance(_warningSfx);
+		}
 	}
 
 	private void FixedUpdate()
@@ -137,6 +157,22 @@ public class PlayerController : MonoBehaviour
 	private void HandleAnchorReleased()
 	{
 		_isRepairInputHeld = false;
+	}
+
+	private void OnGamePause()
+	{
+		if (_isWarning && _warningSfx.isValid())
+		{
+			AudioManager.Instance.PauseInstance(_warningSfx);
+		}
+	}
+
+	private void OnGameResume()
+	{
+		if (_isWarning && _warningSfx.isValid())
+		{
+			AudioManager.Instance.PlayInstance(_warningSfx);
+		}
 	}
 
 	/** Public Methods **/
