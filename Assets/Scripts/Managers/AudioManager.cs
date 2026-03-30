@@ -443,24 +443,30 @@ public class AudioManager : PersistentMonoSingleton<AudioManager>
 	/// </summary>
 	public void PlayInstance(EventInstance instance)
 	{
-		// If the track is playing, do nothing
+		instance.getPaused(out bool isPaused);
 		instance.getPlaybackState(out PLAYBACK_STATE state);
-		if (state == PLAYBACK_STATE.PLAYING)
+
+		// If the track is paused, unpause it
+		if (isPaused)
+		{
+			// Unpause the Core API channel group for instant resume, bypassing Studio async queue
+			if (instance.getChannelGroup(out ChannelGroup channelGroup) == RESULT.OK && channelGroup.hasHandle())
+			{
+				channelGroup.setPaused(false);
+			}
+
+			instance.setPaused(false);
+			return;
+		}
+
+		// If it's already playing, do nothing
+		if (state == PLAYBACK_STATE.PLAYING || state == PLAYBACK_STATE.STARTING)
 		{
 			return;
 		}
 
-		// If the track is paused, unpause it
-		instance.getPaused(out bool isPaused);
-		if (isPaused)
-		{
-			instance.setPaused(false);
-		}
-		// If the track was never played, start it
-		else
-		{
-			instance.start();
-		}
+		// Otherwise, start the track
+		instance.start();
 	}
 
 	/// <summary>
@@ -469,6 +475,12 @@ public class AudioManager : PersistentMonoSingleton<AudioManager>
 	/// <param name="instance">The event instance sound</param>
 	public void PauseInstance(EventInstance instance)
 	{
+		// Pause the Core API channel group for instant pause, bypassing Studio async queue
+		if (instance.getChannelGroup(out ChannelGroup channelGroup) == RESULT.OK && channelGroup.hasHandle())
+		{
+			channelGroup.setPaused(true);
+		}
+
 		instance.setPaused(true);
 	}
 
@@ -507,7 +519,7 @@ public class AudioManager : PersistentMonoSingleton<AudioManager>
 
 	// FMOD is written in c++ so this attribute is needed for webgl builds where
 	// the translation from c# to c++ can't be performed during runtime
-	[AOT.MonoPInvokeCallback(typeof(FMOD.Studio.EVENT_CALLBACK))]
+	[AOT.MonoPInvokeCallback(typeof(EVENT_CALLBACK))]
 	private static RESULT MarkerCallback(EVENT_CALLBACK_TYPE type, IntPtr instancePtr, IntPtr parameterPtr)
 	{
 		if (type == EVENT_CALLBACK_TYPE.TIMELINE_MARKER)

@@ -68,7 +68,7 @@ public class MainMenuController : MonoBehaviour
 	private void PlayFadeOut()
 	{
 		AnimancerState state = _transitionAnimancer.Play(_fadeOutClip);
-		AudioManager.Instance.PlayOneShot(FMODEvents.Instance.FadeIn_Sfx);
+		AudioManager.Instance.PlayOneShot(FMODEvents.Instance.FadeOut_Sfx);
 		state.Events(this).OnEnd = () =>
 		{
 			state.Stop();
@@ -79,8 +79,8 @@ public class MainMenuController : MonoBehaviour
 
 	private void PlayIntroSequence()
 	{
-		AudioManager.Instance.PlayOneShot(FMODEvents.Instance.FadeOut_Sfx);
 		AnimancerState state = _transitionAnimancer.Play(_introSequenceClip);
+		AudioManager.Instance.PlayOneShot(FMODEvents.Instance.FadeIn_Sfx);
 		state.Events(this).OnEnd = () =>
 		{
 			state.Stop();

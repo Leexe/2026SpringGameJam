@@ -40,11 +40,11 @@ Material:
     - _Octaves: 6
     m_Floats:
     - _FogDitherSpread: 0.05
-    - _FogPixelResolution: 350
+    - _FogPixelResolution: 500
     - _FogScale: 1.81
     - _FogScrollSpeed: 0.01
     - _FogScrollSpeedX: -0.0009
-    - _FogScrollSpeedY: 0.005
+    - _FogScrollSpeedY: 0.001
     - _FogSpeed: 0.003
     - _PixelResolution: 600
     - _ScrollSpeed: 0.005

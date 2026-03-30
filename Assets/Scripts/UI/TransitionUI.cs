@@ -1,3 +1,4 @@
+using System;
 using Animancer;
 using PrimeTween;
 using UnityEngine;
@@ -19,47 +20,20 @@ public class TransitionUI : MonoBehaviour
 	[SerializeField]
 	private float _transitionOutDelay = 1f;
 
-	private void Start()
+	public void PlayTransitionIn(Action onEnd = null)
 	{
-		PlayTransitionIn();
-	}
-
-	private void OnEnable()
-	{
-		GameManager.Instance.OnPlayerDeath.AddListener(PlayTransitionOut);
-		GameManager.Instance.OnGameRestart.AddListener(PlayTransitionIn);
-	}
-
-	private void OnDisable()
-	{
-		if (GameManager.Instance)
-		{
-			GameManager.Instance.OnPlayerDeath.RemoveListener(PlayTransitionOut);
-			GameManager.Instance.OnGameRestart.RemoveListener(PlayTransitionIn);
-		}
-	}
-
-	private void PlayTransitionIn()
-	{
-		if (GameManager.Instance != null)
-		{
-			GameManager.Instance.CanPause = false;
-		}
 		AudioManager.Instance.PlayOneShot(FMODEvents.Instance.FadeIn_Sfx);
 
+		_animancer.UpdateMode = AnimatorUpdateMode.UnscaledTime;
 		AnimancerState state = _animancer.Play(_transitionIn);
 		state.Events(this).OnEnd = () =>
 		{
 			state.Stop();
-
-			if (GameManager.Instance != null)
-			{
-				GameManager.Instance.OnFadeInFinish?.Invoke();
-			}
+			onEnd?.Invoke();
 		};
 	}
 
-	private void PlayTransitionOut()
+	public void PlayTransitionOut(Action onEnd = null)
 	{
 		Tween.Delay(
 			_transitionOutDelay,
@@ -67,17 +41,15 @@ public class TransitionUI : MonoBehaviour
 			{
 				AudioManager.Instance.PlayOneShot(FMODEvents.Instance.FadeOut_Sfx);
 
+				_animancer.UpdateMode = AnimatorUpdateMode.UnscaledTime;
 				AnimancerState fadeOutState = _animancer.Play(_transitionOut);
 				fadeOutState.Events(this).OnEnd = () =>
 				{
 					fadeOutState.Stop();
-					if (GameManager.Instance != null)
-					{
-						GameManager.Instance.OnFadeOutFinish?.Invoke();
-						GameManager.Instance.RestartGame();
-					}
+					onEnd?.Invoke();
 				};
-			}
+			},
+			useUnscaledTime: true
 		);
 	}
 }

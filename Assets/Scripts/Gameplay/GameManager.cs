@@ -20,6 +20,9 @@ public class GameManager : MonoSingleton<GameManager>
 	[SerializeField]
 	private PlayableDirector _enemyDirector;
 
+	[SerializeField]
+	private TransitionUI _transitionUI;
+
 	[Header("Game Details")]
 	[SerializeField]
 	private int _maxPhase = 5;
@@ -62,6 +65,9 @@ public class GameManager : MonoSingleton<GameManager>
 	[HideInInspector]
 	public UnityEvent OnFadeOutFinish;
 
+	[HideInInspector]
+	public UnityEvent OnSceneReady;
+
 	/** Fields **/
 
 	// a negative value means game has not started yet
@@ -70,6 +76,7 @@ public class GameManager : MonoSingleton<GameManager>
 	private int _phase = 0;
 	public bool CanPause { get; set; } = true;
 	private bool _isPaused;
+	private bool _wasDirectorPlaying;
 
 	/** Unity Messages **/
 
@@ -84,6 +91,11 @@ public class GameManager : MonoSingleton<GameManager>
 		_player.OnDeathAnimationFinished += PlayTransitionOut;
 
 		InputManager.Instance.OnEscapePerformed.AddListener(TogglePause);
+
+		if (LevelManager.Instance != null)
+		{
+			LevelManager.Instance.OnSceneReady.AddListener(TriggerSceneReady);
+		}
 	}
 
 	private void OnDisable()
@@ -103,12 +115,23 @@ public class GameManager : MonoSingleton<GameManager>
 		{
 			InputManager.Instance.OnEscapePerformed.RemoveListener(TogglePause);
 		}
+
+		if (LevelManager.Instance != null)
+		{
+			LevelManager.Instance.OnSceneReady.RemoveListener(TriggerSceneReady);
+		}
 	}
 
 	private void Start()
 	{
+		CanPause = false;
 		InitPreSequence();
 		HideCursor();
+
+		_transitionUI.PlayTransitionIn(() =>
+		{
+			OnFadeInFinish?.Invoke();
+		});
 	}
 
 	private void FixedUpdate()
@@ -163,6 +186,13 @@ public class GameManager : MonoSingleton<GameManager>
 
 		InitPreSequence();
 		OnGameRestart?.Invoke();
+
+		CanPause = false;
+
+		_transitionUI.PlayTransitionIn(() =>
+		{
+			OnFadeInFinish?.Invoke();
+		});
 	}
 
 	/** Private Methods **/
@@ -196,6 +226,12 @@ public class GameManager : MonoSingleton<GameManager>
 		{
 			StopDirector();
 		}
+
+		_transitionUI.PlayTransitionOut(() =>
+		{
+			OnFadeOutFinish?.Invoke();
+			RestartGame();
+		});
 	}
 
 	/// <summary>
@@ -247,6 +283,11 @@ public class GameManager : MonoSingleton<GameManager>
 
 	private void TogglePause()
 	{
+		if (!CanPause)
+		{
+			return;
+		}
+
 		if (_isPaused)
 		{
 			ResumeGame();
@@ -264,6 +305,12 @@ public class GameManager : MonoSingleton<GameManager>
 			OnGamePause?.Invoke();
 			Time.timeScale = 0f;
 			_isPaused = true;
+
+			_wasDirectorPlaying = _enemyDirector.state == PlayState.Playing;
+			if (_wasDirectorPlaying)
+			{
+				_enemyDirector.Pause();
+			}
 		}
 	}
 
@@ -272,7 +319,25 @@ public class GameManager : MonoSingleton<GameManager>
 		OnGameResume?.Invoke();
 		Time.timeScale = 1f;
 		_isPaused = false;
+
+		if (_wasDirectorPlaying)
+		{
+			_enemyDirector.Play();
+		}
 	}
 
-	private void ReturnToMainMenu() { }
+	public void ReturnToMainMenu()
+	{
+		LevelManager.Instance.LoadSceneAsync(LevelManager.SceneNames.MainMenu);
+	}
+
+	public void ActivatePreloadedScene()
+	{
+		LevelManager.Instance.ActivatePreloadedScene();
+	}
+
+	private void TriggerSceneReady()
+	{
+		OnSceneReady?.Invoke();
+	}
 }
