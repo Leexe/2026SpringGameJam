@@ -41,4 +41,7 @@ public struct Bullet
 	public float AngularVelocity;
 	public float MaxTurnRate;
 	public float TurnAcceleration;
+
+	// Visual Parameters
+	public float InitialRotation;
 }

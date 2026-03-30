@@ -105,7 +105,16 @@ public class AsteroidAttack : MonoBehaviour
 		float normalizedSpeed = (float)_rng.NextDouble();
 		float speed = Mathf.Lerp(_minSpeed, _maxSpeed, normalizedSpeed);
 
-		// 3. Fire using the BulletManager with our random speed override
-		BulletManager.Instance.FireAttack(_asteroidPattern, spawnPosition, speed);
+		// 3. Calculate deterministic random direction based on the spread angle
+		float spreadAngle = _asteroidPattern != null ? _asteroidPattern.SpreadAngle : 0f;
+		float baseDirection = _asteroidPattern != null ? _asteroidPattern.Direction : 270f;
+		float normalizedAngle = (float)_rng.NextDouble();
+		float randomDirection = baseDirection - (spreadAngle / 2f) + (spreadAngle * normalizedAngle);
+
+		// 4. Calculate deterministic random visual rotation
+		float randomRotation = (float)(_rng.NextDouble() * 360f);
+
+		// 5. Fire using the BulletManager with overrides
+		BulletManager.Instance.FireAttack(_asteroidPattern, spawnPosition, speed, randomDirection, randomRotation);
 	}
 }

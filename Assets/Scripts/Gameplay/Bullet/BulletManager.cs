@@ -243,7 +243,13 @@ public class BulletManager : MonoSingleton<BulletManager>
 		}
 	}
 
-	public void FireAttack(AttackSO pattern, Vector2 origin, float speedOverride)
+	public void FireAttack(
+		AttackSO pattern,
+		Vector2 origin,
+		float speedOverride,
+		float? directionOverride = null,
+		float? rotationOverride = null
+	)
 	{
 		if (!pattern.BulletSO)
 		{
@@ -258,8 +264,8 @@ public class BulletManager : MonoSingleton<BulletManager>
 			_alphaBatches[pattern.BulletSO] = new List<float>(_maxBullets);
 		}
 
-		float startAngle = pattern.Direction;
-		if (pattern.TowardsPlayer && _playerTransform)
+		float startAngle = directionOverride ?? pattern.Direction;
+		if (pattern.TowardsPlayer && _playerTransform && !directionOverride.HasValue)
 		{
 			Vector2 dirToPlayer = (Vector2)_playerTransform.position - origin;
 			startAngle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * Mathf.Rad2Deg;
@@ -288,6 +294,7 @@ public class BulletManager : MonoSingleton<BulletManager>
 			_bullets[index].Velocity = velocity;
 			_bullets[index].Speed = speedOverride;
 			_bullets[index].RotateTowardsDirection = pattern.RotateTowardsDirection;
+			_bullets[index].InitialRotation = rotationOverride ?? 0f;
 			_bullets[index].HitRadius = pattern.BulletSO.HitboxRadius;
 			_bullets[index].Behavior = pattern.Behavior;
 			_bullets[index].TimeAlive = 0f;
@@ -340,7 +347,7 @@ public class BulletManager : MonoSingleton<BulletManager>
 
 	private void AddToRenderBatch(ref Bullet bullet, float alpha)
 	{
-		Quaternion targetRotation = Quaternion.identity;
+		Quaternion targetRotation = Quaternion.Euler(0f, 0f, bullet.InitialRotation);
 		if (bullet.RotateTowardsDirection)
 		{
 			float angle = Mathf.Atan2(bullet.Velocity.y, bullet.Velocity.x) * Mathf.Rad2Deg;
