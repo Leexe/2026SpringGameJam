@@ -50,12 +50,15 @@ public class PlayerVisuals : MonoBehaviour
 	{
 		InputManager.Instance.OnAnchorPerformed.AddListener(ShowCircle);
 		InputManager.Instance.OnAnchorReleased.AddListener(HideCircle);
-		_hitBoxRenderer.color *= new Color(1, 1, 1, 0);
 
 		if (_playerController != null)
 		{
 			_playerController.OnDie += PlayDeathAnimation;
 		}
+
+		GameManager.Instance.OnFadeInFinish.AddListener(PlayIdleAnimation);
+
+		_hitBoxRenderer.color *= new Color(1, 1, 1, 0);
 	}
 
 	private void OnDisable()
@@ -69,6 +72,11 @@ public class PlayerVisuals : MonoBehaviour
 		if (_playerController != null)
 		{
 			_playerController.OnDie -= PlayDeathAnimation;
+		}
+
+		if (GameManager.Instance)
+		{
+			GameManager.Instance.OnFadeInFinish.RemoveListener(PlayIdleAnimation);
 		}
 
 		_hitBoxTween.Stop();
@@ -135,5 +143,10 @@ public class PlayerVisuals : MonoBehaviour
 		{
 			_hitBoxTween = Tween.Alpha(_hitBoxRenderer, 0f, _circleTweenDuration);
 		}
+	}
+
+	private void PlayIdleAnimation()
+	{
+		_animancer.Play(_idleNoThrustAnim);
 	}
 }
