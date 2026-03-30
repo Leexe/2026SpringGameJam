@@ -821,6 +821,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1805712646018447955, guid: 5a79dbd64f9d04d3b9b6542238984488, type: 3}
+      propertyPath: <SecondsBeforeWarning>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5024962950807002626, guid: 5a79dbd64f9d04d3b9b6542238984488, type: 3}
       propertyPath: m_IncludeLayers.m_Bits
       value: 256
@@ -1091,37 +1095,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1720857714932899729, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
   m_PrefabInstance: {fileID: 681807725}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &823929996 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1322894894248199568, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
-  m_PrefabInstance: {fileID: 2210282353848476348}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &823929998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 823929996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57b7a739f8c742fd91537fb628b48fd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PopOutButtonUI
-  _maxSize: 1.1
-  _tweenDuration: 0.15
-  _ease: 27
-  _enableOscillation: 0
-  _minOscillateSize: 1.05
-  _oscillateDuration: 1.5
-  _hoverSound:
-    Guid:
-      Data1: 436086679
-      Data2: 1220093175
-      Data3: 313373371
-      Data4: 1027619517
-    Path: event:/SFX/Menu/Button Hover
-  _useUnscaledTime: 1
 --- !u!1 &843442185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,6 +1311,10 @@ PrefabInstance:
       propertyPath: _debugTimeDisplay
       value: 
       objectReference: {fileID: 1635383703}
+    - target: {fileID: 8882374545959850549, guid: 3f8216e7210a94b628101fc8e64a0bf2, type: 3}
+      propertyPath: <Player>k__BackingField
+      value: 
+      objectReference: {fileID: 507716035}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1685,17 +1662,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1395462421 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1482051896347541283, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
-  m_PrefabInstance: {fileID: 2210282353848476348}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad50f81b1d25c441943c37a89ba23f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Kybernetik.Animancer::Animancer.AnimancerComponent
 --- !u!114 &1395462422 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6607602981462718785, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
@@ -2819,14 +2785,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5531538806947998674, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
-      propertyPath: _transitionUI
-      value: 
-      objectReference: {fileID: 1395462422}
-    - target: {fileID: 5531538806947998674, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
-      propertyPath: _transitionAnimancer
-      value: 
-      objectReference: {fileID: 1395462421}
     - target: {fileID: 5535467997462345116, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
       propertyPath: m_Camera
       value: 
@@ -3015,6 +2973,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8468557931780326940, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: _warningColor.a
+      value: 0.19607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468557931780326940, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: _warningColor.g
+      value: 0.75368726
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468557931780326940, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: _warningColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468557931780326940, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: _warningColorLower
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468557931780326940, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: _warningPulseDuration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8661875440805070482, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3066,10 +3044,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1322894894248199568, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 823929998}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
 --- !u!1001 &3907365783205288794
 PrefabInstance:

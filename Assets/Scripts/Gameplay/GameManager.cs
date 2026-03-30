@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-	[Header("References")]
-	[SerializeField]
-	private PlayerController _player;
+	[field: Header("References")]
+	[field: SerializeField]
+	public PlayerController Player { get; private set; }
 
 	[SerializeField]
 	private BulletManager _bulletManager;
@@ -84,9 +84,9 @@ public class GameManager : MonoSingleton<GameManager>
 	{
 		OnPlayerDeath.AddListener(DisablePause);
 
-		_bulletManager.OnPlayerCollision += _player.DieFromHit;
-		_player.OnDie += TriggerPlayerDie;
-		_player.OnDeathAnimationFinished += PlayTransitionOut;
+		_bulletManager.OnPlayerCollision += Player.DieFromHit;
+		Player.OnDie += TriggerPlayerDie;
+		Player.OnDeathAnimationFinished += PlayTransitionOut;
 
 		InputManager.Instance.OnEscapePerformed.AddListener(TogglePause);
 
@@ -95,15 +95,15 @@ public class GameManager : MonoSingleton<GameManager>
 
 	private void OnDisable()
 	{
-		if (_player != null)
+		if (Player != null)
 		{
-			_player.OnDie -= TriggerPlayerDie;
-			_player.OnDeathAnimationFinished -= PlayTransitionOut;
+			Player.OnDie -= TriggerPlayerDie;
+			Player.OnDeathAnimationFinished -= PlayTransitionOut;
 		}
 
 		if (_bulletManager != null)
 		{
-			_bulletManager.OnPlayerCollision -= _player.DieFromHit;
+			_bulletManager.OnPlayerCollision -= Player.DieFromHit;
 		}
 
 		if (InputManager.Instance != null)
@@ -133,7 +133,7 @@ public class GameManager : MonoSingleton<GameManager>
 		{
 			GameTime += Time.fixedDeltaTime;
 
-			if (_phase < _maxPhase && _player.RepairSecondsLeft == 0f && !_player.IsBuffering)
+			if (_phase < _maxPhase && Player.RepairSecondsLeft == 0f && !Player.IsBuffering)
 			{
 				_phase++;
 				OnIncrementPhase?.Invoke(_phase);
@@ -144,14 +144,14 @@ public class GameManager : MonoSingleton<GameManager>
 				}
 				else
 				{
-					_player.StartBuffer(_timeBetweenPhases);
+					Player.StartBuffer(_timeBetweenPhases);
 				}
 			}
 		}
 		else
 		{
 			// pre game
-			if (_player.RepairSecondsLeft == 0f)
+			if (Player.RepairSecondsLeft == 0f)
 			{
 				BeginSequence();
 			}
@@ -171,7 +171,7 @@ public class GameManager : MonoSingleton<GameManager>
 			ResumeGame();
 		}
 
-		_player.Respawn();
+		Player.Respawn();
 		if (BulletManager.Instance != null)
 		{
 			BulletManager.Instance.ClearAllBullets();
@@ -190,16 +190,16 @@ public class GameManager : MonoSingleton<GameManager>
 	// player must repair to start game. this sets that up
 	private void InitPreSequence()
 	{
-		_player.DisableInstability = true;
-		_player.ResetRepairProgress(3f, 10f);
+		Player.DisableInstability = true;
+		Player.ResetRepairProgress(3f, 10);
 	}
 
 	// this starts the game
 	private void BeginSequence()
 	{
 		GameTime = 0f;
-		_player.DisableInstability = false;
-		_player.StartBuffer(_timeBetweenPhases);
+		Player.DisableInstability = false;
+		Player.StartBuffer(_timeBetweenPhases);
 		OnIncrementPhase?.Invoke(_phase);
 
 		StartDirector();

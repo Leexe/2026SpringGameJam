@@ -1,5 +1,6 @@
 using System;
 using Animancer;
+using FMOD.Studio;
 using Sirenix.OdinInspector;
 using Unity.AppUI.UI;
 using UnityEngine;
@@ -26,6 +27,12 @@ public class PlayerController : MonoBehaviour
 	[field: SerializeField, Tooltip("Time it takes for Instability to go from 0 to 1")]
 	public float SecondsToDie { get; private set; } = 30f;
 
+	[field:
+		SerializeField,
+		Tooltip("Triggers the warning alarm when Instability is this many seconds away from overtaking Repair")
+	]
+	public float SecondsBeforeWarning { get; private set; } = 3f;
+
 	[Header("Layers")]
 	[SerializeField]
 	private LayerMask _enemyLayer;
@@ -36,10 +43,13 @@ public class PlayerController : MonoBehaviour
 	public event Action OnDeathAnimationFinished;
 	public event Action<float> OnRepairProgressChanged; // secs, max
 	public event Action<float> OnInstabilityProgressChanged; // secs, max;
+	public event Action OnWarningStart;
+	public event Action OnWarningEnd;
 	public event Action OnRepairFilledUp;
 
 	private bool _isRepairInputHeld;
 	private Vector2 _movementInput;
+	private bool _isWarning;
 
 	public bool DisableInstability { get; set; } = false;
 
@@ -59,6 +69,8 @@ public class PlayerController : MonoBehaviour
 	public float DieSecondsLeft { get; private set; }
 
 	private Vector2 _startPosition;
+
+	private EventInstance _warningSfx;
 
 	/** Unity Messages **/
 
@@ -90,6 +102,7 @@ public class PlayerController : MonoBehaviour
 		_startPosition = transform.position;
 		_defaultSecondsToRepair = SecondsToRepair;
 		_defaultSecondsToDie = SecondsToDie;
+		_warningSfx = AudioManager.Instance.CreateInstance(FMODEvents.Instance.Warning_LoopSFX);
 	}
 
 	private void FixedUpdate()
@@ -154,6 +167,13 @@ public class PlayerController : MonoBehaviour
 		SecondsToRepair = _defaultSecondsToRepair;
 		SecondsToDie = _defaultSecondsToDie;
 
+		if (_isWarning)
+		{
+			OnWarningEnd?.Invoke();
+			AudioManager.Instance.StopInstance(_warningSfx);
+			_isWarning = false;
+		}
+
 		CanRepair = false;
 		IsBuffering = true;
 		_bufferDuration = fillDuration;
@@ -216,6 +236,26 @@ public class PlayerController : MonoBehaviour
 			if (!DisableInstability && RepairSecondsLeft > 0f)
 			{
 				DieSecondsLeft = Mathf.Max(0f, DieSecondsLeft - dt);
+			}
+
+			float timeUntilFailure = DieSecondsLeft - RepairSecondsLeft;
+			if (IsAlive && timeUntilFailure >= 0f && timeUntilFailure <= SecondsBeforeWarning)
+			{
+				if (!_isWarning)
+				{
+					OnWarningStart?.Invoke();
+					AudioManager.Instance.PlayInstanceAtStart(_warningSfx);
+					_isWarning = true;
+				}
+			}
+			else
+			{
+				if (_isWarning)
+				{
+					OnWarningEnd?.Invoke();
+					AudioManager.Instance.StopInstance(_warningSfx);
+					_isWarning = false;
+				}
 			}
 
 			if (DieSecondsLeft < RepairSecondsLeft)
