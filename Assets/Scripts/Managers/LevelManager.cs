@@ -13,6 +13,9 @@ public class LevelManager : PersistentMonoSingleton<LevelManager>
 		Game,
 	}
 
+	[SerializeField]
+	private bool _debugMessages;
+
 	// Events
 	[HideInInspector]
 	public UnityEvent OnGamePaused;
@@ -113,11 +116,18 @@ public class LevelManager : PersistentMonoSingleton<LevelManager>
 			while (!_asyncOperation.isDone)
 			{
 				float progress = Mathf.Clamp01(_asyncOperation.progress / 0.9f);
-				Debug.Log("Loading progress: " + (progress * 100) + "%");
+				if (_debugMessages)
+				{
+					Debug.Log("Loading progress: " + (progress * 100) + "%");
+				}
 
 				if (_asyncOperation.progress >= 0.9f)
 				{
-					Debug.Log("Scene fully preloaded");
+					if (_debugMessages)
+					{
+						Debug.Log("Scene fully preloaded");
+					}
+
 					OnSceneReady?.Invoke();
 					break;
 				}
