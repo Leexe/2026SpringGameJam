@@ -91,7 +91,6 @@ public class GameManager : MonoSingleton<GameManager>
 		InputManager.Instance.OnEscapePerformed.AddListener(TogglePause);
 
 		LevelManager.Instance.OnSceneReady.AddListener(TriggerSceneReady);
-		LevelManager.Instance.OnSceneReady.AddListener(FadeIn);
 	}
 
 	private void OnDisable()
@@ -115,13 +114,14 @@ public class GameManager : MonoSingleton<GameManager>
 		if (LevelManager.Instance != null)
 		{
 			LevelManager.Instance.OnSceneReady.RemoveListener(TriggerSceneReady);
-			LevelManager.Instance.OnSceneReady.RemoveListener(FadeIn);
 		}
 	}
 
 	private void Start()
 	{
 		CanPause = false;
+		CanPause = true;
+		StartAmbience();
 		InitPreSequence();
 		HideCursor();
 		FadeIn();

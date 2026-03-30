@@ -29,7 +29,10 @@ public class TransitionUI : MonoBehaviour
 		state.Events(this).OnEnd = () =>
 		{
 			state.Stop();
-			onEnd?.Invoke();
+			if (onEnd != null)
+			{
+				Tween.Delay(0f, onEnd, useUnscaledTime: true);
+			}
 		};
 	}
 
@@ -46,7 +49,10 @@ public class TransitionUI : MonoBehaviour
 				fadeOutState.Events(this).OnEnd = () =>
 				{
 					fadeOutState.Stop();
-					onEnd?.Invoke();
+					if (onEnd != null)
+					{
+						Tween.Delay(0f, onEnd, useUnscaledTime: true);
+					}
 				};
 			},
 			useUnscaledTime: true

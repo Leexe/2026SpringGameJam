@@ -447,6 +447,7 @@ GameObject:
   m_Component:
   - component: {fileID: 314318092}
   - component: {fileID: 314318093}
+  - component: {fileID: 314318094}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -531,6 +532,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &314318094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314318091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b7a739f8c742fd91537fb628b48fd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PopOutButtonUI
+  _maxSize: 1.1
+  _tweenDuration: 0.15
+  _ease: 27
+  _enableOscillation: 0
+  _minOscillateSize: 1.05
+  _oscillateDuration: 1.5
+  _hoverSound:
+    Guid:
+      Data1: 436086679
+      Data2: 1220093175
+      Data3: 313373371
+      Data4: 1027619517
+    Path: event:/SFX/Menu/Button Hover
+  _useUnscaledTime: 0
 --- !u!1 &321197631
 GameObject:
   m_ObjectHideFlags: 0
@@ -1095,6 +1122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 939153375}
   - component: {fileID: 939153376}
+  - component: {fileID: 939153377}
   m_Layer: 5
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -1179,6 +1207,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &939153377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939153374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b7a739f8c742fd91537fb628b48fd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PopOutButtonUI
+  _maxSize: 1.1
+  _tweenDuration: 0.15
+  _ease: 27
+  _enableOscillation: 0
+  _minOscillateSize: 1.05
+  _oscillateDuration: 1.5
+  _hoverSound:
+    Guid:
+      Data1: 436086679
+      Data2: 1220093175
+      Data3: 313373371
+      Data4: 1027619517
+    Path: event:/SFX/Menu/Button Hover
+  _useUnscaledTime: 0
 --- !u!1 &986809338
 GameObject:
   m_ObjectHideFlags: 0
