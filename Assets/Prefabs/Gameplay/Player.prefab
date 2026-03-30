@@ -248,7 +248,7 @@ MonoBehaviour:
   _rightNoThrustAnim: {fileID: 7400000, guid: 36c043e466b1104498bf1a79a486a5bc, type: 2}
   _coreDeathAnim: {fileID: 7400000, guid: 03ecbadf323be114cb8658c7ecbec077, type: 2}
   _hitDeathAnim: {fileID: 7400000, guid: 84150af30d55e8d4085072eeb45e7898, type: 2}
-  _winAnim: {fileID: 7400000, guid: 583dd1d177ef4e8428278f011cb149d3, type: 2}
+  _winAnim: {fileID: 7400000, guid: d9a5accc71781cd4b9b1d075ffc4d272, type: 2}
   _circleTweenDuration: 0.2
 --- !u!50 &5024962950807002626
 Rigidbody2D:

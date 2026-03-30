@@ -49,6 +49,7 @@ public class TopTextUI : MonoBehaviour
 	{
 		_fadeTween.Stop();
 		_canvasGroup.alpha = 1f;
+		_typewriter.ShowText("");
 		if (_sequenceIndex < _sequenceTexts.Count)
 		{
 			_typewriter.ShowText(_sequenceTexts[_sequenceIndex++]);

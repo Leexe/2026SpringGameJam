@@ -1,3 +1,4 @@
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -9,13 +10,38 @@ public class AsteroidAttack : MonoBehaviour
 	private AttackSO _asteroidPattern;
 
 	[SerializeField]
-	private float _asteroidsPerSecond = 5f;
+	private float _asteroidsPerSecondEasy = 5f;
 
 	[SerializeField]
-	private float _minSpeed = 5f;
+	private float _asteroidsPerSecondHard = 10f;
 
 	[SerializeField]
-	private float _maxSpeed = 10f;
+	private float _minSpeedEasy = 5f;
+
+	[SerializeField]
+	private float _maxSpeedEasy = 10f;
+
+	[SerializeField]
+	private float _minSpeedHard = 5f;
+
+	[SerializeField]
+	private float _maxSpeedHard = 10f;
+
+	[SerializeField, Range(0f, 1f)]
+	private float _intensity = 0f;
+
+	[SerializeField]
+	private bool _isAttacking;
+
+	public float Intensity
+	{
+		get => _intensity;
+		set => _intensity = Mathf.Clamp01(value);
+	}
+
+	private float _asteroidsPerSecond => Mathf.Lerp(_asteroidsPerSecondEasy, _asteroidsPerSecondHard, _intensity);
+	private float _minSpeed => Mathf.Lerp(_minSpeedEasy, _minSpeedHard, _intensity);
+	private float _maxSpeed => Mathf.Lerp(_maxSpeedEasy, _maxSpeedHard, _intensity);
 
 	[Header("Spawn Layout")]
 	[SerializeField, Tooltip("The Y coordinate above the camera to spawn asteroids")]
@@ -30,7 +56,6 @@ public class AsteroidAttack : MonoBehaviour
 
 	private System.Random _rng;
 	private float _spawnTimer;
-	private bool _isAttacking;
 
 	private void Awake()
 	{

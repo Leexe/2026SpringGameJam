@@ -244,6 +244,8 @@ PlayableDirector:
     value: {fileID: 788727582}
   - key: {fileID: 2929989777163080747, guid: 9d4dbc5b1cc824804bdf22394427a176, type: 2}
     value: {fileID: 2210282353848476352}
+  - key: {fileID: 7758347978786414230, guid: 9d4dbc5b1cc824804bdf22394427a176, type: 2}
+    value: {fileID: 1215932455}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &44141023
@@ -921,6 +923,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7854746886439013998, guid: 5a79dbd64f9d04d3b9b6542238984488, type: 3}
+      propertyPath: _winAnim
+      value: 
+      objectReference: {fileID: 7400000, guid: d9a5accc71781cd4b9b1d075ffc4d272, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1505,6 +1511,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 868464616}
+  - component: {fileID: 868464617}
   m_Layer: 5
   m_Name: TutorialGraphic
   m_TagString: Untagged
@@ -1532,6 +1539,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &868464617
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868464615}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &916956537
 GameObject:
   m_ObjectHideFlags: 0
@@ -2107,6 +2126,7 @@ GameObject:
   - component: {fileID: 1153240096}
   - component: {fileID: 1153240095}
   - component: {fileID: 1153240094}
+  - component: {fileID: 1153240097}
   m_Layer: 0
   m_Name: TutorialText
   m_TagString: Untagged
@@ -2197,6 +2217,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: -1
   m_TargetDisplay: 0
+--- !u!114 &1153240097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153240092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4f585768ede4ea7bf94fee20557bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _canvas: {fileID: 868464617}
+  _fadeDuration: 3.5
 --- !u!1 &1185188300
 GameObject:
   m_ObjectHideFlags: 0
@@ -2323,6 +2357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1215932453}
   - component: {fileID: 1215932454}
+  - component: {fileID: 1215932455}
   m_Layer: 0
   m_Name: AstroidAttack
   m_TagString: Untagged
@@ -2358,12 +2393,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeteorAttack
   _asteroidPattern: {fileID: 11400000, guid: 598ff10ecd22c4f83aee53a71949cbda, type: 2}
-  _asteroidsPerSecond: 5
-  _minSpeed: 5
-  _maxSpeed: 10
+  _asteroidsPerSecondEasy: 5
+  _asteroidsPerSecondHard: 10
+  _minSpeedEasy: 3
+  _maxSpeedEasy: 9
+  _minSpeedHard: 1
+  _maxSpeedHard: 9
+  _intensity: 0
+  _isAttacking: 0
   _spawnYPlane: 20
   _spawnXRange: 25
   _seed: 2034
+--- !u!95 &1215932455
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215932452}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1230480167 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7429625483698411024, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
@@ -4062,6 +4124,34 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1804997530}
+    - target: {fileID: 5755186692049785956, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: _sequenceTexts.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5755186692049785956, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: '_sequenceTexts.Array.data[0]'
+      value: 'PHASE 0: INITIALIZATION'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5755186692049785956, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: '_sequenceTexts.Array.data[1]'
+      value: 'PHASE 1: FINDING DESTINATION VECTOR'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5755186692049785956, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: '_sequenceTexts.Array.data[2]'
+      value: 'PHASE 2: OPTIMIZING ROUTE'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5755186692049785956, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: '_sequenceTexts.Array.data[3]'
+      value: 'PHASE 3: ALLOCATING FUEL RESERVES'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5755186692049785956, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: '_sequenceTexts.Array.data[4]'
+      value: 'PHASE 4: ENCRYPTING JUMP DESTINATION'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5755186692049785956, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: '_sequenceTexts.Array.data[5]'
+      value: 'PHASE 5: LIGHTSPEED WARP '
+      objectReference: {fileID: 0}
     - target: {fileID: 6232943238883681415, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 1

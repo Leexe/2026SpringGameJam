@@ -213,7 +213,6 @@ public class GameManager : MonoSingleton<GameManager>
 		GameTime = 0f;
 		Player.DisableInstability = false;
 		Player.StartBuffer(_timeBetweenPhases);
-		OnIncrementPhase?.Invoke(_phase);
 		AudioManager.Instance.StopMusic();
 
 		StartDirector();
