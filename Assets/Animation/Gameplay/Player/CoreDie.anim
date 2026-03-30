@@ -103,6 +103,15 @@ AnimationClip:
     classID: 212
     script: {fileID: 0}
     flags: 2
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: 0}
+    attribute: m_Sprite
+    path: WarpAnimation
+    classID: 212
+    script: {fileID: 0}
+    flags: 2
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -146,6 +155,15 @@ AnimationClip:
       isPPtrCurve: 1
       isIntCurve: 0
       isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 1909926839
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     pptrCurveMapping:
     - {fileID: -189200311, guid: dcaefa71c76ea6542870f3902b72a6f5, type: 3}
     - {fileID: 0}
@@ -156,6 +174,7 @@ AnimationClip:
     - {fileID: -984448962188721617, guid: 5b72de0e7e01a244f814e5ea05f02a3d, type: 3}
     - {fileID: -6069745829201654516, guid: 5b72de0e7e01a244f814e5ea05f02a3d, type: 3}
     - {fileID: 3260670491443750270, guid: 5b72de0e7e01a244f814e5ea05f02a3d, type: 3}
+    - {fileID: 0}
     - {fileID: 0}
   m_AnimationClipSettings:
     serializedVersion: 2
