@@ -17,10 +17,10 @@ public class PlayerController : MonoBehaviour
 	[SerializeField]
 	private float _baseMoveSpeed = 7f;
 
+	[Header("Parameters - Repair")]
 	[SerializeField]
 	private float _repairSpeedMult = 0.5f;
 
-	[Header("Parameters - Repair")]
 	[field: SerializeField, Tooltip("Time it takes to finish repairs")]
 	public float SecondsToRepair { get; private set; } = 12f;
 
