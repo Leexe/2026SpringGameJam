@@ -16,6 +16,9 @@ public class PlayerVisuals : MonoBehaviour
 	private VisualEffect _vfx;
 
 	[SerializeField]
+	private ShockwaveController _shockwave;
+
+	[SerializeField]
 	private AnimancerComponent _animancer;
 
 	[Header("Animations")]
@@ -208,5 +211,6 @@ public class PlayerVisuals : MonoBehaviour
 	private void PlayFullyRepairedVFX()
 	{
 		_vfx.SendEvent("OnFullyRepaired");
+		_shockwave.Pulse();
 	}
 }
