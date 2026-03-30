@@ -1091,6 +1091,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1720857714932899729, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
   m_PrefabInstance: {fileID: 681807725}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &823929996 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1322894894248199568, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+  m_PrefabInstance: {fileID: 2210282353848476348}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &823929998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823929996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b7a739f8c742fd91537fb628b48fd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PopOutButtonUI
+  _maxSize: 1.1
+  _tweenDuration: 0.15
+  _ease: 27
+  _enableOscillation: 0
+  _minOscillateSize: 1.05
+  _oscillateDuration: 1.5
+  _hoverSound:
+    Guid:
+      Data1: 436086679
+      Data2: 1220093175
+      Data3: 313373371
+      Data4: 1027619517
+    Path: event:/SFX/Menu/Button Hover
+  _useUnscaledTime: 1
 --- !u!1 &843442185
 GameObject:
   m_ObjectHideFlags: 0
@@ -3035,7 +3066,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1322894894248199568, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 823929998}
   m_SourcePrefab: {fileID: 100100000, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
 --- !u!1001 &3907365783205288794
 PrefabInstance:
