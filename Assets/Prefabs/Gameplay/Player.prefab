@@ -174,8 +174,8 @@ GameObject:
   - component: {fileID: 5024962950807002626}
   - component: {fileID: 7980070845480148150}
   - component: {fileID: 4301070318209885038}
-  - component: {fileID: 1591075091820644853}
-  - component: {fileID: 1960582890449258750}
+  - component: {fileID: 6725069434500255325}
+  - component: {fileID: 6850944622953922375}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   _playerController: {fileID: 1805712646018447955}
   _hitBoxRenderer: {fileID: 2143798013073103645}
-  _vfx: {fileID: 1591075091820644853}
+  _vfx: {fileID: 6725069434500255325}
   _shockwave: {fileID: 6697337937571690989}
   _animancer: {fileID: 7980070845480148150}
   _idleThrustAnim: {fileID: 7400000, guid: 4e00a8d94169c0f4daf081b3d00908f7, type: 2}
@@ -314,7 +314,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!2083052967 &1591075091820644853
+--- !u!2083052967 &6725069434500255325
 VisualEffect:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -352,7 +352,7 @@ VisualEffect:
       m_Array: []
     m_Bool:
       m_Array: []
---- !u!73398921 &1960582890449258750
+--- !u!73398921 &6850944622953922375
 VFXRenderer:
   serializedVersion: 1
   m_ObjectHideFlags: 0
@@ -668,7 +668,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
