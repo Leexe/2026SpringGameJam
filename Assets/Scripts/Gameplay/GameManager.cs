@@ -175,8 +175,10 @@ public class GameManager : MonoSingleton<GameManager>
 			BulletManager.Instance.ClearAllBullets();
 		}
 
+		_enemyDirector.Play();
 		_enemyDirector.time = 0;
 		_enemyDirector.Evaluate();
+		_enemyDirector.Pause();
 
 		InitPreSequence();
 		OnGameRestart?.Invoke();
@@ -213,14 +215,10 @@ public class GameManager : MonoSingleton<GameManager>
 	{
 		OnPlayerDeath?.Invoke();
 
-		if (_enemyDirector)
-		{
-			StopDirector();
-		}
-
 		_transitionUI.PlayTransitionOut(() =>
 		{
 			OnFadeOutFinish?.Invoke();
+			PauseDirector();
 			RestartGame();
 		});
 	}
@@ -249,6 +247,11 @@ public class GameManager : MonoSingleton<GameManager>
 	private void StopDirector()
 	{
 		_enemyDirector.Stop();
+	}
+
+	private void PauseDirector()
+	{
+		_enemyDirector.Pause();
 	}
 
 	private void StartDirector()
