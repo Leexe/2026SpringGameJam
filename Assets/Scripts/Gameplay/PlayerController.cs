@@ -144,7 +144,10 @@ public class PlayerController : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (HasWon) return;
+		if (HasWon)
+		{
+			return;
+		}
 
 		if (((1 << other.gameObject.layer) & _enemyLayer) != 0)
 		{
@@ -187,7 +190,7 @@ public class PlayerController : MonoBehaviour
 
 	private void OnGameResume()
 	{
-		if (_isWarning && _warningSfx.isValid() && AudioManager.Instance != null)
+		if (_isWarning && _warningSfx.isValid())
 		{
 			AudioManager.Instance.PlayInstance(_warningSfx);
 		}
@@ -195,10 +198,12 @@ public class PlayerController : MonoBehaviour
 
 	private void TriggerWin()
 	{
-		if (!IsAlive || HasWon) return;
+		if (!IsAlive || HasWon)
+		{
+			return;
+		}
 		HasWon = true;
 
-		// Lock movements immediately manually as a precaution
 		Rb.linearVelocity = Vector2.zero;
 
 		OnWin?.Invoke();
