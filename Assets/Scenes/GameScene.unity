@@ -2938,11 +2938,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!4 &1614356338 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8115887077513006736, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
-  m_PrefabInstance: {fileID: 7910538195316627082}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1635383703 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4324075228598679348, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
@@ -4536,36 +4531,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainRedShipEnemy
       objectReference: {fileID: 0}
-    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
-      propertyPath: _patterns.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
-      propertyPath: '_patterns.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 0fe364953a36c471eaea29339acc0f89, type: 2}
-    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
-      propertyPath: '_patterns.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: db258371ad8184a1cba8eb9051c8f182, type: 2}
-    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
-      propertyPath: '_patterns.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: bf848bd224c024d628ec7e8f8fb71988, type: 2}
-    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
-      propertyPath: '_patterns.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 1291dab0a64724d8cbeb2787983269c3, type: 2}
-    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
-      propertyPath: '_patterns.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 14fdfdac3199542de9bd2620e747115f, type: 2}
-    - target: {fileID: 5197261130534541929, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
-      propertyPath: '_patterns.Array.data[5]'
-      value: 
-      objectReference: {fileID: 11400000, guid: db258371ad8184a1cba8eb9051c8f182, type: 2}
-    m_RemovedComponents:
-    - {fileID: 945132728260446022, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4578,62 +4544,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3723271914086770985, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
-      propertyPath: m_Size.x
-      value: 2.57
-      objectReference: {fileID: 0}
-    - target: {fileID: 3723271914086770985, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
-      propertyPath: m_Size.y
-      value: 2.16
-      objectReference: {fileID: 0}
-    - target: {fileID: 3723271914086770985, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -6961174303512028263, guid: fbec71aa58e774c46afc102715b3fac2, type: 3}
-    - target: {fileID: 3723271914086770985, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3920182549128952105, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3920182549128952105, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
-      propertyPath: _patterns.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3920182549128952105, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
-      propertyPath: '_patterns.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: c4035e16fa5324893a0492873ba06905, type: 2}
-    - target: {fileID: 3920182549128952105, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
-      propertyPath: '_patterns.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 4a0b8022e4d944c6aae51116d79aa5b0, type: 2}
-    - target: {fileID: 3920182549128952105, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
-      propertyPath: '_patterns.Array.data[2]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3920182549128952105, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
-      propertyPath: '_patterns.Array.data[3]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3920182549128952105, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
-      propertyPath: _shootPoints.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3920182549128952105, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
-      propertyPath: '_shootPoints.Array.data[0]'
-      value: 
-      objectReference: {fileID: 1614356338}
-    - target: {fileID: 3920182549128952105, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
-      propertyPath: '_shootPoints.Array.data[1]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6682108821087630326, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 9102471899389594803, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
       propertyPath: m_Name
       value: AlienShipEnemy
@@ -4644,7 +4554,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9153059343528566294, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.21
+      value: 18.46
       objectReference: {fileID: 0}
     - target: {fileID: 9153059343528566294, guid: 6f139b6a6b8a84f0e8ab25dd4a2500e2, type: 3}
       propertyPath: m_LocalPosition.z
