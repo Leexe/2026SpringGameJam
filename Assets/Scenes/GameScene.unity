@@ -301,6 +301,7 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: cd4389fef38184c6dbf5b440b5520091, type: 2}
     - {fileID: 11400000, guid: 2d32bfbc57106467797589c321fb73fa, type: 2}
+    - {fileID: 11400000, guid: 1fe299bac630c45ea81cf851e4697fd2, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -321,6 +322,20 @@ MonoBehaviour:
         - m_Target: {fileID: 1054779673}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
           m_MethodName: IncrementPhase
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1054779673}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: TriggerWinScreenShow
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3619,7 +3634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WinScreenUI
   _canvasGroup: {fileID: 1969193133}
-  _tweenDuration: 1
+  _tweenDuration: 3
 --- !u!1001 &1995974569
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -3071,6 +3071,7 @@ MonoBehaviour:
     - {fileID: -8488499193533155887}
     - {fileID: -3822479944544648653}
     - {fileID: -5380182286877077073}
+    - {fileID: 406379916837172346}
 --- !u!114 &-5380182286877077073
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3083,7 +3084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: End
   m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalEmitter
-  m_Time: 140.23333333333332
+  m_Time: 138.28333333333333
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 2d32bfbc57106467797589c321fb73fa, type: 2}
@@ -3364,8 +3365,17 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 137.23334
+        time: 133.98334
         value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 135.88333
+        value: 0
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -3976,8 +3986,17 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 137.23334
+        time: 133.98334
         value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 135.88333
+        value: 0
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -4158,7 +4177,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 148.26666
+        time: 128.31667
         value: 0
         inSlope: 0
         outSlope: 0
@@ -4206,7 +4225,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 148.26666
+        time: 128.31667
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -4215,7 +4234,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 151.08333
+        time: 136.1
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -4263,7 +4282,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 151.08333
+    m_StopTime: 136.1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -4311,7 +4330,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 148.26666
+        time: 128.31667
         value: 0
         inSlope: 0
         outSlope: 0
@@ -4359,7 +4378,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 148.26666
+        time: 128.31667
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -4368,7 +4387,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 151.08333
+        time: 136.1
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -4547,6 +4566,22 @@ MonoBehaviour:
   m_Clips: []
   m_Markers:
     m_Objects: []
+--- !u!114 &406379916837172346
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: End
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalEmitter
+  m_Time: 146.86666666666667
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 1fe299bac630c45ea81cf851e4697fd2, type: 2}
 --- !u!114 &1041705582007198704
 MonoBehaviour:
   m_ObjectHideFlags: 1

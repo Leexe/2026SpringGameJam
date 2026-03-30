@@ -13,6 +13,9 @@ public class MainMenuController : MonoBehaviour
 	[SerializeField]
 	private CanvasGroup _creditsCanvas;
 
+	[SerializeField]
+	private SettingsMenuUI _settingsMenuUI;
+
 	[Header("Animation Clips")]
 	[SerializeField]
 	private AnimationClip _creditsClip;
@@ -72,7 +75,10 @@ public class MainMenuController : MonoBehaviour
 
 	public void SettingsButton()
 	{
-		if (_canPressButtons) { }
+		if (_canPressButtons)
+		{
+			_settingsMenuUI.OpenSettings();
+		}
 	}
 
 	/* Animation Functions */

@@ -1,4 +1,3 @@
-using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -28,7 +27,7 @@ public class AsteroidAttack : MonoBehaviour
 	private float _maxSpeedHard = 10f;
 
 	[SerializeField, Range(0f, 1f)]
-	private float _intensity = 0f;
+	private float _intensity;
 
 	[SerializeField]
 	private bool _isAttacking;
@@ -39,9 +38,9 @@ public class AsteroidAttack : MonoBehaviour
 		set => _intensity = Mathf.Clamp01(value);
 	}
 
-	private float _asteroidsPerSecond => Mathf.Lerp(_asteroidsPerSecondEasy, _asteroidsPerSecondHard, _intensity);
-	private float _minSpeed => Mathf.Lerp(_minSpeedEasy, _minSpeedHard, _intensity);
-	private float _maxSpeed => Mathf.Lerp(_maxSpeedEasy, _maxSpeedHard, _intensity);
+	private float AsteroidsPerSecond => Mathf.Lerp(_asteroidsPerSecondEasy, _asteroidsPerSecondHard, _intensity);
+	private float MinSpeed => Mathf.Lerp(_minSpeedEasy, _minSpeedHard, _intensity);
+	private float MaxSpeed => Mathf.Lerp(_maxSpeedEasy, _maxSpeedHard, _intensity);
 
 	[Header("Spawn Layout")]
 	[SerializeField, Tooltip("The Y coordinate above the camera to spawn asteroids")]
@@ -105,12 +104,12 @@ public class AsteroidAttack : MonoBehaviour
 			return;
 		}
 
-		if (_asteroidsPerSecond <= 0)
+		if (AsteroidsPerSecond <= 0)
 		{
 			return;
 		}
 
-		float interval = 1f / _asteroidsPerSecond;
+		float interval = 1f / AsteroidsPerSecond;
 		_spawnTimer += Time.deltaTime;
 
 		while (_spawnTimer >= interval)
@@ -125,11 +124,11 @@ public class AsteroidAttack : MonoBehaviour
 		// 1. Calculate deterministic random X position
 		float normalizedX = (float)_rng.NextDouble(); // Returns 0.0 to 1.0
 		float spawnX = Mathf.Lerp(-_spawnXRange, _spawnXRange, normalizedX);
-		Vector2 spawnPosition = new Vector2(spawnX, _spawnYPlane);
+		var spawnPosition = new Vector2(spawnX, _spawnYPlane);
 
 		// 2. Calculate deterministic random speed
 		float normalizedSpeed = (float)_rng.NextDouble();
-		float speed = Mathf.Lerp(_minSpeed, _maxSpeed, normalizedSpeed);
+		float speed = Mathf.Lerp(MinSpeed, MaxSpeed, normalizedSpeed);
 
 		// 3. Calculate deterministic random direction based on the spread angle
 		float spreadAngle = _asteroidPattern != null ? _asteroidPattern.SpreadAngle : 0f;

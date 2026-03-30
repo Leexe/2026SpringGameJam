@@ -44,9 +44,6 @@ public class GameManager : MonoSingleton<GameManager>
 	public UnityEvent OnGameRestart;
 
 	[HideInInspector]
-	public UnityEvent OnGameLose;
-
-	[HideInInspector]
 	public UnityEvent OnGameWin;
 
 	[HideInInspector]
@@ -188,6 +185,11 @@ public class GameManager : MonoSingleton<GameManager>
 	{
 		_phase++;
 		OnIncrementPhase?.Invoke(_phase);
+
+		if (_phase >= _maxPhase)
+		{
+			OnGameWin?.Invoke();
+		}
 	}
 
 	/** Private Methods **/
