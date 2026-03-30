@@ -190,7 +190,7 @@ Transform:
   m_GameObject: {fileID: 5085836571811655066}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.522, y: -0.509, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -236,6 +236,7 @@ MonoBehaviour:
   _playerController: {fileID: 1805712646018447955}
   _hitBoxRenderer: {fileID: 2143798013073103645}
   _vfx: {fileID: 8336751167030579532}
+  _shockwave: {fileID: 6697337937571690989}
   _animancer: {fileID: 7980070845480148150}
   _idleThrustAnim: {fileID: 7400000, guid: 4e00a8d94169c0f4daf081b3d00908f7, type: 2}
   _leftThrustAnim: {fileID: 7400000, guid: 60a05f474be9d1b43b8b9ed7dc453942, type: 2}
@@ -522,7 +523,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1259293052667989472}
   m_Father: {fileID: 5284281594869341120}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!2083052967 &8336751167030579532
@@ -610,3 +612,76 @@ VFXRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
+--- !u!1001 &3217405030921993923
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4187545808449237334}
+    m_Modifications:
+    - target: {fileID: 4458401488545018659, guid: 905659fec2b1a40b2887336709efb3ed, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458401488545018659, guid: 905659fec2b1a40b2887336709efb3ed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458401488545018659, guid: 905659fec2b1a40b2887336709efb3ed, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458401488545018659, guid: 905659fec2b1a40b2887336709efb3ed, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458401488545018659, guid: 905659fec2b1a40b2887336709efb3ed, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458401488545018659, guid: 905659fec2b1a40b2887336709efb3ed, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458401488545018659, guid: 905659fec2b1a40b2887336709efb3ed, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458401488545018659, guid: 905659fec2b1a40b2887336709efb3ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458401488545018659, guid: 905659fec2b1a40b2887336709efb3ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458401488545018659, guid: 905659fec2b1a40b2887336709efb3ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7801359210062051574, guid: 905659fec2b1a40b2887336709efb3ed, type: 3}
+      propertyPath: m_Name
+      value: Shockwave
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 905659fec2b1a40b2887336709efb3ed, type: 3}
+--- !u!4 &1259293052667989472 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4458401488545018659, guid: 905659fec2b1a40b2887336709efb3ed, type: 3}
+  m_PrefabInstance: {fileID: 3217405030921993923}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6697337937571690989 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8095006522349569838, guid: 905659fec2b1a40b2887336709efb3ed, type: 3}
+  m_PrefabInstance: {fileID: 3217405030921993923}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e11d50ee9e53744d7968e1d539462dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShockwaveController
