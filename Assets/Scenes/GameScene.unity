@@ -2924,6 +2924,23 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1533559418 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6215858136202436650, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+  m_PrefabInstance: {fileID: 2210282353848476348}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &1533559421
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533559418}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1591208955
 GameObject:
   m_ObjectHideFlags: 0
@@ -4078,6 +4095,14 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1886503559486195520, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019216996428093831, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: m_Color.a
+      value: 0.70980394
+      objectReference: {fileID: 0}
     - target: {fileID: 2276168265413952758, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4190,6 +4215,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1804997530}
+    - target: {fileID: 5576766158725421762, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5755186692049785956, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
       propertyPath: _sequenceTexts.Array.size
       value: 6
@@ -4550,6 +4579,10 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 507716035}
+    - target: {fileID: 9004784509259531337, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      propertyPath: _canvasGroup
+      value: 
+      objectReference: {fileID: 1533559421}
     - target: {fileID: 9098517172239657765, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4566,6 +4599,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6215858136202436650, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1533559421}
     - targetCorrespondingSourceObject: {fileID: 9032638183510645583, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1969193134}

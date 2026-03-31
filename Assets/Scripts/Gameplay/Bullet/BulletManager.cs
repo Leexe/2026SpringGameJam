@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class BulletManager : MonoSingleton<BulletManager>
 {
@@ -347,7 +346,7 @@ public class BulletManager : MonoSingleton<BulletManager>
 
 	private void AddToRenderBatch(ref Bullet bullet, float alpha)
 	{
-		Quaternion targetRotation = Quaternion.Euler(0f, 0f, bullet.InitialRotation);
+		var targetRotation = Quaternion.Euler(0f, 0f, bullet.InitialRotation);
 		if (bullet.RotateTowardsDirection)
 		{
 			float angle = Mathf.Atan2(bullet.Velocity.y, bullet.Velocity.x) * Mathf.Rad2Deg;
