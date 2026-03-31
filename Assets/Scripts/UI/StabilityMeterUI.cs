@@ -47,13 +47,13 @@ public class StabilityMeterUI : MonoBehaviour
 
 	private void OnEnable()
 	{
-		if (_player != null)
-		{
-			_player.OnInstabilityProgressChanged += UpdateInstabilityUI;
-			_player.OnRepairProgressChanged += UpdateProgressUI;
-			_player.OnFullyRepaired += HandleFullyRepaired;
-			_player.OnRepairFilledUp += HandleRepairFilledUp;
-		}
+		_player.OnInstabilityProgressChanged += UpdateInstabilityUI;
+		_player.OnRepairProgressChanged += UpdateProgressUI;
+		_player.OnFullyRepaired += HideUI;
+		_player.OnRepairFilledUp += HandleRepairFilledUp;
+
+		GameManager.Instance.OnGameRestart.AddListener(HandleRepairFilledUp);
+		GameManager.Instance.OnPlayerDeath.AddListener(HideUI);
 	}
 
 	private void OnDisable()
@@ -62,8 +62,14 @@ public class StabilityMeterUI : MonoBehaviour
 		{
 			_player.OnInstabilityProgressChanged -= UpdateInstabilityUI;
 			_player.OnRepairProgressChanged -= UpdateProgressUI;
-			_player.OnFullyRepaired -= HandleFullyRepaired;
+			_player.OnFullyRepaired -= HideUI;
 			_player.OnRepairFilledUp -= HandleRepairFilledUp;
+		}
+
+		if (GameManager.Instance)
+		{
+			GameManager.Instance.OnGameRestart.RemoveListener(HandleRepairFilledUp);
+			GameManager.Instance.OnPlayerDeath.RemoveListener(HideUI);
 		}
 	}
 
@@ -101,7 +107,7 @@ public class StabilityMeterUI : MonoBehaviour
 		}
 	}
 
-	private void HandleFullyRepaired()
+	private void HideUI()
 	{
 		_isHidden = true;
 		_fadeTween.Stop();
