@@ -68,7 +68,7 @@ public class SwayingObject : MonoBehaviour
 	[FoldoutGroup("Scale Tween")]
 	[SerializeField]
 	[ShowIf("@_scaleTweenEnable")]
-	[Tooltip("How strong the scale tween is (1.5 means scale to 150% then down to ~67%)")]
+	[Tooltip("How strong the scale tween is")]
 	[Range(1f, 5f)]
 	private float _scaleStrength = 1.1f;
 

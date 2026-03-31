@@ -407,6 +407,39 @@ Transform:
   - {fileID: 843442186}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &801771922 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6962428614186006896, guid: a5762983fc06c44219491617b49edb7a, type: 3}
+  m_PrefabInstance: {fileID: 2050662310405911371}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &801771924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801771922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1244b8417b5d1490689965293c6074b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwayingObject
+  _positionShakeEnable: 0
+  _positionStrength: {x: 5, y: 5, z: 0}
+  _positionFrequency: 0.5
+  _positionEase: 1
+  _positionDuration: 5
+  _rotationTweenEnable: 0
+  _rotationStrength: {x: 0, y: 0, z: 5}
+  _rotationEase: 4
+  _rotationRandomStart: 0
+  _rotationDuration: 5
+  _scaleTweenEnable: 1
+  _scaleStrength: 1.05
+  _scaleEase: 4
+  _scaleRandomStart: 1
+  _scaleDuration: 10
+  _useUnscaledTime: 0
 --- !u!1 &823501841
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,8 +1018,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1349987948886246056, guid: a5762983fc06c44219491617b49edb7a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349987948886246056, guid: a5762983fc06c44219491617b49edb7a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349987948886246056, guid: a5762983fc06c44219491617b49edb7a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349987948886246056, guid: a5762983fc06c44219491617b49edb7a, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -167
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349987948886246056, guid: a5762983fc06c44219491617b49edb7a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1423626335670668170, guid: a5762983fc06c44219491617b49edb7a, type: 3}
       propertyPath: m_Name
@@ -1379,7 +1428,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6962428614186006896, guid: a5762983fc06c44219491617b49edb7a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 801771924}
   m_SourcePrefab: {fileID: 100100000, guid: a5762983fc06c44219491617b49edb7a, type: 3}
 --- !u!114 &2050662310405911372 stripped
 MonoBehaviour:
