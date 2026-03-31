@@ -1171,6 +1171,7 @@ GameObject:
   - component: {fileID: 761794630}
   - component: {fileID: 761794632}
   - component: {fileID: 761794631}
+  - component: {fileID: 761794633}
   m_Layer: 0
   m_Name: Rubble2
   m_TagString: Untagged
@@ -1274,6 +1275,34 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &761794633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761794629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1244b8417b5d1490689965293c6074b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwayingObject
+  _positionShakeEnable: 0
+  _positionStrength: {x: 5, y: 5, z: 0}
+  _positionFrequency: 0.5
+  _positionEase: 1
+  _positionDuration: 5
+  _rotationTweenEnable: 1
+  _rotationStrength: {x: 0, y: 0, z: 20}
+  _rotationEase: 4
+  _rotationRandomStart: 1
+  _rotationDuration: 100
+  _scaleTweenEnable: 0
+  _scaleStrength: 1.1
+  _scaleEase: 4
+  _scaleRandomStart: 1
+  _scaleDuration: 15
+  _useUnscaledTime: 0
 --- !u!1 &788727581 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1798885929192609015, guid: 35923f6efbc7841d8964a6f4cae06b82, type: 3}
@@ -1430,6 +1459,7 @@ GameObject:
   - component: {fileID: 857618679}
   - component: {fileID: 857618681}
   - component: {fileID: 857618680}
+  - component: {fileID: 857618682}
   m_Layer: 0
   m_Name: Asteroid2
   m_TagString: Untagged
@@ -1533,6 +1563,34 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &857618682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857618678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1244b8417b5d1490689965293c6074b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwayingObject
+  _positionShakeEnable: 0
+  _positionStrength: {x: 5, y: 5, z: 0}
+  _positionFrequency: 0.5
+  _positionEase: 1
+  _positionDuration: 5
+  _rotationTweenEnable: 1
+  _rotationStrength: {x: 0, y: 0, z: 20}
+  _rotationEase: 4
+  _rotationRandomStart: 1
+  _rotationDuration: 100
+  _scaleTweenEnable: 0
+  _scaleStrength: 1.1
+  _scaleEase: 4
+  _scaleRandomStart: 1
+  _scaleDuration: 15
+  _useUnscaledTime: 0
 --- !u!1 &868464615
 GameObject:
   m_ObjectHideFlags: 0
@@ -1810,6 +1868,7 @@ GameObject:
   - component: {fileID: 957527934}
   - component: {fileID: 957527936}
   - component: {fileID: 957527935}
+  - component: {fileID: 957527937}
   m_Layer: 0
   m_Name: Asteroid1
   m_TagString: Untagged
@@ -1913,6 +1972,34 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &957527937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957527933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1244b8417b5d1490689965293c6074b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwayingObject
+  _positionShakeEnable: 0
+  _positionStrength: {x: 5, y: 5, z: 0}
+  _positionFrequency: 0.5
+  _positionEase: 1
+  _positionDuration: 5
+  _rotationTweenEnable: 1
+  _rotationStrength: {x: 0, y: 0, z: 20}
+  _rotationEase: 4
+  _rotationRandomStart: 1
+  _rotationDuration: 100
+  _scaleTweenEnable: 0
+  _scaleStrength: 1.1
+  _scaleEase: 4
+  _scaleRandomStart: 1
+  _scaleDuration: 15
+  _useUnscaledTime: 0
 --- !u!1 &1008966335
 GameObject:
   m_ObjectHideFlags: 0
@@ -2581,6 +2668,7 @@ GameObject:
   - component: {fileID: 1459154850}
   - component: {fileID: 1459154852}
   - component: {fileID: 1459154851}
+  - component: {fileID: 1459154853}
   m_Layer: 0
   m_Name: Rubble3
   m_TagString: Untagged
@@ -2684,6 +2772,34 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1459154853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459154849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1244b8417b5d1490689965293c6074b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwayingObject
+  _positionShakeEnable: 0
+  _positionStrength: {x: 5, y: 5, z: 0}
+  _positionFrequency: 0.5
+  _positionEase: 1
+  _positionDuration: 5
+  _rotationTweenEnable: 1
+  _rotationStrength: {x: 0, y: 0, z: 20}
+  _rotationEase: 4
+  _rotationRandomStart: 1
+  _rotationDuration: 100
+  _scaleTweenEnable: 0
+  _scaleStrength: 1.1
+  _scaleEase: 4
+  _scaleRandomStart: 1
+  _scaleDuration: 15
+  _useUnscaledTime: 0
 --- !u!1 &1484692828
 GameObject:
   m_ObjectHideFlags: 0
@@ -2952,6 +3068,7 @@ GameObject:
   - component: {fileID: 1591208956}
   - component: {fileID: 1591208958}
   - component: {fileID: 1591208957}
+  - component: {fileID: 1591208959}
   m_Layer: 0
   m_Name: Asteroid2 (1)
   m_TagString: Untagged
@@ -3055,6 +3172,34 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1591208959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591208955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1244b8417b5d1490689965293c6074b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwayingObject
+  _positionShakeEnable: 0
+  _positionStrength: {x: 5, y: 5, z: 0}
+  _positionFrequency: 0.5
+  _positionEase: 1
+  _positionDuration: 5
+  _rotationTweenEnable: 1
+  _rotationStrength: {x: 0, y: 0, z: 20}
+  _rotationEase: 4
+  _rotationRandomStart: 1
+  _rotationDuration: 100
+  _scaleTweenEnable: 1
+  _scaleStrength: 1.1
+  _scaleEase: 4
+  _scaleRandomStart: 1
+  _scaleDuration: 15
+  _useUnscaledTime: 0
 --- !u!114 &1635383703 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4324075228598679348, guid: a3f785f1e1ec44dac8406aea09a4316e, type: 3}
@@ -3430,6 +3575,7 @@ GameObject:
   - component: {fileID: 1869825175}
   - component: {fileID: 1869825177}
   - component: {fileID: 1869825176}
+  - component: {fileID: 1869825178}
   m_Layer: 0
   m_Name: Rubble1
   m_TagString: Untagged
@@ -3533,6 +3679,34 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1869825178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869825174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1244b8417b5d1490689965293c6074b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwayingObject
+  _positionShakeEnable: 0
+  _positionStrength: {x: 5, y: 5, z: 0}
+  _positionFrequency: 0.5
+  _positionEase: 1
+  _positionDuration: 5
+  _rotationTweenEnable: 1
+  _rotationStrength: {x: 0, y: 0, z: 20}
+  _rotationEase: 4
+  _rotationRandomStart: 1
+  _rotationDuration: 100
+  _scaleTweenEnable: 0
+  _scaleStrength: 1.1
+  _scaleEase: 4
+  _scaleRandomStart: 1
+  _scaleDuration: 15
+  _useUnscaledTime: 0
 --- !u!1001 &1929973059
 PrefabInstance:
   m_ObjectHideFlags: 0
